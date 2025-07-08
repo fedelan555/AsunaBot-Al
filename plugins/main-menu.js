@@ -34,9 +34,9 @@ const defaultMenu = {
 `.trimStart(),
   
   header: '\n╭── %category ────',
-  body: 'ര ׄ 🍒 %cmd\n',
+  body: '┃ 🌀 %cmd\n',
   footer: '╰───────────────',
-  after: '\n⚙ Usa los botones para explorar más opciones.'
+  after: '\n⚔ Domina el aliento del Sol y sigue adelante...'
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
@@ -99,15 +99,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
       buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
-        { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
+        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 *CREADOR*' }, type: 1 },
+        { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 *GRUPOS*' }, type: 1 }
       ],
       viewOnce: true
     }, { quoted: m })
 
   } catch (e) {
     console.error(e)
-    conn.reply(m.chat, '❎ Error al generar el menú del sistema.', m)
+    conn.reply(m.chat, '⚔ Ha ocurrido un error al invocar el aliento del menú..', m)
   }
 }
 
