@@ -31,15 +31,15 @@ console.log(`Error : ${e}`)
 global.creador = 'Wa.me/5491156178758'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/584146277368'
-global.namechannel = '⏤͟͟͞͞𐔌̷ִ̼͊🌳 ̸̷᮫໊᷐͢᷍ᰍ ᥲ𝗌ᥙᥒᥲ-ᑲ᥆𝗍  ✧ ᥴһᥲᥒᥒᥱᥣ'
-global.namegrupo = ' ᥲsᥙᥒᥲᑲ᥆𝗍-ᥲᥣ '
+global.namechannel = '⏤͟͟͞͞𐔌̷ִ̼͊🌳 ̸̷᮫໊᷐͢᷍ᰍ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭  ✧ ᥴһᥲᥒᥒᥱᥣ'
+global.namegrupo = ' 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 '
 global.namecomu = 'ᥲsᥙᥒᥲᑲ᥆𝗍-ᥲᥣ'
-global.listo = '⚔️ *Aquí tienes perra*'
+global.listo = '⚔️ *Aquí tienes tu pedido*'
 
 //Ids channel
 global.idchannel = '120363420017244077@newsletter'
 global.canalIdM = ["120363420017244077@newsletter", "120363420017244077@newsletter"]
-global.canalNombreM = ["✦ ᥲsᥙᥒᥲᑲ᥆𝗍-ᥲᥣ ᥴһᥲᥒᥒᥱᥣ ❀", "✦ ᥲsᥙᥒᥲᑲ᥆𝗍-ᥲᥣ ᥴһᥲᥒᥒᥱᥣ ❀ "]
+global.canalNombreM = ["✦ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ᥴһᥲᥒᥒᥱᥣ 🌙", "✦ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ᥴһᥲᥒᥒᥱᥣ 🌙 "]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
