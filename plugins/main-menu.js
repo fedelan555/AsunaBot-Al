@@ -32,9 +32,9 @@ const defaultMenu = {
 %readmore
 `.trimStart(),
   
-  header: '\n╭─────── %category ──────',
+  header: '\n╭── %category ────',
   body: 'ര ׄ 🍒 %cmd\n',
-  footer: '╰─────────────────╯',
+  footer: '╰───────────────',
   after: '\n⚙ Usa los botones para explorar más opciones.'
 }
 
