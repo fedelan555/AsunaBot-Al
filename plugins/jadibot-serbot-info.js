@@ -12,17 +12,17 @@ async function handler(m, { conn: stars, usedPrefix }) {
   global.totalUsers = totalUsers
 
   let packname = global.packname || '🤖 𝙱𝙾𝚃'
-  let title = `⭑『 𝗦𝗨𝗕𝗕𝗢𝗧𝗦 𝗖𝗢𝗡𝗘𝗖𝗧𝗔𝗗𝗢𝗦 』⭑`
+  let title = `⭑『 *SUB-BOTS CONECTADOS* 』⭑`
   let barra = '━━━━━━━━━━━━━━━━'
 
   let listado = users.map((v, i) => {
     let jid = v.user.jid.replace(/[^0-9]/g, '')
     let nombre = v.user.name || '👤 𝚂𝚄𝙱-𝙱𝙾𝚃'
-    return `╭╼⟪ ${packname} ⟫╾╮
-┃ #${i + 1} 👾 @${jid}
-┃ 🌐 Link: wa.me/${jid}
-┃ 🧠 Nombre: ${nombre}
-╰╼▣`
+    return `╭╼✦ ${packname} ✦╾╮
+┃ #${i + 1} ⚙ @${jid}
+┃ 🔎 Link: wa.me/${jid}
+┃ 🌙 Nombre: ${nombre}
+╰────────╼▣`
   }).join('\n\n')
 
   let responseMessage = `╭═⬣ ${title}
@@ -31,7 +31,7 @@ async function handler(m, { conn: stars, usedPrefix }) {
 
 ${listado || '⚠️ No hay subbots activos en este momento.'}`.trim()
 
-  const imageUrl = 'https://files.catbox.moe/kceq81.jpg' // ⚠️ Cambia esta URL si quieres usar otra imagen
+  const imageUrl = 'https://files.catbox.moe/uell0r.jpg' // ⚠️ Cambia esta URL si quieres usar otra imagen
 
   const fkontak = {
     key: {
