@@ -22,13 +22,14 @@ const defaultMenu = {
 ╭─────────────✦
 │🍃 ᴍᴇɴᴜ - ᴛᴀɴᴊɪʀᴏ ʙᴏᴛ
 ╰─────────────✦
-╭─❏ *INFO - BOT* ❏
-💖 ᩚ꤬ᰨ *Cliente:* %name
-💖 ᩚ꤬ᰨ *Modo:* Público
-💖 ᩚ꤬ᰨ *Baileys:* Multi Device
-💖 ᩚ꤬ᰨ *Tiempo Activo:* %muptime
-💖 ᩚ꤬ᰨ *Usuarios:* %totalreg 
-╰─────❏
+
+👤 Usuario: *%name*
+⚔ Nivel: %level
+💥 Exp: %exp/%maxexp
+🌐 Modo: %mode
+👥 Usuarios: %totalreg
+⏳ Activo: %muptime
+
 %readmore
 `.trimStart(),
   
