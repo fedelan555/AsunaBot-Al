@@ -17,7 +17,7 @@ let tags = {
 }
 
 const defaultMenu = {
-  before: `*ㅤ︵⏜ᩨ︵  ⋱   ⁝  ⋰  ︵ᩨ⏜︵*
+  before: `*☀️ MENÚ - ESPÍRITU DEL SOL ☀️*
 
 ╭─────────────✦
 │🍃 ᴍᴇɴᴜ - ᴛᴀɴᴊɪʀᴏ ʙᴏᴛ
@@ -26,16 +26,16 @@ const defaultMenu = {
 👤 Usuario: *%name*
 ⚔ Nivel: %level
 💥 Exp: %exp/%maxexp
-🌐 Modo: %mode
+🌙 Modo: %mode
 👥 Usuarios: %totalreg
 ⏳ Activo: %muptime
 
 %readmore
 `.trimStart(),
   
-  header: '\n╭── %category ────',
+  header: '\n🌸 %category ╭──────────',
   body: '┃ 🌀 %cmd\n',
-  footer: '╰───────────────',
+  footer: '╰───────────',
   after: '\n⚔ Domina el aliento del Sol y sigue adelante...'
 }
 
