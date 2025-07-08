@@ -49,19 +49,13 @@ let handler = async function (m, { conn, text, args, usedPrefix, command }) {
     regbot += `*🩵ᮢ⃘ᩙ𑰴 𝐍𝐨𝐦𝐛𝐫𝐞:* ${name}\n`
     regbot += `*🩵ᮢ⃘ᩙ𑰴 𝐄𝐝𝐚𝐝:* ${age} años\n`
     regbot += `•✩.･*:｡≻──⋆♡⋆───.•*:｡✩•\n`
-    regbot += `*「💙」𝐑𝐞𝐜𝐨𝐦𝐩𝐞𝐧𝐬𝐚𝐬:*\n> `
-    regbot += `• 15 Estrellas 🌟\n> `
-    regbot += `• 5 AsunaCoins 🪙\n> `
-    regbot += `• 245 Experiencia 💸\n> `
-    regbot += `• 12 Tokens 💰\n`
-    regbot += `*⸽ ͜ ֟፝͝ ⃨͜ ⸽ ͜ ֟፝͝ ⃨͜ ⸽᮫᷼  ͜ ໍ ᷼ᮬ࣪  ׅ 🩵ຼິ͙͙〫 ׅ  ࣪᷼  ͜  ᷼ᮬ᮫ ໍ⸽ ͜ ֟፝͝ ⃨͜ ⸽ ͜ ֟፝͝ ⃨͜ ⸽*\n> `
     regbot += `🍫 Usᥲ *#perfil* ⍴ᥲrᥲ ᥎ᥱr 𝗍ᥙ ⍴ᥱr𝖿іᥣ.`
 
   await conn.sendMessage(m.chat, {
         text: regbot,
         contextInfo: {
             externalAdReply: {
-                title: '『💙 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢•𝗔 💙』',
+                title: '『💙 REGISTRADO/A 💙』',
                 thumbnailUrl: 'https://files.catbox.moe/g8izji.jpg',
                 mediaType: 1,
                 renderLargerThumbnail: true
@@ -77,7 +71,7 @@ let handler = async function (m, { conn, text, args, usedPrefix, command }) {
                 showAdAttribution: true,                      
                 containsAutoReply: true,     
                 renderLargerThumbnail": true,
-                title: '╚💙 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢•𝗔 💙╝',  
+                title: '╚💙 REGISTRADO/A💙╝',  
                 body: dev,  
                 containsAutoReply: true,
                 showAdAttribution: true,
