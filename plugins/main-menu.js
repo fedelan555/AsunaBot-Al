@@ -96,7 +96,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://imgur.com/a/B8cYhVX.jpg' },
+      image: { url: 'https://imgur.com/a/B8cYhVX' },
       caption: text,
       buttons: [
         { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
