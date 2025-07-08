@@ -31,10 +31,10 @@ console.log(`Error : ${e}`)
 global.creador = 'Wa.me/5491156178758'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/584146277368'
-global.namechannel = '⏤͟͟͞͞𐔌̷ִ̼͊🌳 ̸̷᮫໊᷐͢᷍ᰍ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭  ✧ ᥴһᥲᥒᥒᥱᥣ'
-global.namegrupo = ' 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 '
-global.namecomu = 'ᥲsᥙᥒᥲᑲ᥆𝗍-ᥲᥣ'
-global.listo = '⚔️ *Aquí tienes tu pedido*'
+global.namechannel = '🌙 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭  ✧ ᥴһᥲᥒᥒᥱᥣ'
+global.namegrupo = ' 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭'
+global.namecomu = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭'
+global.listo = '🌸 *Aquí tienes tu pedido*'
 
 //Ids channel
 global.idchannel = '120363420017244077@newsletter'
@@ -96,8 +96,8 @@ global.fake = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo
 }}, { quoted: m }
 
 global.icono = [
-'https://github.com/fedelanYTCLUB.png',
-'https://files.catbox.moe/req69c.jpg'
+'https://files.catbox.moe/yzl2d9.jpg',
+'https://files.catbox.moe/626sjd.jpg'
 ].getRandom()
 
 global.rcanal = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: 100, newsletterName: channelRD.name, }, externalAdReply: { showAdAttribution: true, title: packname, body: dev, mediaUrl: null, description: null, previewType: "PHOTO", thumbnailUrl: icono, sourceUrl: redes, mediaType: 1, renderLargerThumbnail: false }, }, }}
