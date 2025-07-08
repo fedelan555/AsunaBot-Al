@@ -66,7 +66,7 @@ apt update && apt upgrade && pkg install -y git nodejs ffmpeg imagemagick yarn
 ```
 
 ```bash
-git clone https://github.com/fedelanYTCLUB/Super_Bot && cd Super_Bot
+git clone https://github.com/fedelan555/AsunaBot-Al && cd AsunaBot-Al
 ```
 
 ```bash
@@ -92,7 +92,7 @@ apt update && apt upgrade
 ```
 
 ```bash
-git clone https://github.com/fedelanYTCLUB/Super_Bot && cd Super_Bot
+git clone https://github.com/fedelan555/AsunaBot-Al && cd AsunaBot-Al
 ```
 
 ```bash
@@ -112,8 +112,8 @@ npm start
 
 ## 👤 Creador del proyecto
 
-<a href="https://github.com/fedelanYTCLUB">
-  <img src="https://github.com/fedelanYTCLUB.png" width="250" height="250" alt="Fedelan"/>
+<a href="https://github.com/fedelan555">
+  <img src="https://github.com/fedelan555.png" width="250" height="250" alt="Fedelan"/>
 </a>
 
 ![line](https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif)
