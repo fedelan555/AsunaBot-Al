@@ -2,7 +2,7 @@
 
 <h1 align="center">🌙 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙</h1>
 <p align="center">
-  <img src="https://files.catbox.moe/uell0r.jpg" width="300">
+  <img src="https://files.catbox.moe/yzl2d9.jpg" width="300">
 </p>
 
 
