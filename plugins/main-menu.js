@@ -33,7 +33,7 @@ const defaultMenu = {
 %readmore
 `.trimStart(),
   
-  header: '\n🌸 %category ╭──────────',
+  header: '\n🌸 %category ────────🥷🍃⁽¹⁾⁽²⁾',
   body: '┃ 🌀 %cmd\n',
   footer: '╰───────────',
   after: '\n⚔ Domina el aliento del Sol y sigue adelante...'
