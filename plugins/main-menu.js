@@ -19,7 +19,6 @@ let tags = {
 const defaultMenu = {
   before: `*☀️ MENÚ - ESPÍRITU DEL SOL ☀️*
 
-
 👤 Usuario: *%name*
 ⚔ Nivel: %level
 💥 Exp: %exp/%maxexp
@@ -30,10 +29,10 @@ const defaultMenu = {
 %readmore
 `.trimStart(),
   
-  header: '\n🌸 %category ────────✦',
+  header: '\n🌸 %category ───────────✦',
   body: '┃ 🌀 %cmd\n',
-  footer: '╰───────────✦',
-  after: '\n⚔ Domina el aliento del Sol y sigue adelante...'
+  footer: '╰──────────────✦',
+  after: '\n☀️ Domina el aliento del Sol y sigue adelante...'
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
