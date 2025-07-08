@@ -2,6 +2,11 @@
 
 <h1 align="center">🌙 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙</h1>
 <p align="center">
+  
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FF0000&lines=Bienvenido+al+Repositorio;Tanjiro+-+Bot;Gracias+por+preferirnos;Creado+por+fede;💥+BOOM!!!;🔥)](https://git.io/typing-svg)
+![Mickey](https://qu.ax/OsGd.jpg)
+
+  
   <img src="https://files.catbox.moe/yzl2d9.jpg" width="300">
 </p>
 
