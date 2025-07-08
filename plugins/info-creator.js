@@ -1,45 +1,65 @@
+// 🔧 Nuevo código `creador.js` en formato alternativo...
+
 import fetch from 'node-fetch';
 
-let handler = async (m, { conn, usedPrefix, text, args, command }) => {
-   await m.react('👤');
-
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
-    let name = await conn.getName(who);
-    let edtr = `@${m.sender.split`@`[0]}`;
-    let username = conn.getName(m.sender);
-
-    // VCARD
-    let list = [{
-        displayName: "fede",
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nFN: fedelanyt\nitem1.TEL;waid=5491156178758:5491156178758\nitem1.X-ABLabel:Número\nitem2.EMAIL;type=INTERNET: fedelanyt20@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:nada\nitem3.X-ABLabel:Internet\nitem4.ADR:;; Argentina;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`,
-    }];
-
-    await conn.sendMessage(m.chat, {
-        contacts: {
-            displayName: `${list.length} Contacto`,
-            contacts: list
-        },
-        contextInfo: {
-            externalAdReply: {
-                showAdAttribution: true,
-                title: '𝐇𝐨𝐥𝐚, 𝐒𝐨𝐲 𝐅𝐞𝐝𝐞 𝐂𝐫𝐞𝐚𝐝𝐨𝐫 𝐝𝐞 𝐀𝐬𝐮𝐧𝐚',
-                body: dev,
-                thumbnailUrl: 'https://files.catbox.moe/ddv9lu.jpg',
-                sourceUrl: 'https://github.com/',
-                mediaType: 1,
-                renderLargerThumbnail: true
-            }
-        }
-    }, {
-        quoted: m
-    });
-
-    let txt = `👋 *Hola \`${username}\` este es*\n*el contacto de mi creador*`;
-
-    await conn.sendMessage(m.chat, { text: txt });
+const creadorInfo = {
+  nombre: "fedelanyt",
+  numero: "5491156178758",
+  email: "fedelanyt20@gmail.com",
+  pais: "Argentina",
+  imagen: "https://files.catbox.moe/ddv9lu.jpg",
+  link: "https://github.com/fedelan555"
 };
 
-handler.help = ['owner', 'creator'];
+const generarVCard = (info) => {
+  return `BEGIN:VCARD
+VERSION:3.0
+FN:${info.nombre}
+item1.TEL;waid=${info.numero}:${info.numero}
+item1.X-ABLabel:WhatsApp
+item2.EMAIL;type=INTERNET:${info.email}
+item2.X-ABLabel:Email
+item3.URL:${info.link}
+item3.X-ABLabel:GitHub
+item4.ADR:;;${info.pais};;;;
+item4.X-ABLabel:Ubicación
+END:VCARD`;
+};
+
+let handler = async (m, { conn}) => {
+  await m.react('👨‍💻');
+
+  let username = await conn.getName(m.sender);
+  let contacto = {
+    displayName: "Contacto del Creador",
+    vcard: generarVCard(creadorInfo)
+};
+
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      displayName: "1 contacto",
+      contacts: [contacto]
+},
+    contextInfo: {
+      externalAdReply: {
+        showAdAttribution: true,
+        title: '🎯 Creador del Bot Asuna',
+        body: `Solicitado por ${username}`,
+        thumbnailUrl: creadorInfo.imagen,
+        sourceUrl: creadorInfo.link,
+        mediaType: 1,
+        renderLargerThumbnail: true
+}
+}
+}, {
+    quoted: m
+});
+
+  let texto = `✨ *Hola ${username}*\nAquí tienes el contacto del creador del bot.`;
+  await conn.sendMessage(m.chat, { text: texto});
+};
+
+handler.help = ['creador'];
 handler.tags = ['main'];
 handler.command = /^(owner|creator|creador|dueño)$/i;
 
