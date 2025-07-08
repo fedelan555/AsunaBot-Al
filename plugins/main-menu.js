@@ -19,9 +19,6 @@ let tags = {
 const defaultMenu = {
   before: `*☀️ MENÚ - ESPÍRITU DEL SOL ☀️*
 
-╭─────────────✦
-│🍃 ᴍᴇɴᴜ - ᴛᴀɴᴊɪʀᴏ ʙᴏᴛ
-╰─────────────✦
 
 👤 Usuario: *%name*
 ⚔ Nivel: %level
@@ -33,9 +30,9 @@ const defaultMenu = {
 %readmore
 `.trimStart(),
   
-  header: '\n🌸 %category ────────🥷🍃⁽¹⁾⁽²⁾',
+  header: '\n🌸 %category ────────✦',
   body: '┃ 🌀 %cmd\n',
-  footer: '╰───────────',
+  footer: '╰───────────✦',
   after: '\n⚔ Domina el aliento del Sol y sigue adelante...'
 }
 
