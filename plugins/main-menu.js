@@ -35,7 +35,7 @@ const defaultMenu = {
   header: '\n╭─────── %category ──────',
   body: 'ര ׄ 🍒 %cmd\n',
   footer: '╰─────────────────╯',
-  after: '\n⚔USA UNOS DE ESTOS BOTONES⚔'
+  after: '\n⚙ Usa los botones para explorar más opciones.'
 }
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
