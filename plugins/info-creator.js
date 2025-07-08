@@ -1,73 +1,54 @@
-// 🎨 Nueva versión de `creador.js` — estilo más expresivo y personal*
+// una versión de `creador.js` que *no utiliza imagen (`jpg`)*, pero mantiene la funcionalidad de enviar el contacto del creador usando la vCard y un mensaje de presentación, sin incluir la vista previa enriquecida con imagen:
 
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
-  await m.react('🤖');
+  await m.react('👤');
 
-  const nombreUsuario = await conn.getName(m.sender);
-  const editorTag = `@${m.sender.split('@')[0]}`;
+  const username = await conn.getName(m.sender);
 
-  // Datos del creador
-  const infoCreador = {
+  const creador = {
     nombre: "FedeLanyt",
     numero: "5491156178758",
     email: "fedelanyt20@gmail.com",
     pais: "Argentina",
-    foto: "https://files.catbox.moe/ddv9lu.jpg",
-    github: "https://github.com/fedelan555",
-    mensaje: "Programador de bots, amante del código y explorador del mundo digital 🔧💻"
+    github: "https://github.com/fedelan555"
 };
 
-  // Crear vCard con diseño visual
+  // Construcción del vCard
   const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${infoCreador.nombre}
-item1.TEL;waid=${infoCreador.numero}:${infoCreador.numero}
+FN:${creador.nombre}
+item1.TEL;waid=${creador.numero}:${creador.numero}
 item1.X-ABLabel:WhatsApp
-item2.EMAIL;type=INTERNET:${infoCreador.email}
+item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
-item3.URL:${infoCreador.github}
+item3.URL:${creador.github}
 item3.X-ABLabel:GitHub
-item4.ADR:;;${infoCreador.pais};;;;
+item4.ADR:;;${creador.pais};;;;
 item4.X-ABLabel:Ubicación
 END:VCARD`;
 
-  // Enviar contacto con preview enriquecido
+  // Enviar contacto sin imagen
   await conn.sendMessage(m.chat, {
     contacts: {
       displayName: "📇 Creador del Bot",
       contacts: [{
-        displayName: infoCreador.nombre,
+        displayName: creador.nombre,
         vcard
 }]
-},
-    contextInfo: {
-      externalAdReply: {
-        title: `🔧 ${infoCreador.nombre} • Creador del Bot Asuna`,
-        body: infoCreador.mensaje,
-        thumbnailUrl: infoCreador.foto,
-        sourceUrl: infoCreador.github,
-        mediaType: 1,
-        renderLargerThumbnail: true,
-        showAdAttribution: true
-}
 }
 }, {
     quoted: m
 });
 
-  // Mensaje final
-  let mensajeFinal = `👋 *Hola ${nombreUsuario}*\nEste es el contacto oficial de *${infoCreador.nombre}*, creador del bot.
-🌍 País: ${infoCreador.pais}
-📬 Email: ${infoCreador.email}
-📂 Más sobre él: ${infoCreador.github}`;
-
-  await conn.sendMessage(m.chat, { text: mensajeFinal});
+  // Mensaje personalizado
+  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`;
+  await conn.sendMessage(m.chat, { text: mensaje});
 };
 
 handler.help = ['creador'];
 handler.tags = ['main'];
-handler.command = /^(creador|owner|creator|dueño)$/i;
+handler.command = /^(owner|creator|creador|dueño)$/i;
 
 export default handler;
