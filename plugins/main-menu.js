@@ -17,9 +17,10 @@ let tags = {
 }
 
 const defaultMenu = {
-  before: `*ㅤ╭─────────────✦
-│🍃 ᴍᴇɴᴜ - ᴛᴀɴᴊɪʀᴏ ʙᴏᴛ
-╰─────────────✦
+  before: `*ㅤ︵⏜ᩨ︵  ⋱   ⁝  ⋰  ︵ᩨ⏜︵*
+
+ര ׄ🍀ʜᴏʟᴀ: *%name* *ʙɪᴇɴᴠᴇɴɪᴅᴏ/ᴀ
+ര ׄ🍀ʙᴏᴛ ᴏꜰᴄ: *ᴛᴀɴᴊɪʀᴏ ʙᴏᴛ*
 
 ╭─❏ *INFO - BOT* ❏
 💖 ᩚ꤬ᰨ *Cliente:* %name
@@ -31,9 +32,9 @@ const defaultMenu = {
 %readmore
 `.trimStart(),
   
-  header: '\n╭── %category ───',
-  body: '│➛ %cmd\n',
-  footer: '╰───────────────',
+  header: '\n╭─────── %category ──────',
+  body: 'ര ׄ 🍒 %cmd\n',
+  footer: '╰─────────────────╯',
   after: '\n⚔USA UNOS DE ESTOS BOTONES⚔'
 }
 
@@ -97,15 +98,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
       buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
-        { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
+        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 OWNER' }, type: 1 },
+        { buttonId: `${_p}Grupos`, buttonText: { displayText: '👻 GRUPOS' }, type: 1 }
       ],
       viewOnce: true
     }, { quoted: m })
 
   } catch (e) {
     console.error(e)
-    conn.reply(m.chat, '❎ Error al generar el menú del sistema.', m rcanal'),
+    conn.reply(m.chat, '❎ Error al generar el menú del sistema.', m)
   }
 }
 
@@ -120,4 +121,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-      }
+  }
