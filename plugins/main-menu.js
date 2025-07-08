@@ -105,7 +105,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
   } catch (e) {
     console.error(e)
-    conn.reply(m.chat, '❎ Error al generar el menú del sistema.', m rcanal)
+    conn.reply(m.chat, '❎ Error al generar el menú del sistema.', m rcanal'),
   }
 }
 
