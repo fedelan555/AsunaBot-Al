@@ -13,7 +13,7 @@ if (/webp|image|video/g.test(mime)) {
 if (/video/g.test(mime)) if ((q.msg || q).seconds > 8) return m.reply(`🌙 *¡El video no puede durar mas de 8 segundos!*`)
 let img = await q.download?.()
 
-if (!img) return conn.reply(m.chat, `🌙 *!Error...Por favor, envía primero una imagen, video o gif...*`, m,)
+if (!img) return conn.reply(m.chat, `🌙 *!Error...Por favor, envía primero una imagen, video o gif...*`, m, rcanal)
 
 let out
 try {
@@ -40,7 +40,7 @@ if (!stiker) stiker = e
 } finally {
 if (stiker) conn.sendFile(m.chat, stiker, 'sticker.webp', '',m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: packname, body: `🌙 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙`, mediaType: 2, thumbnail: icons}}}, { quoted: m })
 
-else return conn.reply(m.chat, '🌙 *!Error...Por favor, envía primero una imagen, video o gif...*', m,)
+else return conn.reply(m.chat, '🌙 *!Error...Por favor, envía primero una imagen, video o gif...*', m, rcanal)
                        
 
 
