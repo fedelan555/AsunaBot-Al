@@ -16,7 +16,7 @@ let tags = {
   'serbot': textCyberpunk('sub bots'),
 }
 
-const tanjiroMenu = {
+const defaultMenu = {
   before: `*ㅤ︵⏜ᩨ︵  ⋱   ⁝  ⋰  ︵ᩨ⏜︵*
 
 ╭─────────────✦
