@@ -1,65 +1,69 @@
-import PhoneNumber from 'awesome-phonenumber';
-import fetch from 'node-fetch';
 import fs from 'fs';
 
 const loadMarriages = () => {
-    if (fs.existsSync('./media/database/marry.json')) {
-        const data = JSON.parse(fs.readFileSync('./media/database/marry.json', 'utf-8'));
-        global.db.data.marriages = data;
-    } else {
-        global.db.data.marriages = {};
-    }
+  const path = './media/database/marry.json';
+  if (fs.existsSync(path)) {
+    const data = JSON.parse(fs.readFileSync(path, 'utf-8'));
+    global.db.data.marriages = data;
+} else {
+    global.db.data.marriages = {};
+}
 };
 
-var handler = async (m, { conn }) => {
-    loadMarriages();
+let handler = async (m, { conn}) => {
+  loadMarriages();
 
-    let who;
-    if (m.quoted && m.quoted.sender) {
-        who = m.quoted.sender;
-    } else {
-        who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
-    }
+  let who = m.quoted?.sender || m.mentionedJid?.[0] || (m.fromMe? conn.user.jid: m.sender);
+  const userData = global.db.data.users[who] || {};
 
-    let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://i.ibb.co/d0sfxs0T/file.jpg');
-    let { premium, level, genre, birth, description, estrellas, exp, lastclaim, registered, regTime, age, role } = global.db.data.users[who] || {};
-    let username = conn.getName(who);
+  const {
+    premium,
+    level = 0,
+    genre = 'No especificado',
+    birth = 'No establecido',
+    description = 'Sin descripción',
+    estrellas = 0,
+    exp = 0,
+    registered = false,
+    age = 'Sin especificar',
+    role = 'Aldeano'
+} = userData;
 
-    genre = genre === 0 ? 'No especificado' : genre || 'No especificado';
-    age = registered ? (age || 'Desconocido') : 'Sin especificar';
-    birth = birth || 'No Establecido';
-    description = description || 'Sin Descripción';
-    role = role || 'Aldeano';
-    let isMarried = who in global.db.data.marriages;
-    let partner = isMarried ? global.db.data.marriages[who] : null;
-    let partnerName = partner ? conn.getName(partner) : 'Nadie';
+  const isMarried = who in global.db.data.marriages;
+  const partner = isMarried? global.db.data.marriages[who]: null;
+  const partnerName = partner? await conn.getName(partner): 'Nadie';
 
-    let noprem = `
-《★》𝗣𝗲𝗿𝗳𝗶𝗹 𝗗𝗲 𝗨𝘀𝘂𝗮𝗿𝗶𝗼 ᰔᩚ
-❀  *N᥆mᑲrᥱ:* ${username}
-❖  *Eძᥲძ:* ${age}
-⚥  *Gᥱᥒᥱr᥆:* ${genre}
-❀  *Cᥙm⍴ᥣᥱᥲᥒ̃᥆s:* ${birth} 
-♡  *Cᥲsᥲძ@:* ${isMarried ? partnerName : 'Nadie'}
-✎  *Dᥱsᥴrі⍴ᥴі᥆́ᥒ:* ${description}
-❍  *Rᥱgіs𝗍rᥲძ᥆:* ${registered ? '✅': '❌'}
+  const username = await conn.getName(who);
+  const perfilpic = await conn.profilePictureUrl(who, 'image').catch(() => 'https://i.ibb.co/d0sfxs0T/file.jpg');
 
-「 ✦ *Recursos - User* 」
-✩ *Es𝗍rᥱᥣᥣᥲs:* ${estrellas || 0}
-≛ *Nivel:* ${level || 0}
-◭ *E᥊⍴ᥱrіᥱᥒᥴіᥲ:* ${exp || 0}
-⚡︎ *Rᥲᥒg᥆:* ${role}
+  const perfilTanjiro = `
+🌸 *Perfil del Cazador* 🌸
 
-> ✧ ⍴ᥲrᥲ ver 𝗍ᥙ ⍴ᥱr𝖿іᥣ ᥙsᥲ *#perfil*`.trim();
+👤 *Nombre:* ${username}
+🎂 *Edad:* ${registered? age: 'Sin registrar'}
+⚧️ *Género:* ${genre}
+📅 *Cumpleaños:* ${birth}
+💞 *Compañero de batalla:* ${partnerName}
+📖 *Descripción:* ${description}
+📌 *Registrado:* ${registered? '✅': '❌'}
 
-    conn.sendFile(m.chat, pp, 'perfil.jpg', `${premium ? prem.trim() : noprem.trim()}`, m, { mentions: [who] });
-}
+🔰 *Estadísticas Ninja* 🔰
+✨ *Estrellas:* ${estrellas}
+⚔️ *Nivel:* ${level}
+📈 *Experiencia:* ${exp}
+🥋 *Rango:* ${role}
 
-handler.help = ['profile'];
+🗡️ *Domina tu camino como Tanjiro. Invoca este perfil con #perfil*
+`.trim();
+
+  await conn.sendFile(m.chat, perfilpic, 'perfil.jpg', perfilTanjiro, m, { mentions: [who]});
+};
+
+handler.help = ['perfil', 'profile'];
+handler.tags = ['rg'];
+handler.command = ['perfil', 'profile'];
 handler.register = true;
 handler.group = false;
-handler.tags = ['rg'];
-handler.command = ['profile', 'perfil'];
 handler.estrellas = 2;
 
 export default handler;
