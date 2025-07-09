@@ -1,40 +1,42 @@
-// ¡una versión decorada y funcional de `gruposcfc.js` con mejoras estilísticas y estructura limpia. Incluye emojis, sangrados visuales y variables fáciles de configurar para mantener la estética épica del bot 😎🌐:
+// nueva versión de gruposcfc.js
 
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn}) => {
 
-  // 📝 Configura aquí tus datos de enlaces
-  const namegrupo = 'Grupo Oficial – Código Sin Fin'
+  // 🌊 Configuración Tanjiresca
+  const namegrupo = '🌸 Dojo Oficial – Respira Código'
   const gp1 = 'https://chat.whatsapp.com/ABC123xyzGrupo'
-  const namechannel = 'Canal Alternativo – CFC Updates'
+  const namechannel = '🔥 Canal Alternativo – Técnicas del Sol'
   const channel = 'https://chat.whatsapp.com/DEF456xyzCanal'
-  const dev = '👨‍💻 Creado por FedeLanyt'
+  const dev = '🗡️ Forjado por *FedeLanyt – Pilar del Código*'
   const catalogo = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/grupos.jpg'
-  const emojis = '📡'
+  const emojis = '🌪️'
 
-  // 🌟 Mensaje con los enlaces
+  // 📜 Mensaje con energía de cazador
   const grupos = `
-╭━━━〔 *🌐 LINKS OFICIALES* 〕━━━╮
+╭─── 〔 *🌊 RESPIRACIÓN DEL CÓDIGO* 〕 ───╮
 
-📲 *Únete al grupo principal:*
-🌀 *${namegrupo}*
-↪️ ${gp1}
+🌀 *Únete a nuestro dojo de cazadores:*
+👺 *${namegrupo}*
+🔗 ${gp1}
 
-╰━━━━━━━━━━━━━━━━━━━━━━━╯
+✨ Aprende, crece y lucha con tu teclado como tu espada 🗡️
 
-🔁 *¿Enlace roto? Úsalo alternativo:*
-📣 *${namechannel}*
-↪️ ${channel}
+╭───────〔 ☀ ALTERNATIVA DEL SOL ☀ 〕──────╯
 
-╭───────〔 ⚒️ SOPORTE 〕───────╯
+🔥 *Si la niebla oculta el enlace principal:*
+🌞 *${namechannel}*
+🔗 ${channel}
+
+╭───────〔 ⚒ SOPORTE TANJIRO 〕──────╯
 ${dev}
 `;
 
-  // 📤 Enviar imagen + texto
-  await conn.sendFile(m.chat, catalogo, "grupos.jpg", grupos, m);
+  // 🖼️ Enviar imagen + texto Tanjiro Style
+  await conn.sendFile(m.chat, catalogo, "dojo.jpg", grupos, m);
 
-  // 🌀 Reacción visual
+  // ✨ Reacción estilo respiración
   await m.react(emojis);
 }
 
