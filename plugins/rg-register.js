@@ -45,20 +45,17 @@ let handler = async function (m, { conn, text, args, usedPrefix, command }) {
     let regbot = `╭─ׅ─ׅ┈─๋︩︪──ׅ─ׅ┈─๋︩︪╮
 ╭╼✦ 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢 ✦ 
 ┃֪࣪╰─ׅ─ׅ┈─๋︩︪──ׅ─ׅ┈─๋︩︪╯\n`
-    👤 *Nombre:* ${name}
-   🎂 *Edad:* ${age} años
-   🔐 *ID Hashira:* ${hash}
-
-   🎖️ *Tu recompensa inicial:*
-   🟡 +600 monedas
-   ✨ +10 estrellas
-   📈 +250 experiencia
+    regbot += `•✩.･*:｡≻──⋆♡⋆───.•*:｡✩•\n`
+    regbot += `*🩵ᮢ⃘ᩙ𑰴 𝐍𝐨𝐦𝐛𝐫𝐞:* ${name}\n`
+    regbot += `*🩵ᮢ⃘ᩙ𑰴 𝐄𝐝𝐚𝐝:* ${age} años\n`
+    regbot += `•✩.･*:｡≻──⋆♡⋆───.•*:｡✩•\n`
+    regbot += `🍫 Usᥲ *#perfil* ⍴ᥲrᥲ ᥎ᥱr 𝗍ᥙ ⍴ᥱr𝖿іᥣ.`
 
   await conn.sendMessage(m.chat, {
         text: regbot,
         contextInfo: {
             externalAdReply: {
-                title: '🌙 Registro TanjiroBot 🌙',
+                title: '『💙 REGISTRADO/A 💙』',
                 thumbnailUrl: 'https://files.catbox.moe/g8izji.jpg',
                 mediaType: 1,
                 renderLargerThumbnail: true
@@ -81,7 +78,7 @@ let handler = async function (m, { conn, text, args, usedPrefix, command }) {
                 mediaType: 1, 
                 thumbnailUrl: 'https://files.catbox.moe/g8izji.jpg' }}}, {quoted: m})
 */
-let chtxt = '👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
+let chtxt = `👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
 🗂ᮢ⃘ᩙ *𝚅𝚎𝚛𝚒𝚏𝚒𝚌𝚊𝚌𝚒𝚘́𝚗* » ${user.name}
 🍨ᮢ⃘ᩙ *𝙴𝚍𝚊𝚍* » ${user.age} años
 ⌨️ᮢ⃘ᩙ *𝙳𝚎𝚜𝚌𝚛𝚒𝚙𝚌𝚒𝚘𝚗* » ${user.descripcion}
@@ -93,8 +90,8 @@ let chtxt = '👤 *𝚄𝚜𝚎𝚛* » ${m.pushName || 'Anónimo'}
         text: chtxt,
         contextInfo: {
             externalAdReply: {
-                title: "🌙 Registro TanjiroBot 🌙",
-                body: '⚔ Un nuevo guerrero se une a la batalla.!',
+                title: "【🔔 𝐍𝐎𝐓𝐈𝐅𝐈𝐂𝐀𝐂𝐈𝐎́𝐍 𝐃𝐄 𝐑𝐄𝐆𝐈𝐒𝐓𝐑𝐎 🔔】",
+                body: '🥳 ¡𝚄𝚗 𝚞𝚜𝚞𝚊𝚛𝚒𝚘 𝚗𝚞𝚎𝚟𝚘 𝚎𝚗 𝚖𝚒 𝚋𝚊𝚜𝚎 𝚍𝚎 𝚍𝚊𝚝𝚘𝚜!',
                 thumbnailUrl: perfil,
                 sourceUrl: redes,
                 mediaType: 1,
