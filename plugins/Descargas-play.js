@@ -93,7 +93,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       contextInfo: {
         externalAdReply: {
           title: "⚔ 𝑻𝒂𝒏𝒋𝒊𝒓𝒐_𝑩𝒐𝒕 ⚔",
-          footer: `𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙| ⚔️🥷`,
           body: "𝑵𝒐 𝒉𝒂𝒚 𝒏𝒂𝒅𝒂 𝒎á𝒔 𝒊𝒎𝒑𝒐𝒓𝒕𝒂𝒏𝒕𝒆 𝒒𝒖𝒆 𝒍𝒂 𝒇𝒂𝒎𝒊𝒍𝒊𝒂",
           mediaType: 1,
           previewType: 0,
@@ -168,4 +167,4 @@ function formatViews(views) {
   return views >= 1000
     ? (views / 1000).toFixed(1) + "k (" + views.toLocaleString() + ")"
     : views.toString();
-        }
+  }
