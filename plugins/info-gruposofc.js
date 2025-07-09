@@ -1,42 +1,55 @@
-// nueva versión de gruposcfc.js
-
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn}) => {
 
-  // 🌊 Configuración Tanjiresca
-  const namegrupo = '🌸 Dojo Oficial – Respira Código'
+  // 🌟 Datos configurables
+  const namegrupo = '🌊 Dojo Oficial – Respira Código'
   const gp1 = 'https://chat.whatsapp.com/ABC123xyzGrupo'
   const namechannel = '🔥 Canal Alternativo – Técnicas del Sol'
   const channel = 'https://chat.whatsapp.com/DEF456xyzCanal'
-  const dev = '🗡️ Forjado por *FedeLanyt – Pilar del Código*'
+  const gmail = 'mailto:fedelanyt20@gmail.com'
+  const github = 'https://github.com/fedelan555'
+  const creador = '🧠 *FedeLanyt – Pilar del Código*'
   const catalogo = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/grupos.jpg'
-  const emojis = '🌪️'
+  const emojis = '🌸'
 
-  // 📜 Mensaje con energía de cazador
+  // 📜 Mensaje inspirado por Tanjiro
   const grupos = `
-╭─── 〔 *🌊 RESPIRACIÓN DEL CÓDIGO* 〕 ───╮
+╭━━━〔 *📡 RESPIRACIÓN DEL GRUPO* 〕━━━╮
 
-🌀 *Únete a nuestro dojo de cazadores:*
-👺 *${namegrupo}*
+🌀 *Únete a la aldea tecnológica:*
+🏯 *${namegrupo}*
 🔗 ${gp1}
 
-✨ Aprende, crece y lucha con tu teclado como tu espada 🗡️
+✨ Aquí el código fluye como la katana de Tanjiro.
 
-╭───────〔 ☀ ALTERNATIVA DEL SOL ☀ 〕──────╯
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
 
-🔥 *Si la niebla oculta el enlace principal:*
-🌞 *${namechannel}*
+🌞 *Canal de Refuerzo Solar:*
+🔥 *${namechannel}*
 🔗 ${channel}
 
-╭───────〔 ⚒ SOPORTE TANJIRO 〕──────╯
-${dev}
+╭━━━〔 🧙‍♂️ CREADOR DEL DOJO 〕━━━╯
+
+🧠 ${creador}
+📧 Gmail: fedelanyt20@gmail.com
+💻 GitHub: ${github}
 `;
 
-  // 🖼️ Enviar imagen + texto Tanjiro Style
-  await conn.sendFile(m.chat, catalogo, "dojo.jpg", grupos, m);
+  // 📤 Enviar imagen + mensaje
+  await conn.sendFile(m.chat, catalogo, "tanjiro-links.jpg", grupos, m);
 
-  // ✨ Reacción estilo respiración
+  // 🎯 Botones épicos para conexión directa
+  await conn.sendMessage(m.chat, {
+    text: `🎴 Conecta con el creador y su aldea virtual 👺`,
+    footer: "Respira profundo... ¡y pulsa!",
+    templateButtons: [
+      { urlButton: { displayText: "📧 Ver Gmail", url: gmail}},
+      { urlButton: { displayText: "💻 Visitar GitHub", url: github}}
+    ]
+}, { quoted: m});
+
+  // 🌸 Reacción estilo Tanjiro
   await m.react(emojis);
 }
 
