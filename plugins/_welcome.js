@@ -1,4 +1,4 @@
-// ¡Este `welcome.js` está brutal! Lo que hiciste ya tiene bastante estilo, pero para que sea aún más épico, te propongo una versión con:
+// ¡una versión de `welcome.js` decorada al estilo de *Tanjiro Kamado* de _Demon Slayer_ 🗡️🌸🔥. Le agregué frases temáticas, emojis y un toque narrativo como si cada entrada o salida fuera parte de una batalla épica.
 
 import { WAMessageStubType} from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
@@ -8,10 +8,10 @@ export async function before(m, { conn, participants, groupMetadata}) {
 
   const jid = m.messageStubParameters[0];
   const user = `@${jid.split('@')[0]}`;
-  const profileUrl = await conn.profilePictureUrl(jid, 'image').catch(() =>
+  const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
     'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
 );
-  const img = await fetch(profileUrl).then(r => r.buffer());
+  const img = await fetch(pp).then(r => r.buffer());
   const chat = global.db.data.chats[m.chat] || {};
   const total = m.messageStubType == 27? participants.length + 1: participants.length - 1;
 
@@ -20,14 +20,14 @@ export async function before(m, { conn, participants, groupMetadata}) {
       participants: '0@s.whatsapp.net',
       remoteJid: 'status@broadcast',
       fromMe: false,
-      id: 'BOT-WELCOME'
+      id: 'Tanjiro'
 },
     message: {
       contactMessage: {
         vcard: `BEGIN:VCARD
 VERSION:3.0
-N:;Asuna-Bot;;;
-FN:Asuna-Bot
+N:;Tanjiro;;;
+FN:Tanjiro
 TEL;waid=${jid.split('@')[0]}:${jid.split('@')[0]}
 END:VCARD`
 }
@@ -39,18 +39,19 @@ END:VCARD`
 
   if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
     const bienvenida = `
-🎉 *Bienvenido/a ${user}* al grupo *${groupMetadata.subject}* 🎊
+🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
 
-🌐 Estado: Conectado
-👥 Total de miembros: *${total}*
+🏯 *Grupo:* ${groupMetadata.subject}
+👥 *Miembros ahora:* ${total}
+🔥 *Respiración del Código: Primer Movimiento*
 
-🌟 ¡Aquí se respira código y buen rollo! 🌟
-📜 Usa *#help* para ver los comandos disponibles
+💌 Usa *#help* para desbloquear las técnicas de este dojo.
+⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
 `;
     await conn.sendMini(
       m.chat,
-      '🚀 INGRESO DETECTADO',
-      'Asuna-Bot - Tu compañera virtual',
+      '🌀 UN NUEVO CAZADOR HA LLEGADO',
+      '🌊 Tanjiro-Bot • Espíritu del Sol',
       bienvenida,
       img,
       img,
@@ -61,17 +62,18 @@ END:VCARD`
 
   if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
     const despedida = `
-👋 *${user}* ha salido del grupo *${groupMetadata.subject}*
+🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
 
-🔌 Estado: Desconectado
-👥 Miembros restantes: *${total}*
+🏯 *Grupo:* ${groupMetadata.subject}
+👥 *Miembros restantes:* ${total}
+🌒 *Último aliento registrado...*
 
-🧹 Su energía fue limpiada del sistema.
+🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
 `;
     await conn.sendMini(
       m.chat,
-      '⚠️ DESCONEXIÓN DETECTADA',
-      'Asuna-Bot - Monitoreando el sistema',
+      '🌑 UN ESPADACHÍN HA PARTIDO',
+      '🌊 Tanjiro-Bot • Guardián del Amanecer',
       despedida,
       img,
       img,
@@ -81,4 +83,4 @@ END:VCARD`
 }
 }
 
-// 🧩 ¿Te gustaría añadir sonidos estilo anime o stickers automáticos con cada bienvenida? También puedo ayudarte con comandos como `rules.js` o `grupo.js` para complementar el sistema de bienvenida ✨.
+// ✨ ¿Quieres agregar una melodía de fondo o stickers de Zenitsu o Nezuko a este módulo? Podemos hacerlo aún más épico.
