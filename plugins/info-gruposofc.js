@@ -1,3 +1,6 @@
+// Código creado por fedelan55
+// deja créditos
+
 import fetch from 'node-fetch'
 
 let handler = async (m, { conn}) => {
@@ -6,7 +9,7 @@ let handler = async (m, { conn}) => {
   const namegrupo = '🌊 Dojo Oficial – Respira Código'
   const gp1 = 'https://chat.whatsapp.com/ABC123xyzGrupo'
   const namechannel = '🔥 Canal Alternativo – Técnicas del Sol'
-  const channel = 'https://chat.whatsapp.com/DEF456xyzCanal'
+  const channel = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
   const gmail = 'mailto:fedelanyt20@gmail.com'
   const github = 'https://github.com/fedelan555'
   const creador = '🧠 *FedeLanyt – Pilar del Código*'
@@ -37,7 +40,7 @@ let handler = async (m, { conn}) => {
 `;
 
   // 📤 Enviar imagen + mensaje
-  await conn.sendFile(m.chat, catalogo, "tanjiro-links.jpg", grupos, m);
+  await conn.sendFile(m.chat, catalogo, "https://files.catbox.moe/626sjd.jpg", grupos, m);
 
   // 🎯 Botones épicos para conexión directa
   await conn.sendMessage(m.chat, {
