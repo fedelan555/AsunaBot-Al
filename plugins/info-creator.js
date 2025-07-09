@@ -1,10 +1,9 @@
-// una versión mejorada del archivo `creador.js`, con más detalles personalizados y decorado con estilo inspirado en Tanjiro Kamado de _Demon Slayer_. Le agregué emojis temáticos, estilo de texto decorativo y nuevos campos que hacen al creador aún más épico 🔥🌸🗡️.
-
+// nueva versión de creador.js
 
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
-  await m.react('🌸');
+  await m.react('🔥');
 
   const username = await conn.getName(m.sender);
 
@@ -36,6 +35,7 @@ item5.ADR:;;${creador.pais};;;;
 item5.X-ABLabel:Ubicación
 END:VCARD`;
 
+  // 1️⃣ Enviar contacto con vCard
   await conn.sendMessage(m.chat, {
     contacts: {
       displayName: "🗡️ Creador del Bot – Estilo Tanjiro",
@@ -48,6 +48,7 @@ END:VCARD`;
     quoted: m
 });
 
+  // 2️⃣ Enviar mensaje personalizado
   const mensaje = `🌸 *Hola ${username}*\n` +
     `🔥 Este es el contacto oficial de *${creador.nombre}* (${creador.apodo}), creador del bot con estilo de Tanjiro.\n\n` +
     `📬 *Email:* ${creador.email}\n` +
@@ -58,6 +59,19 @@ END:VCARD`;
     `🌊 *Estilo:* ${creador.estilo}`;
 
   await conn.sendMessage(m.chat, { text: mensaje});
+
+  // 3️⃣ Enviar botones épicos
+  const botones = {
+    text: `🌟 Accede a los recursos del creador de forma épica 🌟`,
+    footer: `Bot inspirado por Tanjiro Kamado`,
+    templateButtons: [
+      { urlButton: { displayText: "🔗 GitHub", url: creador.github}},
+      { urlButton: { displayText: "📸 Instagram", url: creador.instagram}},
+      { callButton: { displayText: "📞 WhatsApp", phoneNumber: creador.numero}}
+    ]
+};
+
+  await conn.sendMessage(m.chat, botones, { quoted: m});
 };
 
 handler.help = ['creador'];
