@@ -75,7 +75,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let menuText = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/7qo46s.jpg'},
+  video: { url: 'https://files.catbox.moe/o2q5hc.mp4'},
       caption: menuText
 }, { quoted: m})
 
