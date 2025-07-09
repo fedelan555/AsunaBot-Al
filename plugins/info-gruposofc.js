@@ -40,7 +40,7 @@ let handler = async (m, { conn}) => {
 `;
 
   // 📤 Enviar imagen + mensaje
-  await conn.sendFile(m.chat, catalogo, "https://files.catbox.moe/626sjd.jpg", grupos, m);
+  await conn.sendFile(m.chat, "https://files.catbox.moe/626sjd.jpg", grupos, m);
 
   // 🎯 Botones épicos para conexión directa
   await conn.sendMessage(m.chat, {
