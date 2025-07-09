@@ -108,7 +108,7 @@ export async function before(m, { conn }) {
   const esBroma = Math.random() < 0.2
   const respuesta = esBroma
     ? bromas[Math.floor(Math.random() * bromas.length)]
-    : `${errores[Math.floor(Math.random() * errores.length)]}\n*${comando}*\n📕 Usa *${usedPrefix}help* para ver el menú.`
+    : `${errores[Math.floor(Math.random() * errores.length)]}\n*${comando}*\n🌙 Usa *${usedPrefix}menu* para ver mis comandos.`
 
   await m.reply(respuesta.trim())
 
