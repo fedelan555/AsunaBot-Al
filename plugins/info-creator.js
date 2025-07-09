@@ -1,9 +1,10 @@
-// ¡Vamos a hacerlo explosivamente épico! Aquí tienes una versión mejorada de `creador.js`
+// ¡Está increíble tu versión! Aquí te la ajusto exactamente como pediste: con *dos botones específicos*, uno para abrir Gmail directamente y otro para visitar GitHub. Además, mantengo toda la estética tanjirística 🗡️🔥🌸.
+
 
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
-  await m.react('🔥');
+  await m.react('💫');
 
   const username = await conn.getName(m.sender);
 
@@ -12,9 +13,9 @@ let handler = async (m, { conn}) => {
     apodo: "El Pilar del Código",
     numero: "5491156178758",
     email: "fedelanyt20@gmail.com",
-    pais: "🇦🇷 Argentina",
+    gmailURL: "mailto:fedelanyt20@gmail.com",
     github: "https://github.com/fedelan555",
-    instagram: "https://instagram.com/fedelan.dev",
+    pais: "🇦🇷 Argentina",
     frase: "Respira profundo, como Tanjiro en la batalla.",
     estilo: "🌊 Respiración del Código: Primer Movimiento 🌊"
 };
@@ -29,16 +30,14 @@ item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
 item3.URL:${creador.github}
 item3.X-ABLabel:GitHub
-item4.URL:${creador.instagram}
-item4.X-ABLabel:Instagram
-item5.ADR:;;${creador.pais};;;;
-item5.X-ABLabel:Ubicación
+item4.ADR:;;${creador.pais};;;;
+item4.X-ABLabel:Ubicación
 END:VCARD`;
 
-  // 1️⃣ Enviar contacto con vCard
+  // 🧙‍♂️ Enviar contacto con vCard
   await conn.sendMessage(m.chat, {
     contacts: {
-      displayName: "🗡️ Creador del Bot – Estilo Tanjiro",
+      displayName: "🗡️ Creador del Bot – Espíritu Tanjiro",
       contacts: [{
         displayName: creador.nombre,
         vcard
@@ -48,26 +47,24 @@ END:VCARD`;
     quoted: m
 });
 
-  // 2️⃣ Enviar mensaje personalizado
+  // 🎴 Mensaje personalizado
   const mensaje = `🌸 *Hola ${username}*\n` +
-    `🔥 Este es el contacto oficial de *${creador.nombre}* (${creador.apodo}), creador del bot con estilo de Tanjiro.\n\n` +
+    `✨ Este es el contacto oficial de *${creador.nombre}* (${creador.apodo}).\n\n` +
     `📬 *Email:* ${creador.email}\n` +
     `🌐 *GitHub:* ${creador.github}\n` +
-    `📸 *Instagram:* ${creador.instagram}\n` +
     `📍 *Ubicación:* ${creador.pais}\n\n` +
     `🗡️ *Frase épica:* _${creador.frase}_\n` +
     `🌊 *Estilo:* ${creador.estilo}`;
 
   await conn.sendMessage(m.chat, { text: mensaje});
 
-  // 3️⃣ Enviar botones épicos
+  // 🧩 Botones personalizados
   const botones = {
-    text: `🌟 Accede a los recursos del creador de forma épica 🌟`,
-    footer: `Bot inspirado por Tanjiro Kamado`,
+    text: `🎯 Conecta con el Creador`,
+    footer: `Bot guiado por el espíritu de Tanjiro`,
     templateButtons: [
-      { urlButton: { displayText: "🔗 GitHub", url: creador.github}},
-      { urlButton: { displayText: "📸 Instagram", url: creador.instagram}},
-      { callButton: { displayText: "📞 WhatsApp", phoneNumber: creador.numero}}
+      { urlButton: { displayText: "📧 Ver Gmail", url: creador.gmailURL}},
+      { urlButton: { displayText: "💻 Ver GitHub", url: creador.github}}
     ]
 };
 
