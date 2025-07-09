@@ -44,6 +44,7 @@ END:VCARD`
 🏯 *Grupo:* ${groupMetadata.subject}
 👥 *Miembros ahora:* ${total}
 🔥 *Respiración del Código: Primer Movimiento*
+🌙 *descripción:* ${descripciónGrupo}
 
 💌 Usa *#help* para desbloquear las técnicas de este dojo.
 ⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
