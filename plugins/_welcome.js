@@ -1,4 +1,5 @@
-// ¡una versión de `welcome.js` decorada al estilo de *Tanjiro Kamado* de _Demon Slayer_ 🗡️🌸🔥. Le agregué frases temáticas, emojis y un toque narrativo como si cada entrada o salida fuera parte de una batalla épica.
+// Código creado por fedelan55
+// no quites creditos 
 
 import { WAMessageStubType} from '@whiskeysockets/baileys';
 import fetch from 'node-fetch';
@@ -44,7 +45,6 @@ END:VCARD`
 🏯 *Grupo:* ${groupMetadata.subject}
 👥 *Miembros ahora:* ${total}
 🔥 *Respiración del Código: Primer Movimiento*
-🌙 *descripción:* ${descripciónGrupo}
 
 💌 Usa *#help* para desbloquear las técnicas de este dojo.
 ⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
