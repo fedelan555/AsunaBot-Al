@@ -1,38 +1,44 @@
-// una versión de `creador.js` que *no utiliza imagen (`jpg`)*, pero mantiene la funcionalidad de enviar el contacto del creador usando la vCard y un mensaje de presentación, sin incluir la vista previa enriquecida con imagen:
+// una versión mejorada del archivo `creador.js`, con más detalles personalizados y decorado con estilo inspirado en Tanjiro Kamado de _Demon Slayer_. Le agregué emojis temáticos, estilo de texto decorativo y nuevos campos que hacen al creador aún más épico 🔥🌸🗡️.
+
 
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
-  await m.react('👤');
+  await m.react('🌸');
 
   const username = await conn.getName(m.sender);
 
   const creador = {
     nombre: "FedeLanyt",
+    apodo: "El Pilar del Código",
     numero: "5491156178758",
     email: "fedelanyt20@gmail.com",
-    pais: "Argentina",
-    github: "https://github.com/fedelan555"
+    pais: "🇦🇷 Argentina",
+    github: "https://github.com/fedelan555",
+    instagram: "https://instagram.com/fedelan.dev",
+    frase: "Respira profundo, como Tanjiro en la batalla.",
+    estilo: "🌊 Respiración del Código: Primer Movimiento 🌊"
 };
 
-  // Construcción del vCard
   const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:${creador.nombre}
+NICKNAME:${creador.apodo}
 item1.TEL;waid=${creador.numero}:${creador.numero}
 item1.X-ABLabel:WhatsApp
 item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
 item3.URL:${creador.github}
 item3.X-ABLabel:GitHub
-item4.ADR:;;${creador.pais};;;;
-item4.X-ABLabel:Ubicación
+item4.URL:${creador.instagram}
+item4.X-ABLabel:Instagram
+item5.ADR:;;${creador.pais};;;;
+item5.X-ABLabel:Ubicación
 END:VCARD`;
 
-  // Enviar contacto sin imagen
   await conn.sendMessage(m.chat, {
     contacts: {
-      displayName: "📇 Creador del Bot",
+      displayName: "🗡️ Creador del Bot – Estilo Tanjiro",
       contacts: [{
         displayName: creador.nombre,
         vcard
@@ -42,8 +48,15 @@ END:VCARD`;
     quoted: m
 });
 
-  // Mensaje personalizado
-  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`;
+  const mensaje = `🌸 *Hola ${username}*\n` +
+    `🔥 Este es el contacto oficial de *${creador.nombre}* (${creador.apodo}), creador del bot con estilo de Tanjiro.\n\n` +
+    `📬 *Email:* ${creador.email}\n` +
+    `🌐 *GitHub:* ${creador.github}\n` +
+    `📸 *Instagram:* ${creador.instagram}\n` +
+    `📍 *Ubicación:* ${creador.pais}\n\n` +
+    `🗡️ *Frase épica:* _${creador.frase}_\n` +
+    `🌊 *Estilo:* ${creador.estilo}`;
+
   await conn.sendMessage(m.chat, { text: mensaje});
 };
 
