@@ -1,86 +1,80 @@
-// ¡Excelente trabajo con ese módulo! Ahora, aquí tienes una variante llamada `downloader.play3.js`, optimizada y enfocada únicamente en *descargar música en MP3*, sin soporte para video. Todo decorado con energía Tanjiro 🔥🌸🗡️
-
 import fetch from "node-fetch";
 import yts from "yt-search";
 import axios from "axios";
 
-const handler = async (m, { conn, text, command}) => {
-  await m.react('🎶');
+const ddownr = {
+  descargarMP3: async (url) => {
+    const apiUrl = `https://p.oceansaver.in/ajax/download.php?format=mp3&url=${encodeURIComponent(url)}&api=dfcb6d76f2f6a9894gjkege8a4ab232222`;
+    try {
+      const res = await axios.get(apiUrl, {
+        headers: { "User-Agent": "Mozilla/5.0"}
+});
+
+      if (!res.data?.success) throw new Error("❌ No se pudo iniciar la descarga.");
+
+      const id = res.data.id;
+      const progressUrl = `https://p.oceansaver.in/ajax/progress.php?id=${id}`;
+
+      while (true) {
+        const progressRes = await axios.get(progressUrl, {
+          headers: { "User-Agent": "Mozilla/5.0"}
+});
+
+        if (progressRes.data?.success && progressRes.data.progress === 1000) {
+          return progressRes.data.download_url;
+}
+        await new Promise(r => setTimeout(r, 3000)); // espera 3s antes de volver a intentar
+}
+} catch (error) {
+      console.error("🧨 Error en descargarMP3:", error.message);
+      return null;
+}
+}
+};
+
+const handler = async (m, { conn, text}) => {
+  await m.react("🎧");
 
   try {
-    if (!text.trim()) {
-      return m.reply("⚠️ *TanjiroBot* | Escribe el nombre de una canción o pega un enlace de YouTube.");
-}
+    if (!text) return m.reply("🎵 *TanjiroBot* | Escribe el nombre de una canción o pega el enlace de YouTube.");
 
-    const search = await yts(text);
-    if (!search.all.length) {
-      return m.reply("❌ No encontré ninguna canción. Prueba con otro título.");
-}
+    const res = await yts(text);
+    const song = res?.all?.[0];
+    if (!song) return m.reply("⚠️ No se encontró la canción. Intenta con otra búsqueda.");
 
-    const song = search.all[0];
-    const { title, url, timestamp, views, thumbnail, ago, author} = song;
+    const { title, url, thumbnail, timestamp, views, ago, author} = song;
     const thumb = (await conn.getFile(thumbnail))?.data;
 
-    const msg = `
-🎵 *Tanjiro Descargador – Modo Respira Sonido* 🎧
-─────────────────────
-🔸 *Título:* ${title}
-🔸 *Duración:* ${timestamp}
-🔸 *Canal:* ${author?.name || "Desconocido"}
-🔸 *Vistas:* ${views.toLocaleString()}
-🔸 *Publicado:* ${ago}
-🔗 *URL:* ${url}
-─────────────────────
-🔁 Descargando en *MP3*...`;
+    const info = `
+🎶 *TanjiroBot – Descarga Musical* ⚔️
+─────────────────────────────
+🔹 *Título:* ${title}
+🔹 *Duración:* ${timestamp}
+🔹 *Canal:* ${author?.name || "Desconocido"}
+🔹 *Vistas:* ${views.toLocaleString()}
+🔹 *Publicado:* ${ago}
+🔗 *Enlace:* ${url}
+─────────────────────────────
+🌀 Descargando música en *MP3*...`;
 
-    await conn.sendMessage(m.chat, { image: thumb, caption: msg}, { quoted: m});
+    await conn.sendMessage(m.chat, { image: thumb, caption: info}, { quoted: m});
 
-    const { downloadUrl} = await descargarAudioTanjiro(url);
-    if (!downloadUrl) return m.reply("⛔ No se pudo obtener el enlace de descarga.");
+    const mp3 = await ddownr.descargarMP3(url);
+    if (!mp3) return m.reply("⛔ No se pudo obtener el enlace de descarga.");
 
     await conn.sendMessage(m.chat, {
-      audio: { url: downloadUrl},
+      audio: { url: mp3},
       mimetype: "audio/mpeg",
       fileName: `${title}.mp3`,
-      caption: "🎧 Aquí está tu canción lista para invocar la respiración musical 🌀",
+      caption: "🎧 Música descargada con éxito por *TanjiroBot* 🌊 Respira ritmo.",
 }, { quoted: m});
 
-} catch (err) {
-    console.error("⛔ Error en downloader.play3.js:", err);
-    m.reply("⚠️ Ocurrió un error inesperado al procesar tu solicitud.");
-}
-};
-
-async function descargarAudioTanjiro(url) {
-  try {
-    const api = `https://p.oceansaver.in/ajax/download.php?format=mp3&url=${encodeURIComponent(url)}&api=dfcb6d76f2f6a9894gjkege8a4ab232222`;
-    const headers = {
-      "User-Agent": "Mozilla/5.0"
-};
-
-    const resp = await axios.get(api, { headers});
-    if (!resp.data?.success) throw "❌ No se pudo iniciar la descarga";
-
-    const progress = await esperarProgreso(resp.data.id);
-    return { downloadUrl: progress};
+    await m.react("✅");
 } catch (e) {
-    console.error("❌ Error en descargarAudioTanjiro:", e);
-    return {};
+    console.error("🔥 Error global:", e.message);
+    m.reply("⚠️ Algo salió mal durante el proceso. Revisa el enlace o intenta de nuevo más tarde.");
 }
-}
-
-async function esperarProgreso(id) {
-  const url = `https://p.oceansaver.in/ajax/progress.php?id=${id}`;
-  const headers = { "User-Agent": "Mozilla/5.0"};
-
-  while (true) {
-    const res = await axios.get(url, { headers});
-    if (res.data?.success && res.data.progress === 1000) {
-      return res.data.download_url;
-}
-    await new Promise(r => setTimeout(r, 3000));
-}
-}
+};
 
 handler.command = handler.help = ["play3"];
 handler.tags = ["downloader"];
