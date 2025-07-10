@@ -2,7 +2,7 @@
 <p align="center">
   
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FF0000&lines=Bienvenido+al+Repositorio;Tanjiro+-+Bot;Gracias+por+preferirnos;Creado+por+fede;💥+BOOM!!!;🔥)](https://git.io/typing-svg)
-![Mickey](https://files.catbox.moe/yzl2d9.jpg)
+![Tanjiro](https://files.catbox.moe/yzl2d9.jpg)
 
   
 ![line](https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif)
