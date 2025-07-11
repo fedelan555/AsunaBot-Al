@@ -62,14 +62,13 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = `
-╭━━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 - 𝙱𝙾𝚃 ❖━━━╮
-│ 👤 *Usuario:* @${userId.split('@')[0]}
-│ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
-│ 🗺️ *Modo:* ${mode}
-│ ⌛ *Tiempo activo:* ${uptime}
-│ 📜 *Técnicas disponibles:* ${totalCommands}
-│ 👥 *Cazadores registrados:* ${totalreg}
-╰━━━━━━━━━━━━━━━━━━━━╯
+👤 Usuario: *%name*
+⚔ Nivel: %level
+💥 Exp: %exp/%maxexp
+🌙 Modo: %mode
+👥 Usuarios: %totalreg
+⏳ Activo: %muptime
+📜 Técnicas disponibles: ${totalCommands}
 
 🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
 
@@ -92,7 +91,7 @@ let handler = async (m, { conn}) => {
 🗡️ *Respira. Lucha. Protege.*`
 
     const imageUrl = [
-      'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro.jpg',
+      'https://files.catbox.moe/7qo46s.jpg'',
       'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro_pose.jpg'
     ]
     const selectedImage = imageUrl[Math.floor(Math.random() * imageUrl.length)]
