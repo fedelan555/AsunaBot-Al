@@ -105,7 +105,7 @@ let handler = async (m, { conn, text }) => {
     }
 
     await sendAlbumMessage(m.chat, medias, {
-      caption: `𝗥𝗲𝘀𝘂𝗹𝘁𝗮𝗱𝗼𝘀 𝗱𝗲: ${text}\n𝗖𝗮𝗻𝘁𝗶𝗱𝗮𝗱 𝗱𝗲 𝗿𝗲𝘀𝘂𝗹𝘁𝗮𝗱𝗼𝘀: 15\n𝗖𝗿𝗲𝗮𝗱𝗼𝗿: ${dev}`,
+      caption: `Resultados de: ${text}\nCantidad de Resultados: 15\n🌸 creador: ${dev}`,
       quoted: m
     });
 
@@ -116,7 +116,7 @@ let handler = async (m, { conn, text }) => {
   }
 };
 
-handler.help = ['pinterest'];
+handler.help = ['pinterest', 'pin'];
 handler.command = ['pinterest', 'pin'];
 handler.tags = ['buscador'];
 
