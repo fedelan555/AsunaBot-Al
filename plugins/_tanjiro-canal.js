@@ -1,66 +1,40 @@
-import { generateWAMessageFromContent, prepareWAMessageMedia, proto} from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
-  const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
+const handler = async (m, { conn}) => {
+  const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
+  const imageBuffer = await (await fetch(imageUrl)).buffer()
 
-  const texto = `
-🌸 *¡Bienvenido al canal oficial de Tanjiro-Bot!* 🌸
+  const caption = `
+🌸 *Tanjiro Bot - Canal Oficial* 🌸
 
-✨ Aquí encontrarás actualizaciones, comandos legendarios y anuncios de los pilares.
-📜 Noticias sobre módulos nuevos, eventos, plugins e ideas del dojo.
+🗡️ Noticias, actualizaciones y respiraciones nuevas.
+✨ Únete al canal oficial para no perderte nada.
 
-🧩 Únete al canal para:
-• Conocer las nuevas respiraciones
-• Recibir actualizaciones antes que nadie
-• Conectar con otros cazadores del código
-
-🗡️ Pulsa el botón para adentrarte en el canal secreto del Sol.
-
-*Frase del día:* _“Un cazador que protege con pasión, nunca se rinde.”_
+🔗 Canal: https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 `.trim()
 
-  const messageContent = {
-    viewOnceMessage: {
-      message: {
-        messageContextInfo: {
-          deviceListMetadata: {},
-          deviceListMetadataVersion: 2
+  await conn.sendMessage(m.chat, {
+    image: imageBuffer,
+    caption,
+    buttons: [
+      {
+        buttonId: '.menucompleto',
+        buttonText: { displayText: '🔥 Menú Completo'},
+        type: 1
 },
-        interactiveMessage: proto.Message.InteractiveMessage.create({
-          body: proto.Message.InteractiveMessage.Body.create({ text: texto}),
-          footer: proto.Message.InteractiveMessage.Footer.create({ text: '⚙ Tanjiro Bot • Espíritu del Sol'}),
-          header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: true,
-            media: media.imageMessage
-}),
-          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-            buttons: [
-              {
-                name: 'cta_url',
-                buttonParamsJson: JSON.stringify({
-                  display_text: '✐ Canal Oficial',
-                  url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-                  merchant_url: 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31'
-})
+      {
+        buttonId: '.owner',
+        buttonText: { displayText: '👑 Creador'},
+        type: 1
 }
-            ]
-})
-})
-}
-}
+    ],
+    headerType: 4
+}, { quoted: m})
 }
 
-  const msg = generateWAMessageFromContent(m.chat, messageContent, {
-    userJid: m.sender,
-    quoted: m
-})
-
-  await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
-}
-
-handler.command = /^([.#/!])?canal$/i
-handler.register = true
+handler.command = /^canal$/i
 handler.help = ['canal']
 handler.tags = ['info']
+handler.register = true
 
 export default handler
