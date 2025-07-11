@@ -62,16 +62,16 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = `
-╭━━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 𝙱𝙾𝚃 🍃 」❖━━━╮
+╭━━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 - 𝙱𝙾𝚃 ❖━━━╮
 │ 👤 *Usuario:* @${userId.split('@')[0]}
-│ ☀️ *Respira fuerte:* Nivel ${level} | XP: ${exp}
-│ 🌸 *Modo actual:* ${mode}
-│ ⏱️ *Tiempo activo:* ${uptime}
-│ 📂 *Total de técnicas:* ${totalCommands}
-│ 👫 *Cazadores conectados:* ${totalreg}
-╰━━━━━━━━━━━━━━━━━━━━━━━╯
+│ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
+│ 🗺️ *Modo:* ${mode}
+│ ⌛ *Tiempo activo:* ${uptime}
+│ 📜 *Técnicas disponibles:* ${totalCommands}
+│ 👥 *Cazadores registrados:* ${totalreg}
+╰━━━━━━━━━━━━━━━━━━━━╯
 
-🌕 *“Aunque sientas miedo, sigue avanzando.”*${readMore}`
+🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
 
     for (let tag in tags) {
       const comandos = help.filter(menu => menu.tags.includes(tag))
@@ -80,21 +80,20 @@ let handler = async (m, { conn}) => {
       menuText += `\n🍃 *${tags[tag]}* ${getTanjiroEmoji()}\n`
       menuText += comandos.map(menu =>
         menu.help.map(cmd =>
-          `🔸 ${cmd}${menu.limit? ' 🌑': ''}${menu.premium? ' 🔮': ''}`
+          `🗡️ ${cmd}${menu.limit? ' 🌑': ''}${menu.premium? ' 🔮': ''}`
 ).join('\n')
 ).join('\n')
-      menuText += `\n━━━━━━━━━━━━━━━━━━━━━━`
+      menuText += `\n━━━━━━━━━━━━━━━━━━━━`
 }
 
     menuText += `
 
-🗡️ *Tanjiro Bot — humildad, coraje y protección.*
-🌸 *Inspirado por Kimetsu no Yaiba.*`
+🌕 *Tanjiro Bot - Inspirado por la llama de la voluntad.*
+🗡️ *Respira. Lucha. Protege.*`
 
     const imageUrl = [
       'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro.jpg',
-      'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro_pose.jpg',
-      'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro_zen.jpg'
+      'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro_pose.jpg'
     ]
     const selectedImage = imageUrl[Math.floor(Math.random() * imageUrl.length)]
     const imageBuffer = await (await fetch(selectedImage)).buffer()
@@ -117,9 +116,9 @@ let handler = async (m, { conn}) => {
             deviceListMetadata: {},
             deviceListMetadataVersion: 2
 },
-interactiveMessage: proto.Message.InteractiveMessage.create({
+          interactiveMessage: proto.Message.InteractiveMessage.create({
             body: proto.Message.InteractiveMessage.Body.create({
-              text: '🗡️ Únete al escuadrón cazador de demonios'
+              text: '🌸 Escoge tu camino como cazador de demonios'
 }),
             footer: proto.Message.InteractiveMessage.Footer.create({
               text: 'Tanjiro Bot by Deylin'
@@ -127,27 +126,22 @@ interactiveMessage: proto.Message.InteractiveMessage.create({
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
 }),
-            
-nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-  buttons: [
-    {
-      name: 'cta_url',
-      buttonParamsJson: JSON.stringify({
-        display_text: '✐ Canal Oficial',
-        url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
-        merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+              buttons: [
+                {
+                  name: 'cta_url',
+                  buttonParamsJson: JSON.stringify({
+                    display_text: '✐ Canal Oficial',
+                    url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
+                    merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
 })
 },
-    {
-      name: 'cta_url',
-      buttonParamsJson: JSON.stringify({
-        display_text: '🎯 Grupo de Soporte',
-        url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-        merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-  ]
-})
+                {
+                  name: 'cta_url',
+                  buttonParamsJson: JSON.stringify({
+                    display_text: '🎯 Grupo de Soporte',
+                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
 }
               ]
@@ -161,7 +155,7 @@ nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
 
 } catch (e) {
     console.error(e)
-    conn.reply(m.chat, '❎ Lo sentimos, ocurrió un error al cargar el menú Tanjiro.', m)
+    conn.reply(m.chat, '❎ Lo sentimos, ocurrió un error en el menú Tanjiro.', m)
 }
 }
 
@@ -172,7 +166,7 @@ handler.register = true
 
 export default handler
 
-// Extra Configuración
+// Extras
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
@@ -184,6 +178,6 @@ function clockString(ms) {
 }
 
 function getTanjiroEmoji() {
-  const emojis = ['🍃', '🔥', '🌊', '🗡️', '🌸']
+  const emojis = ['🍃', '🔥', '🌊', '🗡️', '🌸', '☀️']
   return emojis[Math.floor(Math.random() * emojis.length)]
 }
