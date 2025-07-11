@@ -1,87 +1,116 @@
-// Código creado por fedelan55
-// no quites creditos 
+// © código creado por Deylin 
+// https://github.com/Deylin-eliac 
+// ➤  no quites creditos 
 
-import { WAMessageStubType} from '@whiskeysockets/baileys';
-import fetch from 'node-fetch';
+import { WAMessageStubType } from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
 
-export async function before(m, { conn, participants, groupMetadata}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return!0;
+async function obtenerPais(numero) {
+  try {
+    let number = numero.replace("@s.whatsapp.net", "");
+    const res = await fetch(`https://g-mini-ia.vercel.app/api/infonumero?numero=${number}`);
+    const data = await res.json();
 
-  const jid = m.messageStubParameters[0];
-  const user = `@${jid.split('@')[0]}`;
-  const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
-    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-);
-  const img = await fetch(pp).then(r => r.buffer());
-  const chat = global.db.data.chats[m.chat] || {};
-  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1;
+    if (data && data.pais) return data.pais;
+    if (data && data.bandera && data.nombre) return `${data.bandera} ${data.nombre}`;
 
-  const contacto = {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'Tanjiro'
-},
-    message: {
-      contactMessage: {
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:;Tanjiro;;;
-FN:Tanjiro
-TEL;waid=${jid.split('@')[0]}:${jid.split('@')[0]}
-END:VCARD`
-}
-},
-    participant: '0@s.whatsapp.net'
-};
-
-  if (!chat.welcome) return;
-
-  if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-    const bienvenida = `
-🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
-
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros ahora:* ${total}
-🔥 *Respiración del Código: Primer Movimiento*
-
-💌 Usa *#help* para desbloquear las técnicas de este dojo.
-⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
-`;
-    await conn.sendMini(
-      m.chat,
-      '🌀 UN NUEVO CAZADOR HA LLEGADO',
-      '🌊 Tanjiro-Bot • Espíritu del Sol',
-      bienvenida,
-      img,
-      img,
-      null,
-      contacto
-);
+    return "🌐 Desconocido";
+  } catch (e) {
+    return "🌐 Desconocido";
+  }
 }
 
-  if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
-    const despedida = `
-🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
+export async function before(m, { conn, participants, groupMetadata }) {
+  if (!m.messageStubType || !m.isGroup) return;
+  // if (m.chat === "120363402481697721@g.us") return;
 
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros restantes:* ${total}
-🌒 *Último aliento registrado...*
+  const who = m.messageStubParameters?.[0];
+  if (!who) return;
 
-🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
-`;
-    await conn.sendMini(
-      m.chat,
-      '🌑 UN ESPADACHÍN HA PARTIDO',
-      '🌊 Tanjiro-Bot • Guardián del Amanecer',
-      despedida,
-      img,
-      img,
-      null,
-      contacto
-);
+  const taguser = `@${who.split("@")[0]}`;
+  const chat = global.db?.data?.chats?.[m.chat] || {};
+  const totalMembers = participants.length;
+  const date = new Date().toLocaleString("es-ES", { timeZone: "America/Mexico_City" });
+
+  const pais = await obtenerPais(who);
+  let ppUser = 'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/refs/heads/main/src/IMG-20250613-WA0194.jpg';
+
+  try {
+    ppUser = await conn.profilePictureUrl(who, 'image');
+  } catch (e) {}
+
+  const frasesBienvenida = [
+    "¡Pika Pika! Bienvenido al grupo.",
+    "¡Un rayo de energía ha llegado al grupo!",
+    "Pikachu dice que este grupo ahora es 100% más eléctrico ⚡",
+    "¡Esperamos que la pases genial, entrenador!",
+    "Bienvenido al equipo, ¡que empiece la aventura Pokémon!"
+  ];
+  const frasesDespedida = [
+    "Pikachu te dice adiós con una descarga de cariño.",
+    "Otro entrenador deja el grupo... ¡Buena suerte!",
+    "¡Hasta la próxima, no olvides tus Pokéballs!",
+    "El grupo se queda con menos voltaje ⚡",
+    "Pikachu te extrañará 🥺"
+  ];
+
+  const fraseRandomBienvenida = frasesBienvenida[Math.floor(Math.random() * frasesBienvenida.length)];
+  const fraseRandomDespedida = frasesDespedida[Math.floor(Math.random() * frasesDespedida.length)];
+
+  if (chat.welcome) {
+    // ─────── Bienvenida ───────
+    if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
+      const bienvenida = `
+*⚡─『 𝑩𝑰𝑬𝑵𝑽𝑬𝑵𝑰𝑫𝑶/𝑨 』─🧃*
+👤 *Usuario:* ${taguser}
+🌍 *País:* ${pais}
+💬 *Grupo:* *${groupMetadata.subject}*
+👥 *Miembros:* *${totalMembers + 1}*
+📅 *Fecha:* *${date}*
+⚡ *Mensaje:* ${fraseRandomBienvenida}`.trim();
+
+      await conn.sendMessage(m.chat, {
+        image: { url: ppUser },
+        caption: bienvenida,
+        buttons: [
+          {
+            buttonId: '/menu',
+            buttonText: { displayText: `Este botón no tiene ninguna función.` },
+            type: 1
+          }
+        ],
+        headerType: 4,
+        mentions: [who]
+      });
+    }
+
+    // ─────── Despedida ───────
+    if (
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE ||
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE
+    ) {
+      const despedida = `
+*⚡──『 𝑫𝑬𝑺𝑷𝑬𝑫𝑰𝑫𝑨 』──🧃*
+👤 *Usuario:* ${taguser}
+🌍 *País:* ${pais}
+💬 *Grupo:* *${groupMetadata.subject}*
+👥 *Miembros:* *${totalMembers - 1}*
+📅 *Fecha:* *${date}*
+⚡ *Mensaje:* ${fraseRandomDespedida}`.trim();
+
+      await conn.sendMessage(m.chat, {
+        image: { url: ppUser },
+        caption: despedida,
+        buttons: [
+          {
+            buttonId: '/menu',
+            buttonText: { displayText: `Ya solo somos *${totalMembers - 1}* miembros.` },
+            type: 1
+          }
+        ],
+        headerType: 4,
+        mentions: [who]
+      });
+    }
+  }
 }
-}
-
-// ✨ ¿Quieres agregar una melodía de fondo o stickers de Zenitsu o Nezuko a este módulo? Podemos hacerlo aún más épico.
