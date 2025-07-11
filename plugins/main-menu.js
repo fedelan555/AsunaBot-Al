@@ -124,9 +124,6 @@ await conn.sendMessage(m.chat, {
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
 }),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                   display_text: '🌸 MENU',
