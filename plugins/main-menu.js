@@ -91,21 +91,19 @@ let handler = async (m, { conn}) => {
 🌕 *Tanjiro Bot - Inspirado por la llama de la voluntad.*
 🗡️ *Respira. Lucha. Protege.*`
 
-    const imageUrl = [
-      'https://files.catbox.moe/7qo46s.jpg'',
-      'https://files.catbox.moe/7qo46s.jpg''
-    ]
-    const selectedImage = imageUrl[Math.floor(Math.random() * imageUrl.length)]
-    const imageBuffer = await (await fetch(selectedImage)).buffer()
-    const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
+    
+// Imagen fija para el menú Tanjiro
+const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
+const imageBuffer = await (await fetch(imageUrl)).buffer()
+const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
 
-    await conn.sendMessage(m.chat, {
-      image: imageBuffer,
-      caption: menuText,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true
+await conn.sendMessage(m.chat, {
+  image: imageBuffer,
+  caption: menuText,
+  contextInfo: {
+    mentionedJid: [m.sender],
+    forwardingScore: 999,
+    isForwarded: true
 }
 }, { quoted: m})
 
