@@ -11,7 +11,6 @@ import { xpRange} from '../lib/levelling.js'
 
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg'},
-      caption: menuText,
       buttons: [
           { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
       ],
