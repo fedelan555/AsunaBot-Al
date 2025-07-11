@@ -117,9 +117,9 @@ ${cmds.map(cmd => `┃ ${cmd}`).join('\n')}
 }, { quoted: m})
 }
 
-handler.help = ['menu']
+handler.help = ['menu3']
 handler.tags = ['main']
-handler.command = ['menu', 'menú', 'help', 'ayuda']
+handler.command = ['menu3', 'menú2', 'help', 'ayuda']
 handler.register = true
 export default handler
 
