@@ -1,21 +1,9 @@
 import { xpRange } from '../lib/levelling.js'
 
-const textCyberpunk = (text) => {
-  const charset = {
-    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
-    h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
-    o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
-    v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
-  }
-  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
-}
 
 let tags = {
   'main': textCyberpunk('sistema'),
-  'group': textCyberpunk('grupos'),
-  'serbot': textCyberpunk('sub bots'),
-}
-
+],
 const defaultMenu = {
   before: `*☀️ MENÚ - ESPÍRITU DEL SOL ☀️*
 
@@ -85,7 +73,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
-      caption: text,
       buttons: [
         { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
         { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
