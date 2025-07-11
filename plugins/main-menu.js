@@ -64,8 +64,6 @@ let handler = async (m, { conn, args}) => {
       mentionedJid: [m.sender, userId],
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: global.canalIdM,
-        newsletterName: global.botname,
         serverMessageId: -1,
 },
       forwardingScore: 999,
