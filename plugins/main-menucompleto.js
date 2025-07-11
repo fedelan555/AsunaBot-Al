@@ -165,9 +165,9 @@ await conn.sendMessage(m.chat, {
 }
 }
 
-handler.help = ['menu', 'menú', 'help']
+handler.help = ['menucompleto', 'menucompleto', 'help']
 handler.tags = ['main']
-handler.command = ['menú', 'menu', 'help']
+handler.command = ['menucompleto', 'menucompleto', 'help']
 handler.register = true
 
 export default handler
