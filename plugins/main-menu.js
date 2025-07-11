@@ -99,6 +99,10 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
                 display_text: '✐ canal oficial',
                 url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
                 merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+      ],
+      viewOnce: true
+    }, { quoted: m })
+
   } catch (e) {
     console.error(e)
     conn.reply(m.chat, '⚔ Ha ocurrido un error al invocar el aliento del menú..', m)
@@ -116,4 +120,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                         }
+         }
