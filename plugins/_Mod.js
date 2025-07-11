@@ -3,13 +3,19 @@ import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
 let handler = async (m, { conn, usedPrefix: _p}) => {
   const text = `*🌸 TANJIRO-BOT BY FEDE*
 
-_________________________________
-
-[1] https://anime-xi-wheat.vercel.app/api/pinterest?q=
-> Pinterest: Buscador de imágenes en Pinterest.
 
 
-🔒 *Nota:* Usa estas APIs con precaución. No hagas spam de peticiones.
+🌸
+
+🌸
+
+🌸
+
+🌸
+
+🌸
+
+⚔ *tanjiro el guerrero*
 `.trim()
 
   const messageContent = {
@@ -32,8 +38,8 @@ _________________________________
               {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                  display_text: '👑 CREADOR',
-                  id: `${_p}owner`
+                  display_text: '🌸 MENU',
+                  id: `${_p}menu`
 })
 }
             ]
