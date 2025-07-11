@@ -62,14 +62,14 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = ` ⚔━━━━━━━━━━━━━━━━━━━━⚔
-╭━━━☀️「 🍃 TANJIRO - BOT ☀️━━━╮
+╭━ 🍃 TANJIRO - BOT ☀️━━
 │ 👤 *Usuario:* @${userId.split('@')[0]}
 │ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
 │ 🗺️ *Modo:* ${mode}
 │ ⌛ *Tiempo activo:* ${uptime}
 │ 📜 *Técnicas disponibles:* ${totalCommands}
 │ 👥 *Cazadores registrados:* ${totalreg}
-╰━━━━━━━━━━━━━━━━━━━━╯
+╰━━━━━━━━━━━━━━━━━━━━
 
 🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
 
