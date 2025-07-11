@@ -145,9 +145,8 @@ await conn.sendMessage(m.chat, {
                 {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GP de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+                  display_text: '🌸 MENU',
+                  id: `${_p}menu`
 })
 },                   
               ]
