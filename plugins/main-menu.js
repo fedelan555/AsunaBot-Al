@@ -61,7 +61,7 @@ let handler = async (m, { conn}) => {
         premium: p.premium
 }))
 
-    let menuText = `
+    let menuText = ` ⚔━━━━━━━━━━━━━━━━━━━━⚔
 ╭━━━☀️「 🍃 TANJIRO - BOT ☀️━━━╮
 │ 👤 *Usuario:* @${userId.split('@')[0]}
 │ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
@@ -80,10 +80,10 @@ let handler = async (m, { conn}) => {
       menuText += `\n🍃 *${tags[tag]}* ${getTanjiroEmoji()}\n`
       menuText += comandos.map(menu =>
         menu.help.map(cmd =>
-          `🗡️ ${cmd}${menu.limit? ' 🌑': ''}${menu.premium? ' 🔮': ''}`
+          `🌙 ${cmd}${menu.limit? ' 🌑': ''}${menu.premium? ' 🔮': ''}`
 ).join('\n')
 ).join('\n')
-      menuText += `\n━━━━━━━━━━━━━━━━━━━━`
+      menuText += `\n╰━━━━━━━━━━━━━━━━━━━🌸`
 }
 
     menuText += `
@@ -145,7 +145,7 @@ await conn.sendMessage(m.chat, {
                 {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GPS de Soporte',
+                    display_text: '🎯 GP de Soporte',
                     url: 'https://chat.whatsapp.com/tu-enlace-grupo',
                     merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
