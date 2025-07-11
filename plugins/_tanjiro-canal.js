@@ -1,40 +1,48 @@
-import fetch from 'node-fetch'
+import { generateWAMessageFromContent, proto } from '@whiskeysockets/baileys'
 
 const handler = async (m, { conn}) => {
   const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
-  const imageBuffer = await (await fetch(imageUrl)).buffer()
+  const texto = `✨ Pulsa el botón para unirte al canal oficial`.trim()
 
-  const caption = `
-🌸 *Tanjiro Bot - Canal Oficial* 🌸
+  const messageContent = {
+    viewOnceMessage: {
+      message: {
+        messageContextInfo: {
+          deviceListMetadata: {},
+          deviceListMetadataVersion: 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({ text: texto }),
+          footer: proto.Message.InteractiveMessage.Footer.create({ text: 'Pikachu Bot by Deylin' }),
+          header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                name: 'cta_url',
+                buttonParamsJson: JSON.stringify({
+                  display_text: '✐ Canal oficial',
+                  url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
+                  merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+                })
+              }
+            ]
+          })
+        })
+      }
+    }
+  }
 
-🗡️ Noticias, actualizaciones y respiraciones nuevas.
-✨ Únete al canal oficial para no perderte nada.
+  const msg = generateWAMessageFromContent(m.chat, messageContent, {
+    userJid: m.sender,
+    quoted: m
+  })
 
-🔗 Canal: https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
-`.trim()
-
-  await conn.sendMessage(m.chat, {
-    image: imageBuffer,
-    caption,
-    buttons: [
-      {
-        buttonId: '.menucompleto',
-        buttonText: { displayText: '🔥 Menú Completo'},
-        type: 1
-},
-      {
-        buttonId: '.owner',
-        buttonText: { displayText: '👑 Creador'},
-        type: 1
+  await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 }
-    ],
-    headerType: 4
-}, { quoted: m})
-}
 
-handler.command = /^canal$/i
+handler.command = /^([.#/!])?canal$/i
+handler.register = true
 handler.help = ['canal']
 handler.tags = ['info']
-handler.register = true
 
 export default handler
