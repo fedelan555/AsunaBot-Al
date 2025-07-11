@@ -24,7 +24,7 @@ let handler = async (m, { conn}) => {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg'},
       caption: menuText,
       buttons: [
-        { buttonId: '.menucompleto', buttonText: { displayText: '🔥 Menú Completo 🔥'}, type: 1}
+          { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
       ],
       headerType: 4,
       contextInfo: {
