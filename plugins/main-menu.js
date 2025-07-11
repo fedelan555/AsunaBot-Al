@@ -15,11 +15,6 @@ import { xpRange} from '../lib/levelling.js'
       buttons: [
           { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
       ],
-      headerType: 4,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true
 }
 }, { quoted: m})
 
