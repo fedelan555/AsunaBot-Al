@@ -129,22 +129,6 @@ await conn.sendMessage(m.chat, {
                 {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '✐ Canal Oficial',
-                    url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-                    merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎩 Creador ofc',
-                    url: 'https://wa.me/message/KRGGIR7FESQJE1',
-                    merchant_url: 'https://wa.me/message/KRGGIR7FESQJE1'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
                   display_text: '🌸 MENU',
                   id: `${_p}menu`
 })
