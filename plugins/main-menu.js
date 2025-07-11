@@ -138,14 +138,14 @@ await conn.sendMessage(m.chat, {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                     display_text: '🎩 Creador ofc',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+                    url: 'https://wa.me/message/KRGGIR7FESQJE1',
+                    merchant_url: 'https://wa.me/message/KRGGIR7FESQJE1'
 })
 },
                 {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 Grupo de Soporte',
+                    display_text: '🎯 GPS de Soporte',
                     url: 'https://chat.whatsapp.com/tu-enlace-grupo',
                     merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
