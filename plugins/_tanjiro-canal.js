@@ -1,9 +1,6 @@
 import { generateWAMessageFromContent, prepareWAMessageMedia, proto} from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
-const handler = async (m, { conn}) => {
-  const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
-  const imageBuffer = await (await fetch(imageUrl)).buffer()
   const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
 
   const texto = `
