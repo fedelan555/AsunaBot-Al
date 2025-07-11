@@ -1,189 +1,131 @@
-import pkg from '@whiskeysockets/baileys'
-const { generateWAMessageFromContent, prepareWAMessageMedia, proto} = pkg
-import fetch from 'node-fetch'
 import { xpRange} from '../lib/levelling.js'
 
-const tags = {
-  anime: 'ANIME',
-  juegos: 'JUEGOS',
-  main: 'INFO',
-  ia: 'IA',
-  search: 'SEARCH',
-  game: 'GAME',
-  serbot: 'SUB BOTS',
-  rpg: 'RPG',
-  sticker: 'STICKER',
-  group: 'GROUPS',
-  nable: 'ON / OFF',
-  premium: 'PREMIUM',
-  downloader: 'DOWNLOAD',
-  tools: 'TOOLS',
-  fun: 'FUN',
-  nsfw: 'NSFW',
-  cmd: 'DATABASE',
-  owner: 'OWNER',
-  audio: 'AUDIOS',
-  advanced: 'ADVANCED',
-  weather: 'WEATHER',
-  news: 'NEWS',
-  finance: 'FINANCE',
-  education: 'EDUCATION',
-  health: 'HEALTH',
-  entertainment: 'ENTERTAINMENT',
-  sports: 'SPORTS',
-  travel: 'TRAVEL',
-  food: 'FOOD',
-  shopping: 'SHOPPING',
-  productivity: 'PRODUCTIVITY',
-  social: 'SOCIAL',
-  security: 'SECURITY',
-  custom: 'CUSTOM'
-}
-
 let handler = async (m, { conn}) => {
-  try {
-    const userId = m.mentionedJid?.[0] || m.sender
-    const user = global.db.data.users[userId] || {}
-    const name = await conn.getName(userId)
-    const mode = global.opts["self"]? "Privado": "Público"
-    const totalCommands = Object.keys(global.plugins).length
-    const totalreg = Object.keys(global.db.data.users).length
-    const uptime = clockString(process.uptime() * 1000)
-    const { exp = 0, level = 0} = user
-    const { min, xp, max} = xpRange(level, global.multiplier || 1)
+  let userId = m.sender
+  let user = global.db.data.users[userId] || {}
+  let name = await conn.getName(userId)
+  let { exp = 0, level = 0} = user
+  let { min, xp, max} = xpRange(level, global.multiplier)
+  let uptime = clockString(process.uptime() * 1000)
+  let totalreg = Object.keys(global.db.data.users).length
+  let mode = global.opts.self? "Privado": "Público"
+  let hour = new Date().getHours()
 
-    const help = Object.values(global.plugins)
-.filter(p =>!p.disabled)
-.map(p => ({
-        help: Array.isArray(p.help)? p.help: (p.help? [p.help]: []),
-        tags: Array.isArray(p.tags)? p.tags: (p.tags? [p.tags]: []),
-        limit: p.limit,
-        premium: p.premium
-}))
+  // Saludos temáticos por hora
+  let saludos = {
+    madrugada: ["🌙 Buenas madrugadas, alma nocturna...", "🌌 La noche abraza tu espíritu..."],
+    mañana: ["🌅 Buenos días, espíritu radiante~", "☀️ La luz matutina te saluda~"],
+    tarde: ["🌄 Buenas tardes, viajero astral~", "🍃 La tarde susurra tu nombre~"],
+    noche: ["🌃 Buenas noches, guardián de secretos~", "🔮 Bajo el velo de la oscuridad~"]
+}
+  let periodo = hour < 6? 'madrugada': hour < 12? 'mañana': hour < 18? 'tarde': 'noche'
+  let saludo = saludos[periodo][Math.floor(Math.random() * saludos[periodo].length)]
 
-    let menuText = ` ⚔━━━━━━━━━━━━━━━━━━━━⚔
-╭━ 🍃 TANJIRO - BOT ☀️━━
-│ 👤 *Usuario:* @${userId.split('@')[0]}
-│ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
-│ 🗺️ *Modo:* ${mode}
-│ ⌛ *Tiempo activo:* ${uptime}
-│ 📜 *Técnicas disponibles:* ${totalCommands}
-│ 👥 *Cazadores registrados:* ${totalreg}
-╰━━━━━━━━━━━━━━━━━━━━
+  let rango = level <= 5? "🌱 Novato":
+              level <= 15? "🌊 Discípulo de Urokodaki":
+              level <= 25? "🔥 Cazador Avanzado":
+              "☀️ Hashira del Sol"
 
-🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
+  // Mensajes de espera mágicos
+  let frasesEspera = [
+    '⌜ ⊹ Espera tantito, espíritu curioso... ⊹ ⌟',
+    '🌸 Los pilares están preparando tu menú...',
+    '✨ Invocando energía espiritual...'
+  ]
+  let mensajeEspera = frasesEspera[Math.floor(Math.random() * frasesEspera.length)]
 
-    for (let tag in tags) {
-      const comandos = help.filter(menu => menu.tags.includes(tag))
-      if (!comandos.length) continue
-
-      menuText += `\n🍃 *${tags[tag]}* ${getTanjiroEmoji()}\n`
-      menuText += comandos.map(menu =>
-        menu.help.map(cmd =>
-          `🌙 ${cmd}${menu.limit? ' 🌑': ''}${menu.premium? ' 🔮': ''}`
-).join('\n')
-).join('\n')
-      menuText += `\n╰━━━━━━━━━━━━━━━━━━━🌸`
+  // Comandos por categoría
+  let categories = {}
+  for (let plugin of Object.values(global.plugins)) {
+    if (!plugin.help ||!plugin.tags) continue
+    for (let tag of plugin.tags) {
+      if (!categories[tag]) categories[tag] = []
+      categories[tag].push(...plugin.help.map(cmd => `➤ ${cmd}`))
+}
 }
 
-    menuText += `
+  // Emojis por categoría
+  let emojis = {
+    anime: '🌸', rpg: '🗡️', ia: '🧠', fun: '🎭', sticker: '✨', owner: '👑',
+    group: '👥', premium: '🔮', tools: '🔧', downloader: '📥', cmd: '📂'
+}
+  let emojiRandom = () => ['⭐', '🍃', '🌟', '🌕'][Math.floor(Math.random() * 4)]
 
-🌕 *Tanjiro Bot - Inspirado por la llama de la voluntad.*
-🗡️ *Respira. Lucha. Protege.*`
+  // Construcción del texto del menú
+  let menuText = `
+╭━━❖「 🍃 TANJIRO BOT 🍃 」❖━━╮
 
-    
-// Imagen fija para el menú Tanjiro
-const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
-const imageBuffer = await (await fetch(imageUrl)).buffer()
-const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
+｡ﾟ✧: *${name}*:✧ﾟ｡
+> *_${saludo}_*
 
-await conn.sendMessage(m.chat, {
-  image: imageBuffer,
-  caption: menuText,
-  contextInfo: {
-    mentionedJid: [m.sender],
-    forwardingScore: 999,
-    isForwarded: true
+╰───────❖ INFORMACIÓN ❖───────╯
+
+🗡️ Pilar: @${userId.split('@')[0]}
+📜 Respiración: Nivel ${level} | XP: ${exp}/${xp}
+📛 Título: ${rango}
+🌙 Modo: ${mode}
+👥 Cazadores conectados: ${totalreg}
+⏳ Tiempo activo: ${uptime}
+🕰️ Hora actual: ${hour}:00
+
+🌕 *“No importa cuán difícil sea… sigo adelante.”*
+
+≪════ ⋆ Técnicas ⋆ ────≫
+`.trim()
+
+  let categoryText = Object.entries(categories)
+.map(([tag, cmds]) => {
+      let emoji = emojis[tag] || emojiRandom()
+      let tagName = tag.toUpperCase().replace(/_/g, ' ')
+      return `
+╭━ ${emoji} ${tagName} ${emoji} ━╮
+${cmds.map(cmd => `┃ ${cmd}`).join('\n')}
+╰━━━━━━━━━━━━━━╯`
+}).join('\n\n')
+
+  // Enviar mensaje de espera
+  await conn.reply(m.chat, mensajeEspera, m)
+
+  // Enviar video/gif con el menú
+  await conn.sendMessage(m.chat, {
+    video: { url: global.video2},
+    caption: menuText + '\n\n' + categoryText,
+    gifPlayback: true,
+    contextInfo: {
+      mentionedJid: [m.sender],
+      externalAdReply: {
+        title: global.botname,
+        body: 'Tanjiro Bot — Respira, lucha, protege.',
+        thumbnailUrl: global.banner2 || 'https://files.catbox.moe/l8ohvs.jpeg',
+        sourceUrl: global.channel || 'https://whatsapp.com/channel/0029VayXJte65yD6LQGiRB0R',
+        mediaType: 1,
+        showAdAttribution: true,
+        renderLargerThumbnail: true
+}
 }
 }, { quoted: m})
 
-    const msg = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '🌸 Escoge tu camino como cazador de demonios'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌸 Tanjiro Bot ⚙'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '✐ Canal Oficial',
-                    url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-                    merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎩 Creador ofc',
-                    url: 'https://wa.me/message/KRGGIR7FESQJE1',
-                    merchant_url: 'https://wa.me/message/KRGGIR7FESQJE1'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GP de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-},                   
-              ]
-})
-})
+  // Imagen fija estilo Tanjiro
+  await conn.sendMessage(m.chat, {
+    image: { url: 'https://files.catbox.moe/7qo46s.jpg'},
+    caption: '🍃 _Que el aliento del sol guíe tu camino._ ',
+    contextInfo: {
+      mentionedJid: [m.sender],
+      forwardingScore: 777,
+      isForwarded: true
 }
-}
-}, {})
-
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
-
-} catch (e) {
-    console.error(e)
-    conn.reply(m.chat, '❎ Lo sentimos, ocurrió un error en el menú Tanjiro.', m)
-}
+}, { quoted: m})
 }
 
-handler.help = ['menu', 'menu', 'help']
+handler.help = ['menu']
 handler.tags = ['main']
-handler.command = ['menu', 'menú', 'help']
+handler.command = ['menu', 'menú', 'help', 'ayuda']
 handler.register = true
-
 export default handler
-
-// Extras
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
 
 function clockString(ms) {
   let h = Math.floor(ms / 3600000)
   let m = Math.floor(ms / 60000) % 60
   let s = Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
-
-function getTanjiroEmoji() {
-  const emojis = ['🍃', '🔥', '🌊', '🗡️', '🌸', '☀️']
-  return emojis[Math.floor(Math.random() * emojis.length)]
-}
+  return `${h}h ${m}m ${s}s`
+}!
