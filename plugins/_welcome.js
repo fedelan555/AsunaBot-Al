@@ -1,8 +1,10 @@
+// Código creado por fedelan55 
+// no quites los créditos 
 
 import { WAMessageStubType, proto} from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
-export async function before(m, { conn, participants, groupMetadata}) {
+export async function before(m, { conn, participants, groupMetadata, usedPrefix: _p}) {
   if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
 
   const jid = m.messageStubParameters[0]
@@ -60,42 +62,15 @@ END:VCARD`
       contacto
 )
 
-    // Botón adicional del grupo de soporte
-    const msg = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '🎯 ¿Necesitas ayuda en el grupo o soporte adicional?'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌊 Tanjiro Bot • Espíritu del Sol'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 Grupo de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-              ]
-})
-})
-}
-}
-}, {})
-
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
+    // Botones visuales
+    await conn.sendMessage(m.chat, {
+      text: '🌸 Accesos rápidos:',
+      buttons: [
+        { buttonId: `${_p}help`, buttonText: { displayText: '📜 AYUDA'}, type: 1},
+        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR'}, type: 1}
+      ],
+      headerType: 1
+}, { quoted: m})
 }
 
   // ➖ Despedida
@@ -120,5 +95,14 @@ END:VCARD`
       null,
       contacto
 )
+
+    // Botón visual de despedida
+    await conn.sendMessage(m.chat, {
+      text: '👣 ¿Quieres contactar al creador?',
+      buttons: [
+        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR'}, type: 1}
+      ],
+      headerType: 1
+}, { quoted: m})
 }
 }
