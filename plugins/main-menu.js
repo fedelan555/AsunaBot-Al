@@ -111,59 +111,6 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 }
 }, { quoted: m})
 
-    // Enviar mensaje interactivo con botones de canal
-    const msg = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '🌸 Escoge tu camino como cazador de demonios'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌸 Tanjiro Bot ⚙'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '✐ Canal Oficial',
-                    url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-                    merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎩 Creador ofc',
-                    url: 'https://wa.me/message/KRGGIR7FESQJE1',
-                    merchant_url: 'https://wa.me/message/KRGGIR7FESQJE1'
-})
-},
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GP de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-              ]
-})
-})
-}
-}
-}, {})
-
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
-
 } catch (e) {
     console.error(e)
     conn.reply(m.chat, '❎ Lo sentimos, ocurrió un error en el menú Tanjiro.', m)
