@@ -2,7 +2,13 @@ import { generateWAMessageFromContent, prepareWAMessageMedia, proto} from '@whis
 import fetch from 'node-fetch'
 
 const handler = async (m, { conn}) => {
-  const texto = `✨ Pulsa el botón para unirte al canal oficial`.trim()
+  const texto = `
+🌸 *¡Canal Oficial de Tanjiro-Bot!* 🌸
+
+✨ Sigue el camino de los cazadores de demonios.
+🗡️ Nuevas técnicas, mejoras, comandos y actualizaciones.
+`.trim()
+
   const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
   const imageBuffer = await (await fetch(imageUrl)).buffer()
   const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
@@ -16,7 +22,7 @@ const handler = async (m, { conn}) => {
 },
         interactiveMessage: proto.Message.InteractiveMessage.create({
           body: proto.Message.InteractiveMessage.Body.create({ text: texto}),
-          footer: proto.Message.InteractiveMessage.Footer.create({ text: '⚙ Tanjiro Bot 🌸'}),
+          footer: proto.Message.InteractiveMessage.Footer.create({ text: '⚙ Tanjiro Bot • Espíritu del Sol 🌊'}),
           header: proto.Message.InteractiveMessage.Header.create({
             hasMediaAttachment: true,
             media: media.imageMessage
