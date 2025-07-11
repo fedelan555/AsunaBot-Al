@@ -137,7 +137,7 @@ await conn.sendMessage(m.chat, {
                 {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 Grupo de Soporte',
+                    display_text: '🎩 Creador ofc',
                     url: 'https://chat.whatsapp.com/tu-enlace-grupo',
                     merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
