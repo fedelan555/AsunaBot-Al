@@ -1,20 +1,17 @@
-// Código creado por fedelan55
-// no quites creditos 
-
-import { WAMessageStubType} from '@whiskeysockets/baileys';
-import fetch from 'node-fetch';
+import { WAMessageStubType, proto} from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
 
 export async function before(m, { conn, participants, groupMetadata}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return!0;
+  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
 
-  const jid = m.messageStubParameters[0];
-  const user = `@${jid.split('@')[0]}`;
+  const jid = m.messageStubParameters[0]
+  const user = `@${jid.split('@')[0]}`
   const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
     'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-);
-  const img = await fetch(pp).then(r => r.buffer());
-  const chat = global.db.data.chats[m.chat] || {};
-  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1;
+)
+  const img = await fetch(pp).then(r => r.buffer())
+  const chat = global.db.data.chats[m.chat] || {}
+  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1
 
   const contacto = {
     key: {
@@ -34,10 +31,11 @@ END:VCARD`
 }
 },
     participant: '0@s.whatsapp.net'
-};
+}
 
-  if (!chat.welcome) return;
+  if (!chat.welcome) return
 
+  // ➕ Bienvenida
   if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
     const bienvenida = `
 🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
@@ -48,7 +46,8 @@ END:VCARD`
 
 💌 Usa *#help* para desbloquear las técnicas de este dojo.
 ⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
-`;
+`.trim()
+
     await conn.sendMini(
       m.chat,
       '🌀 UN NUEVO CAZADOR HA LLEGADO',
@@ -58,9 +57,47 @@ END:VCARD`
       img,
       null,
       contacto
-);
+)
+
+    const soporteBtn = {
+      viewOnceMessage: {
+        message: {
+          messageContextInfo: {
+            deviceListMetadata: {},
+            deviceListMetadataVersion: 2
+},
+          interactiveMessage: proto.Message.InteractiveMessage.create({
+            body: proto.Message.InteractiveMessage.Body.create({
+              text: '🎯 ¿Necesitas ayuda en el dojo o soporte?'
+}),
+            footer: proto.Message.InteractiveMessage.Footer.create({
+              text: '🌊 Tanjiro Bot • Espíritu del Sol'
+}),
+            header: proto.Message.InteractiveMessage.Header.create({
+              hasMediaAttachment: false
+}),
+            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+              buttons: [
+                {
+                  name: 'cta_url',
+                  buttonParamsJson: JSON.stringify({
+                    display_text: '🎯 GP de Soporte',
+                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
+}
+              ]
+})
+})
+}
+}
 }
 
+    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
+    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
+}
+
+  // ➖ Despedida
   if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
     const despedida = `
 🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
@@ -70,7 +107,8 @@ END:VCARD`
 🌒 *Último aliento registrado...*
 
 🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
-`;
+`.trim()
+
     await conn.sendMini(
       m.chat,
       '🌑 UN ESPADACHÍN HA PARTIDO',
@@ -80,8 +118,43 @@ END:VCARD`
       img,
       null,
       contacto
-);
+)
+
+    const soporteBtn = {
+      viewOnceMessage: {
+        message: {
+          messageContextInfo: {
+            deviceListMetadata: {},
+            deviceListMetadataVersion: 2
+},
+          interactiveMessage: proto.Message.InteractiveMessage.create({
+            body: proto.Message.InteractiveMessage.Body.create({
+              text: '📡 ¿Quieres contactar con el grupo de apoyo?'
+}),
+            footer: proto.Message.InteractiveMessage.Footer.create({
+              text: '🌊 Tanjiro Bot • Guardián del Amanecer'
+}),
+            header: proto.Message.InteractiveMessage.Header.create({
+              hasMediaAttachment: false
+}),
+            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+              buttons: [
+                {
+                  name: 'cta_url',
+                  buttonParamsJson: JSON.stringify({
+                    display_text: '🎯 GP de Soporte',
+                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
+}
+              ]
+})
+})
+}
 }
 }
 
-// ✨ ¿Quieres agregar una melodía de fondo o stickers de Zenitsu o Nezuko a este módulo? Podemos hacerlo aún más épico.
+    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
+    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
+}
+}
