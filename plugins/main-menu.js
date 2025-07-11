@@ -15,7 +15,6 @@ import { xpRange} from '../lib/levelling.js'
       buttons: [
           { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
       ],
-}
 }, { quoted: m})
 
 } catch (e) {
