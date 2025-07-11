@@ -127,14 +127,27 @@ interactiveMessage: proto.Message.InteractiveMessage.create({
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
 }),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🌸 Canal Kimetsu',
-                    url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
-                    merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+            
+nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+  buttons: [
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: '✐ Canal Oficial',
+        url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
+        merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+})
+},
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: '🎯 Grupo de Soporte',
+        url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+        merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
+}
+  ]
+})
 })
 }
               ]
