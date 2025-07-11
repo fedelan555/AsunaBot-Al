@@ -1,12 +1,11 @@
 let handler = async (m, { conn, args}) => {
   let userId = m.mentionedJid?.[0] || m.sender
-  let user = global.db.data.users[userId]
+  let user = global.db.data.users[userId] || {}
   let name = await conn.getName(userId)
-  let _uptime = process.uptime() * 1000
-  let uptime = clockString(_uptime)
+  let uptime = clockString(process.uptime() * 1000)
   let totalreg = Object.keys(global.db.data.users).length
+  let { exp = 0, level = 0} = user
 
-  // Saludo estilo Tanjiro
   let hour = new Intl.DateTimeFormat('es-PE', {
     hour: 'numeric',
     hour12: false,
@@ -18,6 +17,11 @@ let handler = async (m, { conn, args}) => {
                hour < 18? "🌄 Buenas tardes, espadachín solar~":
                "🌃 Buenas noches, alma errante..."
 
+  let rango = level <= 5? "🌱 Novato":
+              level <= 15? "🌊 Discípulo de Urokodaki":
+              level <= 25? "🔥 Cazador Avanzado":
+              "☀️ Hashira del Sol"
+
   // Texto del menú con estilo Tanjiro
   let menuText = `
 ╭━━❖「 🍃 TANJIRO BOT 🍃 」❖━━╮
@@ -25,29 +29,29 @@ let handler = async (m, { conn, args}) => {
  ｡ﾟ✧: *.${name}.*:✧ﾟ｡
 > *_${saludo}_*
 
-╰───────❖ MENU ❖───────╯
+╰───────❖ MENÚ ❖───────╯
 
 ✦ 𝙸𝙽𝙵𝙾 𝙳𝙴 𝙲𝙾𝙼𝘽𝘼𝙏𝙀 ✦
 
 🗡️ Pilar: @${userId.split('@')[0]}
-📜 Respiración: Nivel ${user.level || 0} | XP ${user.exp || 0}
+📜 Respiración: Nivel ${level} | XP: ${exp}
+📛 Título: ${rango}
 🕰️ Tiempo activo: ${uptime}
 🌸 Cazadores conectados: ${totalreg}
 ⌛ Hora: ${hour}
 
-🔥 *“No importa cuán difíciles sean los tiempos... Seguiré avanzando.”*
-💖 *Hecho con honor por:* *_${global.apodo}_* y *_SoyMaycol <3_*
+🔥 *“No importa cuán difíciles sean los tiempos... seguiré adelante.”*
+💖 *Forjado por:* *_${global.apodo}_* y *_SoyMaycol <3_*
 
 ≪════ ⋆ Respira ⋆ ────≫
 
 *Selecciona una técnica:*
 `.trim()
 
-  // Botones de acción al estilo Tanjiro
   let buttons = [
     { buttonId: '.code', buttonText: { displayText: '🗡️ SubBot 🗡️'}, type: 1},
     { buttonId: '.staff', buttonText: { displayText: '🌸 Staff 🌸'}, type: 1},
-    { buttonId: '.menucompleto', buttonText: { displayText: '🔥 Menu Completo 🔥'}, type: 1}
+    { buttonId: '.menucompleto', buttonText: { displayText: '🔥 Menú Completo 🔥'}, type: 1}
   ]
 
   await conn.sendMessage(m.chat, {
@@ -81,6 +85,7 @@ let handler = async (m, { conn, args}) => {
 handler.help = ['menu']
 handler.tags = ['main']
 handler.command = ['menu', 'menú', 'help', 'ayuda']
+handler.register = true
 
 export default handler
 
