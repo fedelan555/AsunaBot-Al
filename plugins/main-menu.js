@@ -1,16 +1,5 @@
 import { xpRange} from '../lib/levelling.js'
 
-let handler = async (m, { conn}) => {
-  try {
-    let userId = m.sender
-    let user = global.db.data.users[userId] || {}
-    let name = await conn.getName(userId)
-    let { exp = 0, level = 0} = user
-    let { min, xp, max} = xpRange(level, global.multiplier)
-    let muptime = clockString(process.uptime() * 1000)
-    let totalreg = Object.keys(global.db.data.users).length
-    let mode = global.opts["self"]? "Privado": "Público"
-
     let menuText = `
 👤 Usuario: *${name}*
 ⚔ Nivel: ${level}
