@@ -62,12 +62,14 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = `
-  👤 Usuario: *%name*
-  ⚔ Nivel: %level
-  💥 Exp: %exp/%maxexp
-  🌙 Modo: %mode
-  👥 Usuarios: %totalreg
-  ⏳ Activo: %muptime
+╭━━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 - 𝙱𝙾𝚃 ❖━━━╮
+│👤 Usuario: *%name*
+│⚔ Nivel: %level
+│💥 Exp: %exp/%maxexp
+│🌙 Modo: %mode
+│👥 Usuarios: %totalreg
+│⏳ Activo: %muptime
+╰━━━━━━━━━━━━━━━━━━━━╯
 
 🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
 
@@ -91,7 +93,7 @@ let handler = async (m, { conn}) => {
 
     const imageUrl = [
       'https://files.catbox.moe/7qo46s.jpg'',
-      'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/tanjiro_pose.jpg'
+      'https://files.catbox.moe/7qo46s.jpg''
     ]
     const selectedImage = imageUrl[Math.floor(Math.random() * imageUrl.length)]
     const imageBuffer = await (await fetch(selectedImage)).buffer()
@@ -119,7 +121,7 @@ let handler = async (m, { conn}) => {
               text: '🌸 Escoge tu camino como cazador de demonios'
 }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: 'Tanjiro Bot by Deylin'
+              text: '🌸 Tanjiro Bot 🌙'
 }),
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
@@ -130,8 +132,8 @@ let handler = async (m, { conn}) => {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                     display_text: '✐ Canal Oficial',
-                    url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
-                    merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+                    url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
+                    merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
 })
 },
                 {
