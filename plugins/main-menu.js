@@ -62,7 +62,7 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = `
-╭━━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 - 𝙱𝙾𝚃 ❖━━━╮
+╭━━━☀️「 🍃 TANJIRO - BOT ☀️━━━╮
 │ 👤 *Usuario:* @${userId.split('@')[0]}
 │ ☀️ *Respiración:* Nivel ${level} | XP: ${exp}
 │ 🗺️ *Modo:* ${mode}
@@ -119,7 +119,7 @@ await conn.sendMessage(m.chat, {
               text: '🌸 Escoge tu camino como cazador de demonios'
 }),
             footer: proto.Message.InteractiveMessage.Footer.create({
-              text: 'Tanjiro Bot by Deylin'
+              text: '🌸 Tanjiro Bot ⚙'
 }),
             header: proto.Message.InteractiveMessage.Header.create({
               hasMediaAttachment: false
@@ -130,8 +130,8 @@ await conn.sendMessage(m.chat, {
                   name: 'cta_url',
                   buttonParamsJson: JSON.stringify({
                     display_text: '✐ Canal Oficial',
-                    url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
-                    merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
+                    url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
+                    merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
 })
 },
                 {
