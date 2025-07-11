@@ -35,6 +35,40 @@ END:VCARD`
 
   if (!chat.welcome) return
 
+  const soporteBtn = {
+    viewOnceMessage: {
+      message: {
+        messageContextInfo: {
+          deviceListMetadata: {},
+          deviceListMetadataVersion: 2
+},
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: '🎯 ¿Deseas acceder al grupo de soporte de Tanjiro-Bot?'
+}),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: '🌊 Tanjiro Bot • Espíritu del Sol'
+}),
+          header: proto.Message.InteractiveMessage.Header.create({
+            hasMediaAttachment: false
+}),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                name: 'cta_url',
+                buttonParamsJson: JSON.stringify({
+                  display_text: '🎯 GP de Soporte',
+                  url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+                  merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
+}
+            ]
+})
+})
+}
+}
+}
+
   // ➕ Bienvenida
   if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
     const bienvenida = `
@@ -58,40 +92,6 @@ END:VCARD`
       null,
       contacto
 )
-
-    const soporteBtn = {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '🎯 ¿Necesitas ayuda en el dojo o soporte?'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌊 Tanjiro Bot • Espíritu del Sol'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GP de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-              ]
-})
-})
-}
-}
-}
 
     const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
@@ -119,40 +119,6 @@ END:VCARD`
       null,
       contacto
 )
-
-    const soporteBtn = {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '📡 ¿Quieres contactar con el grupo de apoyo?'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌊 Tanjiro Bot • Guardián del Amanecer'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'cta_url',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🎯 GP de Soporte',
-                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-              ]
-})
-})
-}
-}
-}
 
     const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
