@@ -3,64 +3,39 @@ const { generateWAMessageFromContent, prepareWAMessageMedia, proto} = pkg
 import fetch from 'node-fetch'
 import { xpRange} from '../lib/levelling.js'
 
+// Categorías del menú
 const tags = {
-  anime: 'ANIME',
-  juegos: 'JUEGOS',
-  main: 'INFO',
-  ia: 'IA',
-  search: 'SEARCH',
-  game: 'GAME',
-  serbot: 'SUB BOTS',
-  rpg: 'RPG',
-  sticker: 'STICKER',
-  group: 'GROUPS',
-  nable: 'ON / OFF',
-  premium: 'PREMIUM',
-  downloader: 'DOWNLOAD',
-  tools: 'TOOLS',
-  fun: 'FUN',
-  nsfw: 'NSFW',
-  cmd: 'DATABASE',
-  owner: 'OWNER',
-  audio: 'AUDIOS',
-  advanced: 'ADVANCED',
-  weather: 'WEATHER',
-  news: 'NEWS',
-  finance: 'FINANCE',
-  education: 'EDUCATION',
-  health: 'HEALTH',
-  entertainment: 'ENTERTAINMENT',
-  sports: 'SPORTS',
-  travel: 'TRAVEL',
-  food: 'FOOD',
-  shopping: 'SHOPPING',
-  productivity: 'PRODUCTIVITY',
-  social: 'SOCIAL',
-  security: 'SECURITY',
+  anime: 'ANIME', juegos: 'JUEGOS', main: 'INFO', ia: 'IA', search: 'SEARCH',
+  game: 'GAME', serbot: 'SUB BOTS', rpg: 'RPG', sticker: 'STICKER', group: 'GROUPS',
+  nable: 'ON / OFF', premium: 'PREMIUM', downloader: 'DOWNLOAD', tools: 'TOOLS',
+  fun: 'FUN', nsfw: 'NSFW', cmd: 'DATABASE', owner: 'OWNER', audio: 'AUDIOS',
+  advanced: 'ADVANCED', weather: 'WEATHER', news: 'NEWS', finance: 'FINANCE',
+  education: 'EDUCATION', health: 'HEALTH', entertainment: 'ENTERTAINMENT',
+  sports: 'SPORTS', travel: 'TRAVEL', food: 'FOOD', shopping: 'SHOPPING',
+  productivity: 'PRODUCTIVITY', social: 'SOCIAL', security: 'SECURITY',
   custom: 'CUSTOM'
 }
 
-let handler = async (m, { conn}) => {
+let handler = async (m, { conn, usedPrefix: _p}) => {
   try {
     const userId = m.mentionedJid?.[0] || m.sender
     const user = global.db.data.users[userId] || {}
     const name = await conn.getName(userId)
-    const mode = global.opts["self"]? "Privado": "Público"
+    const mode = global.opts.self? "Privado": "Público"
     const totalCommands = Object.keys(global.plugins).length
     const totalreg = Object.keys(global.db.data.users).length
     const uptime = clockString(process.uptime() * 1000)
     const { exp = 0, level = 0} = user
     const { min, xp, max} = xpRange(level, global.multiplier || 1)
 
-    const help = Object.values(global.plugins)
-.filter(p =>!p.disabled)
-.map(p => ({
-        help: Array.isArray(p.help)? p.help: (p.help? [p.help]: []),
-        tags: Array.isArray(p.tags)? p.tags: (p.tags? [p.tags]: []),
-        limit: p.limit,
-        premium: p.premium
+    const help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
+      help: Array.isArray(p.help)? p.help: (p.help? [p.help]: []),
+      tags: Array.isArray(p.tags)? p.tags: (p.tags? [p.tags]: []),
+      limit: p.limit,
+      premium: p.premium
 }))
 
+    const readMore = String.fromCharCode(8206).repeat(4001)
     let menuText = ` ⚔━━━━━━━━━━━━━━━━━━━━⚔
 ╭━ 🍃 TANJIRO - BOT ☀️━━
 │ 👤 *Usuario:* @${userId.split('@')[0]}
@@ -91,22 +66,27 @@ let handler = async (m, { conn}) => {
 🌕 *Tanjiro Bot - Inspirado por la llama de la voluntad.*
 🗡️ *Respira. Lucha. Protege.*`
 
-    
-// Imagen fija para el menú Tanjiro
-const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
-const imageBuffer = await (await fetch(imageUrl)).buffer()
-const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
+    const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
+    const imageBuffer = await (await fetch(imageUrl)).buffer()
+    const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
 
-await conn.sendMessage(m.chat, {
-  image: imageBuffer,
-  caption: menuText,
-  contextInfo: {
-    mentionedJid: [m.sender],
-    forwardingScore: 999,
-    isForwarded: true
+    // Enviar imagen del menú
+    await conn.sendMessage(m.chat, {
+      image: imageBuffer,
+      caption: menuText,
+      buttons: [
+        { buttonId: `${_p}menucompleto`, buttonText: { displayText: '🔥 Menú Completo 🔥'}, type: 1},
+        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR'}, type: 1}
+      ],
+      headerType: 4,
+      contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true
 }
 }, { quoted: m})
 
+    // Enviar mensaje interactivo con botones de canal
     const msg = generateWAMessageFromContent(m.chat, {
       viewOnceMessage: {
         message: {
@@ -149,7 +129,7 @@ await conn.sendMessage(m.chat, {
                     url: 'https://chat.whatsapp.com/tu-enlace-grupo',
                     merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
-},                   
+}
               ]
 })
 })
@@ -165,14 +145,12 @@ await conn.sendMessage(m.chat, {
 }
 }
 
-handler.help = ['menu', 'menu', 'help']
+handler.help = ['menu', 'menú', 'help']
 handler.tags = ['main']
 handler.command = ['menu', 'menú', 'help']
 handler.register = true
-
 export default handler
 
-// Extras
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
@@ -186,4 +164,4 @@ function clockString(ms) {
 function getTanjiroEmoji() {
   const emojis = ['🍃', '🔥', '🌊', '🗡️', '🌸', '☀️']
   return emojis[Math.floor(Math.random() * emojis.length)]
-      }
+}
