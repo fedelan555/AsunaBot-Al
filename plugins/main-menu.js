@@ -62,13 +62,12 @@ let handler = async (m, { conn}) => {
 }))
 
     let menuText = `
-👤 Usuario: *%name*
-⚔ Nivel: %level
-💥 Exp: %exp/%maxexp
-🌙 Modo: %mode
-👥 Usuarios: %totalreg
-⏳ Activo: %muptime
-📜 Técnicas disponibles: ${totalCommands}
+  👤 Usuario: *%name*
+  ⚔ Nivel: %level
+  💥 Exp: %exp/%maxexp
+  🌙 Modo: %mode
+  👥 Usuarios: %totalreg
+  ⏳ Activo: %muptime
 
 🌸 *“Mi corazón arde con propósito. No puedo rendirme.”*${readMore}`
 
