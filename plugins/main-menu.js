@@ -141,7 +141,15 @@ await conn.sendMessage(m.chat, {
                     url: 'https://chat.whatsapp.com/tu-enlace-grupo',
                     merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
 })
-}
+},
+                {
+                  name: 'cta_url',
+                  buttonParamsJson: JSON.stringify({
+                    display_text: '🎯 Grupo de Soporte',
+                    url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+                    merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
+},                   
               ]
 })
 })
