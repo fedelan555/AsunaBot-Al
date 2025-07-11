@@ -25,7 +25,7 @@ const defaultMenu = {
 🌙 Modo: %mode
 👥 Usuarios: %totalreg
 ⏳ Activo: %muptime
-
+☀️ comandos: ${totalCommands}
 %readmore
 `.trimStart(),
   
@@ -94,7 +94,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
-      newsletterName: '🩵̶۫̄͟Ⓜ︎𓏲𝐌500𓍲̈͜𝗨̴ᥣ̥𝗍̈rᥲ̄☦︎𝐁ᴏ𝐭⋆͙̈么͟͞──',  
       buttons: [
         { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
         { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
@@ -119,4 +118,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                          }
+                                        }
