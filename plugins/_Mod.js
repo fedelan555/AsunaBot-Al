@@ -1,4 +1,5 @@
-import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
+import { generateWAMessageFromContent, prepareWAMessageMedia, proto} from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
   const text = `*🔧 APIs desarrolladas por Deylin*
@@ -35,6 +36,10 @@ _________________________________
 🔒 *Nota:* Usa estas APIs con precaución. No hagas spam de peticiones.
 `.trim()
 
+  const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
+  const imageBuffer = await (await fetch(imageUrl)).buffer()
+  const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
+
   const messageContent = {
     viewOnceMessage: {
       message: {
@@ -45,10 +50,11 @@ _________________________________
         interactiveMessage: proto.Message.InteractiveMessage.create({
           body: proto.Message.InteractiveMessage.Body.create({ text}),
           footer: proto.Message.InteractiveMessage.Footer.create({
-            text: 'Pikachu Bot by Deylin'
+            text: '🗡️ Pikachu Bot • by Deylin'
 }),
           header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: false
+            hasMediaAttachment: true,
+            media: media.imageMessage
 }),
           nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
             buttons: [
