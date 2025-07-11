@@ -1,20 +1,20 @@
-// Código creado por fedelan55 
-// no quites los créditos 
+// Código creado por fedelan55
+// no quites creditos 
 
-import { WAMessageStubType, proto} from '@whiskeysockets/baileys'
-import fetch from 'node-fetch'
+import { WAMessageStubType} from '@whiskeysockets/baileys';
+import fetch from 'node-fetch';
 
-export async function before(m, { conn, participants, groupMetadata, usedPrefix: _p}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
+export async function before(m, { conn, participants, groupMetadata}) {
+  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return!0;
 
-  const jid = m.messageStubParameters[0]
-  const user = `@${jid.split('@')[0]}`
+  const jid = m.messageStubParameters[0];
+  const user = `@${jid.split('@')[0]}`;
   const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
     'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-)
-  const img = await fetch(pp).then(r => r.buffer())
-  const chat = global.db.data.chats[m.chat] || {}
-  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1
+);
+  const img = await fetch(pp).then(r => r.buffer());
+  const chat = global.db.data.chats[m.chat] || {};
+  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1;
 
   const contacto = {
     key: {
@@ -34,11 +34,10 @@ END:VCARD`
 }
 },
     participant: '0@s.whatsapp.net'
-}
+};
 
-  if (!chat.welcome) return
+  if (!chat.welcome) return;
 
-  // ➕ Bienvenida
   if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
     const bienvenida = `
 🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
@@ -49,8 +48,7 @@ END:VCARD`
 
 💌 Usa *#help* para desbloquear las técnicas de este dojo.
 ⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
-`.trim()
-
+`;
     await conn.sendMini(
       m.chat,
       '🌀 UN NUEVO CAZADOR HA LLEGADO',
@@ -60,20 +58,9 @@ END:VCARD`
       img,
       null,
       contacto
-)
-
-    // Botones visuales
-    await conn.sendMessage(m.chat, {
-      text: '🌸 Accesos rápidos:',
-      buttons: [
-        { buttonId: `${_p}help`, buttonText: { displayText: '📜 AYUDA'}, type: 1},
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR'}, type: 1}
-      ],
-      headerType: 1
-}, { quoted: m})
+);
 }
 
-  // ➖ Despedida
   if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
     const despedida = `
 🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
@@ -83,8 +70,7 @@ END:VCARD`
 🌒 *Último aliento registrado...*
 
 🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
-`.trim()
-
+`;
     await conn.sendMini(
       m.chat,
       '🌑 UN ESPADACHÍN HA PARTIDO',
@@ -94,15 +80,8 @@ END:VCARD`
       img,
       null,
       contacto
-)
+);
+}
+}
 
-    // Botón visual de despedida
-    await conn.sendMessage(m.chat, {
-      text: '👣 ¿Quieres contactar al creador?',
-      buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR'}, type: 1}
-      ],
-      headerType: 1
-}, { quoted: m})
-}
-}
+// ✨ ¿Quieres agregar una melodía de fondo o stickers de Zenitsu o Nezuko a este módulo? Podemos hacerlo aún más épico.
