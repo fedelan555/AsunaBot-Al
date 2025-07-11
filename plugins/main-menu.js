@@ -3,7 +3,6 @@ const { generateWAMessageFromContent, prepareWAMessageMedia, proto} = pkg
 import fetch from 'node-fetch'
 import { xpRange} from '../lib/levelling.js'
 
-
 const tags = {
   anime: '🎌 ARTE ANIMADO',
   juegos: '🎮 JUEGOS DE COMBATE',
@@ -187,4 +186,4 @@ function clockString(ms) {
 function getTanjiroEmoji() {
   const emojis = ['🍃', '🔥', '🌊', '🗡️', '🌸', '☀️']
   return emojis[Math.floor(Math.random() * emojis.length)]
-                                                                  }
+  }
