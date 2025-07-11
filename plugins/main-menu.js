@@ -26,15 +26,7 @@ const defaultMenu = {
 👥 Usuarios: %totalreg
 ⏳ Activo: %muptime
 
-%readmore
-`.trimStart(),
   
-  header: '\n🌸 %category ───────────✦',
-  body: '┃ 🌀 %cmd\n',
-  footer: '╰──────────────✦',
-  after: '\n☀️ Domina el aliento del Sol y sigue adelante...'
-}
-
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let tag = `@${m.sender.split("@")[0]}`
