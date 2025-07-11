@@ -1,44 +1,16 @@
-import { generateWAMessageFromContent, prepareWAMessageMedia, proto} from '@whiskeysockets/baileys'
-import fetch from 'node-fetch'
+import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
-  const text = `*🔧 APIs desarrolladas por Deylin*
+  const text = `*🌸 TANJIRO-BOT BY FEDE*
 
 _________________________________
 
 [1] https://anime-xi-wheat.vercel.app/api/pinterest?q=
 > Pinterest: Buscador de imágenes en Pinterest.
 
-[2] https://anime-xi-wheat.vercel.app/api/ia-img?prompt=
-> Generador de imágenes con IA.
-
-[3] https://g-mini-ia.vercel.app/api/gemini
-> Gemini IA: Responde preguntas, analiza imágenes y genera contenido visual.
-
-[4] https://mode-ia.onrender.com/mode-ia?prompt=
-> Mode-IA: Inteligencia artificial para responder preguntas en formato texto.
-
-[5] https://ytumode-api.vercel.app/api/search?q=
-> Buscador de contenido en YouTube.
-
-[6] https://mode-api-sigma.vercel.app/api/mp3?url=
-> Descarga de audio desde YouTube.
-
-[7] https://mode-api-sigma.vercel.app/api/mp4?url=
-> Descarga de video desde YouTube.
-
-[8] https://g-mini-ia.vercel.app/api/meme
-> Buscador de memes aleatorios.
-
-[9] https://g-mini-ia.vercel.app/api/infonumero?numero=
-> Información de un número: país y bandera (para welcome y tagall).
 
 🔒 *Nota:* Usa estas APIs con precaución. No hagas spam de peticiones.
 `.trim()
-
-  const imageUrl = 'https://files.catbox.moe/7qo46s.jpg'
-  const imageBuffer = await (await fetch(imageUrl)).buffer()
-  const media = await prepareWAMessageMedia({ image: imageBuffer}, { upload: conn.waUploadToServer})
 
   const messageContent = {
     viewOnceMessage: {
@@ -50,11 +22,10 @@ _________________________________
         interactiveMessage: proto.Message.InteractiveMessage.create({
           body: proto.Message.InteractiveMessage.Body.create({ text}),
           footer: proto.Message.InteractiveMessage.Footer.create({
-            text: '🗡️ Pikachu Bot • by Deylin'
+            text: 'Pikachu Bot by Deylin'
 }),
           header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: true,
-            media: media.imageMessage
+            hasMediaAttachment: false
 }),
           nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
             buttons: [
