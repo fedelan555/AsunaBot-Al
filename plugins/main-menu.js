@@ -94,7 +94,11 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
-
+      name: 'cta_url',
+              buttonParamsJson: JSON.stringify({
+                display_text: '✐ canal oficial',
+                url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m',
+                merchant_url: 'https://whatsapp.com/channel/0029VawF8fBBvvsktcInIz3m'
   } catch (e) {
     console.error(e)
     conn.reply(m.chat, '⚔ Ha ocurrido un error al invocar el aliento del menú..', m)
