@@ -1,114 +1,89 @@
-import { xpRange } from '../lib/levelling.js'
+import { xpRange} from '../lib/levelling.js'
 
-const textCyberpunk = (text) => {
-  const charset = {
-    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
-    h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
-    o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
-    v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ'
-  }
-  return text.toLowerCase().split('').map(c => charset[c] || c).join('')
+let handler = async (m, { conn}) => {
+  let userId = m.sender
+  let user = global.db.data.users[userId] || {}
+  let name = await conn.getName(userId)
+  let { exp = 0, level = 0} = user
+  let { min, xp, max} = xpRange(level, global.multiplier)
+  let muptime = clockString(process.uptime() * 1000)
+  let totalreg = Object.keys(global.db.data.users).length
+  let mode = global.opts.self? "Privado": "Público"
+
+  let hour = new Date().getHours()
+  let saludo = hour < 6? "🌌 Buenas madrugadas, cazador nocturno...":
+               hour < 12? "🌅 Buenos días, guerrero del alba~":
+               hour < 18? "🌄 Buenas tardes, espadachín solar~":
+               "🌃 Buenas noches, alma errante..."
+
+  let rango = level <= 5? "🌱 Novato":
+              level <= 15? "🌊 Discípulo de Urokodaki":
+              level <= 25? "🔥 Cazador Avanzado":
+              "☀️ Hashira del Sol"
+
+  let menuText = `
+╭━━❖「 🍃 𝚃𝙰𝙉𝙹𝙸𝚁𝙾 𝙱𝙾𝚃 🍃 」❖━━╮
+
+｡ﾟ✧: *${name}*:✧ﾟ｡
+> *_${saludo}_*
+
+╰───────❖ MENÚ ❖───────╯
+
+✦ 𝙸𝙽𝙵𝙾 𝙳𝙴 𝙲𝙾𝙼𝘽𝘼𝙏𝙀 ✦
+
+🗡️ Pilar: @${userId.split('@')[0]}
+📜 Respiración: Nivel ${level} | XP: ${exp}/${xp}
+📛 Título: ${rango}
+🕰️ Tiempo activo: ${muptime}
+🌸 Cazadores conectados: ${totalreg}
+⌛ Hora actual: ${hour}:00
+🌐 Modo: ${mode}
+
+🔥 *“No importa cuán difíciles sean los tiempos... seguiré adelante.”*
+💖 *Forjado por:* *_${global.apodo}_* y *_SoyMaycol <3_*
+
+≪════ ⋆ Respira ⋆ ────≫
+
+*Selecciona una técnica:*
+`.trim()
+
+  let buttons = [
+    { buttonId: '.code', buttonText: { displayText: '🗡️ SubBot 🗡️'}, type: 1},
+    { buttonId: '.staff', buttonText: { displayText: '🌸 Staff 🌸'}, type: 1},
+    { buttonId: '.menucompleto', buttonText: { displayText: '🔥 Menú Completo 🔥'}, type: 1}
+  ]
+
+  await conn.sendMessage(m.chat, {
+    image: { url: 'https://files.catbox.moe/7qo46s.jpg'},
+    caption: menuText,
+    buttons,
+    headerType: 4,
+    contextInfo: {
+      mentionedJid: [m.sender],
+      forwardingScore: 999,
+      isForwarded: true,
+      externalAdReply: {
+        title: global.botname,
+        body: "Tanjiro Bot — Respira, lucha, protege.",
+        thumbnailUrl: global.banner,
+        sourceUrl: global.redes,
+        mediaType: 1,
+        showAdAttribution: true,
+        renderLargerThumbnail: true,
+}
+}
+}, { quoted: m})
 }
 
-let tags = {
-  'main': textCyberpunk('sistema'),
-}
-
-const defaultMenu = {
-  before: `*☀️ MENÚ - ESPÍRITU DEL SOL ☀️*
-
-👤 Usuario: *%name*
-⚔ Nivel: %level
-💥 Exp: %exp/%maxexp
-🌙 Modo: %mode
-👥 Usuarios: %totalreg
-⏳ Activo: %muptime
-
-%readmore
-`.trimStart(),
-  
-
-let handler = async (m, { conn, usedPrefix: _p }) => {
-  try {
-    let tag = `@${m.sender.split("@")[0]}`
-    let { exp, level } = global.db.data.users[m.sender]
-    let { min, xp, max } = xpRange(level, global.multiplier)
-    let name = await conn.getName(m.sender)
-    let _uptime = process.uptime() * 1000
-    let muptime = clockString(_uptime)
-    let totalreg = Object.keys(global.db.data.users).length
-    let mode = global.opts["self"] ? "Privado" : "Público"
-
-    let help = Object.values(global.plugins).filter(p => !p.disabled).map(p => ({
-      help: Array.isArray(p.help) ? p.help : [p.help],
-      tags: Array.isArray(p.tags) ? p.tags : [p.tags],
-      prefix: 'customPrefix' in p,
-      limit: p.limit,
-      premium: p.premium,
-      enabled: !p.disabled,
-    }))
-
-    for (let plugin of help) {
-      if (plugin.tags) {
-        for (let t of plugin.tags) {
-          if (!(t in tags) && t) tags[t] = textCyberpunk(t)
-        }
-      }
-    }
-
-    const { before, header, body, footer, after } = defaultMenu
-
-    let _text = [
-      before,
-      ...Object.keys(tags).map(tag => {
-        const cmds = help
-          .filter(menu => menu.tags.includes(tag))
-          .map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix ? cmd : _p + cmd)).join('\n'))
-          .join('\n')
-        return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
-      }),
-      after
-    ].join('\n')
-
-    let replace = {
-      '%': '%',
-      name,
-      level,
-      exp: exp - min,
-      maxexp: xp,
-      totalreg,
-      mode,
-      muptime,
-      readmore: String.fromCharCode(8206).repeat(4001)
-    }
-
-    let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
-
-    await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
-      caption: text,
-      buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
-        { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
-      ],
-      viewOnce: true
-    }, { quoted: m })
-
-  } catch (e) {
-    console.error(e)
-    conn.reply(m.chat, '⚔ Ha ocurrido un error al invocar el aliento del menú..', m)
-  }
-}
-
-handler.help = ['menu', 'menú']
+handler.help = ['menu']
 handler.tags = ['main']
 handler.command = ['menu', 'menú', 'help', 'ayuda']
 handler.register = true
 export default handler
 
 function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  let h = isNaN(ms)? '--': Math.floor(ms / 3600000)
+  let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
+  let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-      }
+}
