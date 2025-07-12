@@ -35,8 +35,8 @@ export async function before(m, { conn, participants, groupMetadata }) {
   // Imágenes y fondo
   let guildName = encodeURIComponent(groupMetadata.subject);
   let apiBase = "https://api.siputzx.my.id/api/canvas";
-  let welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/w1r8jh.jpeg')}`;
-  let goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/w1r8jh.jpeg')}`;
+  let welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/wav09n.jpg')}`;
+  let goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/wav09n.jpg')}`;
 
   async function fetchImage(url, fallbackUrl) {
     try {
