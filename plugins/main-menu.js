@@ -96,7 +96,6 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/wav09n.jpg'},
       caption: text,
-      title: '⏤͟͞ू⃪ ፝͜⁞Sʜᴀᴅᴏᴡ✰⃔࿐\nNᴜᴇᴠᴀ Vᴇʀsɪᴏɴ Uʟᴛʀᴀ 🌤️',
       thumbnailUrl: perfil,
       buttons: [
         { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
