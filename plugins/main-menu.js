@@ -96,10 +96,10 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
+      image: { url: 'https://files.catbox.moe/wav09n.jpg' },
       caption: text,
       buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
+        { buttonId: `${_p}reg soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR' }, type: 1 },
       ],
       viewOnce: true
     }, { quoted: m })
@@ -113,7 +113,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 handler.help = ['menu', 'menú']
 handler.tags = ['main']
 handler.command = ['menu', 'menú', 'help', 'ayuda']
-handler.register = true
+handler.register = false 
 export default handler
 
 function clockString(ms) {
