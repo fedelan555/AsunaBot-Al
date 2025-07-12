@@ -24,7 +24,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
 
   const guildName = encodeURIComponent(groupMetadata.subject)
   const apiBase = 'https://api.siputzx.my.id/api/canvas'
-  const background = encodeURIComponent('https://files.catbox.moe/7nnjg5.jpg')
+  const background = encodeURIComponent('https://files.catbox.moe/ses91n.jpg')
   const welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
   const goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
 
