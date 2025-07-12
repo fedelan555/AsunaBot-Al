@@ -1,7 +1,7 @@
 import { createHash} from 'crypto'
 import { xpRange} from '../lib/levelling.js'
 
-const grupoNotificacion = '120363399440277900@g.us' // Grupo destino
+const grupoNotificacion = '120363422310535661@g.us' // Grupo destino
 
 let handler = async (m, { conn, text, usedPrefix, command}) => {
   let user = global.db.data.users[m.sender]
