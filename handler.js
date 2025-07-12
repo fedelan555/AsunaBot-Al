@@ -534,7 +534,7 @@ const msg = {
   private: '🌙 *este comando solo funciona en el privado.*',
   admin: '🌙 *solo los administradores pueden usar esta función.*',
   botAdmin: '🌙 *necesito ser administrador para usar este comando.*',
-  unreg: '🌙 *¡acceso denegado primer registrate.*\n\n🧾 𝚄𝚜𝚊: */reg nombre.edad*\n🌙 Ejemplo: */reg tanjiro.13*',
+  unreg: '🌙 *¡acceso denegado primero registrate.*\n\n🧾 𝚄𝚜𝚊: */reg nombre.edad*\n🌙 Ejemplo: */reg tanjiro.13*',
   restrict: '🌙 *esta función está desactivado por seguridad.*'
 }[type];
 if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))}
