@@ -1,5 +1,6 @@
 import { xpRange} from '../lib/levelling.js'
 
+// Tipografía decorativa Tanjiro
 const textTanjiro = (text) => {
   const charset = {
     a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
@@ -10,12 +11,14 @@ const textTanjiro = (text) => {
   return text.toLowerCase().split('').map(c => charset[c] || c).join('')
 }
 
+// Módulos estilizados
 let tags = {
   main: textTanjiro('sistema del cazador'),
   group: textTanjiro('control de dojo'),
   serbot: textTanjiro('respiraciones clones')
 }
 
+// Plantilla visual del menú
 const defaultMenu = {
   before: `
 🌸︵‿︵‿︵‿︵‿︵‿︵
@@ -24,7 +27,7 @@ const defaultMenu = {
 ╰━━━━━━━━━━━━━━━━━━━━╯
 
 👤 Usuario: *%name*
-⚔  *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid ? '`ᴏғɪᴄɪᴀʟ 🅞`' : '`sᴜʙ - ʙᴏᴛ 🅢`')}
+⚔ BOT: %botstatus
 🌟 Exp: %exp/%maxexp
 🌐 Modo: %mode
 👥 Registro: %totalreg
@@ -35,7 +38,7 @@ const defaultMenu = {
   header: '\n☀️╭ MOD: *%category*',
   body: '🌙 %cmd',
   footer: '╰────────────',
-  after: '\n🌸 Usa los botones para más técnicas.'
+  after: '\n🌸 Usa los comandos para más técnicas.'
 }
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
@@ -47,6 +50,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let muptime = clockString(_uptime)
     let totalreg = Object.keys(global.db.data.users).length
     let mode = global.opts["self"]? "Privado 🔒": "Público 🌐"
+    let botstatus = conn.user.jid === global.conn.user.jid? '`ᴏғɪᴄɪᴀʟ 🅞`': '`sᴜʙ - ʙᴏᴛ 🅢`'
 
     let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
       help: Array.isArray(p.help)? p.help: [p.help],
@@ -54,14 +58,12 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       prefix: 'customPrefix' in p,
       limit: p.limit,
       premium: p.premium,
-      enabled:!p.disabled,
+      enabled:!p.disabled
 }))
 
     for (let plugin of help) {
-      if (plugin.tags) {
-        for (let t of plugin.tags) {
-          if (!(t in tags) && t) tags[t] = textTanjiro(t)
-}
+      for (let t of plugin.tags) {
+        if (!(t in tags)) tags[t] = textTanjiro(t)
 }
 }
 
@@ -70,8 +72,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let _text = [
       before,
 ...Object.keys(tags).map(tag => {
-        const cmds = help
-.filter(menu => menu.tags.includes(tag))
+        const cmds = help.filter(menu => menu.tags.includes(tag))
 .map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix? cmd: _p + cmd)).join('\n'))
 .join('\n')
         return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
@@ -82,7 +83,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let replace = {
       '%': '%',
       name,
-      level,
+      botstatus,
       exp: exp - min,
       maxexp: xp,
       totalreg,
@@ -91,21 +92,24 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       readmore: String.fromCharCode(8206).repeat(4001)
 }
 
-    await conn.sendMessage(m.chat, {
-            video: { url: 'https://files.catbox.moe/39rx3n.mp4'}, // video específico para menú
-            caption: menu,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                isForwarded: true,
-                forwardingScore: 999,
-                externalAdReply: {
-                    title: '⏤͟͞ू⃪ ፝͜⁞Sʜᴀᴅᴏᴡ✰⃔࿐\nNᴜᴇᴠᴀ Vᴇʀsɪᴏɴ Uʟᴛʀᴀ 🌤️',
-                    thumbnailUrl: perfil,
-                    mediaType: 1,
-                    renderLargerThumbnail: false,
-      viewOnce: true
-}, { quoted: m})
+    let menu = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
+    // Envío final del menú como video con estilo decorativo
+    await conn.sendMessage(m.chat, {
+      video: { url: 'https://files.catbox.moe/39rx3n.mp4'}, // video específico para menú
+      caption: menu,
+      contextInfo: {
+        mentionedJid: [m.sender],
+        isForwarded: true,
+        forwardingScore: 999,
+        externalAdReply: {
+          title: '⏤͟͞ू⃪ ፝͜⁞Sʜᴀᴅᴏᴡ✰⃔࿐\nNᴜᴇᴠᴀ Vᴇʀsɪᴏɴ Uʟᴛʀᴀ 🌤️',
+          thumbnailUrl: perfil,
+          mediaType: 1,
+          renderLargerThumbnail: false
+}
+}
+}, { quoted: m})
 } catch (e) {
     console.error(e)
     conn.reply(m.chat, '❎ Error al forjar el menú Tanjiro.', m)
@@ -116,7 +120,6 @@ handler.help = ['menu']
 handler.tags = ['main']
 handler.command = ['menu', 'menú', 'help']
 handler.register = false
-
 export default handler
 
 function clockString(ms) {
@@ -124,4 +127,4 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                             }
+}
