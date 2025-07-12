@@ -98,7 +98,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 
     // 📹 Enviar menú como video
     await conn.sendMessage(m.chat, {
-      video: { url: vid.getRandom()},
+      video: { url: 'https://files.catbox.moe/39rx3n.mp4'}, // video específico para menú
       caption: menu,
       contextInfo: {
         mentionedJid: [m.sender],
