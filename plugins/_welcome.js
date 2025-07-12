@@ -1,123 +1,87 @@
-import { WAMessageStubType, proto, generateWAMessageFromContent} from '@whiskeysockets/baileys'
+import { WAMessageStubType } from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
-export async function before(m, { conn, participants, groupMetadata, usedPrefix: _p}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
+export async function before(m, { conn, participants, groupMetadata }) {
+  // Solo para grupos y mensajes de tipo stub (entrada/salida)
+  if (!m.isGroup || !m.messageStubType) return true;
 
-  const jid = m.messageStubParameters[0]
-  const user = `@${jid.split('@')[0]}`
-  const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
-    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-)
-  const img = await fetch(pp).then(r => r.buffer())
-  const chat = global.db.data.chats[m.chat] || {}
-  const total = m.messageStubType === 27? participants.length + 1: participants.length - 1
+  // Valida stub parameters
+  const stubParams = m.messageStubParameters || [];
+  if (!Array.isArray(stubParams) || stubParams.length === 0) return true;
 
-  const contacto = {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'Tanjiro'
-},
-    message: {
-      contactMessage: {
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:;Tanjiro;;;
-FN:Tanjiro
-TEL;waid=${jid.split('@')[0]}:${jid.split('@')[0]}
-END:VCARD`
+  // Checa si el bot es admin, si quieres exigirlo
+  // let bot = participants.find(u => u.id === conn.user.jid) || {};
+  // if (bot?.admin !== 'admin' && bot?.admin !== 'superadmin') return true;
+
+  // Datos de usuario
+  let userJid = stubParams[0];
+  if (!userJid) return true;
+  let username = userJid.split('@')[0];
+  let mention = '@' + username;
+
+  // Member count seguro
+  let memberCount = groupMetadata.participants?.length || participants.length || 0;
+  if (m.messageStubType == 27) memberCount++; // joined
+  if (m.messageStubType == 28 || m.messageStubType == 32) memberCount = Math.max(0, memberCount - 1); // left/removed
+
+  // Avatar seguro
+  let avatar;
+  try {
+    avatar = await conn.profilePictureUrl(userJid, 'image');
+  } catch {
+    avatar = 'https://files.catbox.moe/emwtzj.png';
+  }
+
+  // Imágenes y fondo
+  let guildName = encodeURIComponent(groupMetadata.subject);
+  let apiBase = "https://api.siputzx.my.id/api/canvas";
+  let welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/w1r8jh.jpeg')}`;
+  let goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${encodeURIComponent('https://files.catbox.moe/w1r8jh.jpeg')}`;
+
+  async function fetchImage(url, fallbackUrl) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Error al descargar imagen');
+      return await res.buffer();
+    } catch {
+      const fallbackRes = await fetch(fallbackUrl);
+      return await fallbackRes.buffer();
+    }
+  }
+
+  // Prepara base de datos de chat
+  let chat = global.db.data.chats[m.chat] || {};
+  // Si no tiene bien la propiedad (grupos nuevos)
+  if (typeof chat.welcome === 'undefined') chat.welcome = true;
+
+  // Textos de bienvenida/despedida
+  let txtWelcome = 'ゲ◜៹ New Member ៹◞ゲ';
+  let txtGoodbye = 'ゲ◜៹ Bye Member ៹◞ゲ';
+  let bienvenida = `❀ *Bienvenido* a ${groupMetadata.subject}\n✰ ${mention}\n${global.welcom1 || ''}\n✦ Ahora somos ${memberCount} Miembros.\n•(=^●ω●^=)• Disfruta tu estadía en el grupo!\n> ✐ Usa *#help* para ver comandos.`;
+  let bye = `❀ *Adiós* de ${groupMetadata.subject}\n✰ ${mention}\n${global.welcom2 || ''}\n✦ Ahora somos ${memberCount} Miembros.\n•(=^●ω●^=)• ¡Te esperamos pronto!`;
+
+  // Las variables "dev", "redes", "fkontak" deben estar bien definidas
+  let dev = global.dev || '';
+  let redes = global.redes || '';
+  let fkontak = global.fkontak || {};
+
+  // Envía welcome/bye si corresponde
+  if (chat.welcome) {
+    if (m.messageStubType == 27) { // joined
+      let imgBuffer = await fetchImage(welcomeApiUrl, avatar);
+      try {
+        await conn.sendMini?.(m.chat, txtWelcome, dev, bienvenida, imgBuffer, imgBuffer, redes, fkontak)
+      } catch {
+        // Fallback a sendMessage normal
+        await conn.sendMessage(m.chat, { image: imgBuffer, caption: bienvenida, mentions: [userJid] }, { quoted: m });
+      }
+    } else if (m.messageStubType == 28 || m.messageStubType == 32) { // left/kicked
+      let imgBuffer = await fetchImage(goodbyeApiUrl, avatar);
+      try {
+        await conn.sendMini?.(m.chat, txtGoodbye, dev, bye, imgBuffer, imgBuffer, redes, fkontak)
+      } catch {
+        await conn.sendMessage(m.chat, { image: imgBuffer, caption: bye, mentions: [userJid] }, { quoted: m });
+      }
+    }
+  }
 }
-},
-    participant: '0@s.whatsapp.net'
-}
-
-  if (!chat.welcome) return
-
-  // 🌸 Botón solo para bienvenida
-  const soporteBtn = {
-    viewOnceMessage: {
-      message: {
-        messageContextInfo: {
-          deviceListMetadata: {},
-          deviceListMetadataVersion: 2
-},
-        interactiveMessage: proto.Message.InteractiveMessage.create({
-          body: proto.Message.InteractiveMessage.Body.create({
-            text: '🌸 ¿Deseas abrir el Menú principal de Tanjiro-Bot?'
-}),
-          footer: proto.Message.InteractiveMessage.Footer.create({
-            text: '🌊 Tanjiro Bot • Espíritu del Sol'
-}),
-          header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: false
-}),
-          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-            buttons: [
-              {
-                name: 'quick_reply',
-                buttonParamsJson: JSON.stringify({
-                  display_text: '🌸 MENU',
-                  id: `${_p}menu`
-})
-}
-            ]
-})
-})
-}
-}
-}
-
-  // ➕ Bienvenida
-  if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-    const bienvenida = `
-🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
-
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros ahora:* ${total}
-🔥 *Respiración del Código: Primer Movimiento*
-
-💌 Usa *#help* para desbloquear las técnicas de este dojo.
-⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
-`.trim()
-
-    await conn.sendMini(
-      m.chat,
-      '🌀 UN NUEVO CAZADOR HA LLEGADO',
-      '🌊 Tanjiro-Bot • Espíritu del Sol',
-      bienvenida,
-      img,
-      img,
-      null,
-      contacto
-)
-
-    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
-}
-
-  // ➖ Despedida (sin botón)
-  if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
-    const despedida = `
-🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
-
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros restantes:* ${total}
-🌒 *Último aliento registrado...*
-
-🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
-`.trim()
-
-    await conn.sendMini(
-      m.chat,
-      '🌑 UN ESPADACHÍN HA PARTIDO',
-      '🌊 Tanjiro-Bot • Guardián del Amanecer',
-      despedida,
-      img,
-      img,
-      null,
-      contacto
-)
-}
-          }
