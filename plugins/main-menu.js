@@ -99,8 +99,9 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
       buttons: [
-        { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
-        { buttonId: `${_p}Grupos`, buttonText: { displayText: '🧩 GRUPOS' }, type: 1 }
+        { buttonParamsJson: JSON.stringify({
+                  display_text: '🌸 MENU',
+                  id: `${_p}menu`
       ],
       viewOnce: true
     }, { quoted: m })
