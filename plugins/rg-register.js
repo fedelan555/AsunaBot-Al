@@ -34,7 +34,9 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
 ┃ 🗂️ *Nombre:* ${user.name}
 ┃ 🎂 *Edad:* ${user.age} años
 ┃ 📜 *ID de Cazador:* ${sn}
-╰───────────────────────────╯
+
+┃🌙 *ve tu registro aquí:* https://chat.whatsapp.com/KiaWNR6YqUp3KeXoeMP7qO
+╰──────────────────────────╯
 
 ✨ Usa el comando *#perfil* para ver tu progreso
 🍃 Recuerda: *"Respira profundo. Lucha con honor."*
