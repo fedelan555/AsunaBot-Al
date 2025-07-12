@@ -17,14 +17,13 @@ global.botNumber = '' //Ejemplo: 525218138672
 
 global.owner = [
   ['5491156178758', '🜲 𝗖𝗿𝗲𝗮𝗱𝗼𝗿 👻', true],
-  ['584146277368', 'barboza', true],
-  ['50433191934', 'deylin', true],
+  ['5491137612743', 'fede', true],
 ];
 
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
 
 global.mods = []
-global.suittag = ['5491156178758', '584146277368', '50433191934'] 
+global.suittag = ['5491156178758'] 
 global.prems = []
 
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
@@ -60,12 +59,12 @@ global.moneda = 'monedas'
 global.gp4 = 'https://chat.whatsapp.com/DnRL5cz5Ddt0Gsx3zvqMX' //Grupo Oficial De black clover 
 global.gp1 = 'https://chat.whatsapp.com/DnRL5cz5Ddt0Gsx3zvqMX' //Grupo 2
 global.gp2 = 'https://chat.whatsapp.com/DnRL5cz5Ddt0Gsx3zvqMX'//
-global.channel = 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31' //Canal Oficial
-global.channel2 = 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31' //Canal test 
+global.channel = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N' //Canal Oficial
+global.channel2 = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N' //Canal test 
 global.yt = 'https://www.youtube.com/@ElCarlos.87' //Canal De Youtube
 global.md = 'https://github.com/thecarlos19/black-clover-MD' //Github Oficial
 global.correo = ''
-global.cn ='https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31';
+global.cn ='https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N';
 
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
 
