@@ -96,7 +96,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/wav09n.jpg' },
+      image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
       buttons: [
         { buttonId: `${_p}owner`, buttonText: { displayText: '👑 CREADOR' }, type: 1 },
@@ -122,4 +122,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-               }
+        }
