@@ -2,7 +2,7 @@ import { WAMessageStubType, proto, generateWAMessageFromContent} from '@whiskeys
 import fetch from 'node-fetch'
 
 export async function before(m, { conn, participants, groupMetadata, usedPrefix: _p}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return!0
+  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
 
   const jid = m.messageStubParameters[0]
   const user = `@${jid.split('@')[0]}`
@@ -11,21 +11,21 @@ export async function before(m, { conn, participants, groupMetadata, usedPrefix:
 )
   const img = await fetch(pp).then(r => r.buffer())
   const chat = global.db.data.chats[m.chat] || {}
-  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1
+  const total = m.messageStubType === 27? participants.length + 1: participants.length - 1
 
   const contacto = {
     key: {
       participants: '0@s.whatsapp.net',
       remoteJid: 'status@broadcast',
       fromMe: false,
-      id: 'Halo'
+      id: 'Tanjiro'
 },
     message: {
       contactMessage: {
         vcard: `BEGIN:VCARD
 VERSION:3.0
-N:;Bot;;;
-FN:Bot
+N:;Tanjiro;;;
+FN:Tanjiro
 TEL;waid=${jid.split('@')[0]}:${jid.split('@')[0]}
 END:VCARD`
 }
@@ -35,22 +35,57 @@ END:VCARD`
 
   if (!chat.welcome) return
 
-  // 🌸 Bienvenida con botón
-  if (m.messageStubType == WAMessageStubType.GROUP_PARTICIPANT_ADD) {
+  // 🌸 Botón solo para bienvenida
+  const soporteBtn = {
+    viewOnceMessage: {
+      message: {
+        messageContextInfo: {
+          deviceListMetadata: {},
+          deviceListMetadataVersion: 2
+},
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: '🌸 ¿Deseas abrir el Menú principal de Tanjiro-Bot?'
+}),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: '🌊 Tanjiro Bot • Espíritu del Sol'
+}),
+          header: proto.Message.InteractiveMessage.Header.create({
+            hasMediaAttachment: false
+}),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+                name: 'quick_reply',
+                buttonParamsJson: JSON.stringify({
+                  display_text: '🌸 MENU',
+                  id: `${_p}menu`
+})
+}
+            ]
+})
+})
+}
+}
+}
+
+  // ➕ Bienvenida
+  if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
     const bienvenida = `
-🍭 Hola, Bienvenido 👤 ${user}
+🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
 
-📍 Grupo: ${groupMetadata.subject}
-🔗 Estado: Conectado
-👥 Miembros: ${total}
+🏯 *Grupo:* ${groupMetadata.subject}
+👥 *Miembros ahora:* ${total}
+🔥 *Respiración del Código: Primer Movimiento*
 
-⌬ Usa *#help* para ver los comandos disponibles
+💌 Usa *#help* para desbloquear las técnicas de este dojo.
+⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
 `.trim()
 
     await conn.sendMini(
       m.chat,
-      '🚀 CONEXIÓN ESTABLECIDA',
-      'ASUNA-BOT',
+      '🌀 UN NUEVO CAZADOR HA LLEGADO',
+      '🌊 Tanjiro-Bot • Espíritu del Sol',
       bienvenida,
       img,
       img,
@@ -58,59 +93,26 @@ END:VCARD`
       contacto
 )
 
-    // Botón MENU (solo en bienvenida)
-    const menuBtn = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          messageContextInfo: {
-            deviceListMetadata: {},
-            deviceListMetadataVersion: 2
-},
-          interactiveMessage: proto.Message.InteractiveMessage.create({
-            body: proto.Message.InteractiveMessage.Body.create({
-              text: '🌸 ¿Deseas abrir el Menú principal?'
-}),
-            footer: proto.Message.InteractiveMessage.Footer.create({
-              text: '🌊 Tanjiro Bot • Respira Solar'
-}),
-            header: proto.Message.InteractiveMessage.Header.create({
-              hasMediaAttachment: false
-}),
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-              buttons: [
-                {
-                  name: 'quick_reply',
-                  buttonParamsJson: JSON.stringify({
-                    display_text: '🌸 MENU',
-                    id: `${_p}menu`
-})
-}
-              ]
-})
-})
-}
-}
-}, {})
-
-    await conn.relayMessage(m.chat, menuBtn.message, { messageId: menuBtn.key.id})
+    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
+    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
 }
 
-  // 🍁 Despedida sin botón
+  // ➖ Despedida (sin botón)
   if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
     const despedida = `
-🍭 Hasta luego 👤 ${user}
+🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
 
-📍 Grupo: ${groupMetadata.subject}
-🔌 Estado: Desconectado
-👥 Miembros: ${total}
+🏯 *Grupo:* ${groupMetadata.subject}
+👥 *Miembros restantes:* ${total}
+🌒 *Último aliento registrado...*
 
-⌬ Datos eliminados correctamente
+🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
 `.trim()
 
     await conn.sendMini(
       m.chat,
-      '⚠️ DESCONECTADO DEL SISTEMA',
-      'ASUNA-BOT',
+      '🌑 UN ESPADACHÍN HA PARTIDO',
+      '🌊 Tanjiro-Bot • Guardián del Amanecer',
       despedida,
       img,
       img,
