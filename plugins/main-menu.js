@@ -20,10 +20,10 @@ const defaultMenu = {
   before: `
 🌸︵‿︵‿︵‿︵‿︵‿︵
 ╭━━━ ☀️ ᴛᴀɴᴊɪʀᴏ - ʙᴏᴛ ☀️ ━╮
-┃ ᴍᴇɴᴜ ʀᴇsᴘɪʀᴀᴄɪᴏɴ ᴅᴇʟ sᴏʟ %greeting
+┃ ᴍᴇɴᴜ ʀᴇsᴘɪʀᴀᴄɪᴏɴ ᴅᴇʟ sᴏʟ
 ╰━━━━━━━━━━━━━━━━━━━━╯
 
-👤 Usuario: *%name*
+👤 Usuario: *%name*  *%greeting*
 ⚔  *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid ? '`ᴏғɪᴄɪᴀʟ 🅞`' : '`sᴜʙ - ʙᴏᴛ 🅢`')}
 🌟 Exp: %exp/%maxexp
 🌐 Modo: %mode
@@ -114,39 +114,10 @@ handler.command = ['menu', 'menú', 'help']
 handler.register = false
 
 export default handler
-var ase = new Date();
-  var hour = ase.getHours();
-switch(hour){
-  case 0: hour = 'una linda noche 🌙'; break;
-  case 1: hour = 'una linda noche 💤'; break;
-  case 2: hour = 'una linda noche 🦉'; break;
-  case 3: hour = 'una linda mañana ✨'; break;
-  case 4: hour = 'una linda mañana 💫'; break;
-  case 5: hour = 'una linda mañana 🌅'; break;
-  case 6: hour = 'una linda mañana 🌄'; break;
-  case 7: hour = 'una linda mañana 🌅'; break;
-  case 8: hour = 'una linda mañana 💫'; break;
-  case 9: hour = 'una linda mañana ✨'; break;
-  case 10: hour = 'un lindo dia 🌞'; break;
-  case 11: hour = 'un lindo dia 🌨'; break;
-  case 12: hour = 'un lindo dia ❄'; break;
-  case 13: hour = 'un lindo dia 🌤'; break;
-  case 14: hour = 'una linda tarde 🌇'; break;
-  case 15: hour = 'una linda tarde 🥀'; break;
-  case 16: hour = 'una linda tarde 🌹'; break;
-  case 17: hour = 'una linda tarde 🌆'; break;
-  case 18: hour = 'una linda noche 🌙'; break;
-  case 19: hour = 'una linda noche 🌃'; break;
-  case 20: hour = 'una linda noche 🌌'; break;
-  case 21: hour = 'una linda noche 🌃'; break;
-  case 22: hour = 'una linda noche 🌙'; break;
-  case 23: hour = 'una linda noche 🌃'; break;
-}
 
-  var greeting = "Espero que tengas " + hour;
 function clockString(ms) {
   let h = isNaN(ms)? '--': Math.floor(ms / 3600000)
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                     }
+      }
