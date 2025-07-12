@@ -98,8 +98,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/7qo46s.jpg' },
       caption: text,
-      buttons: [
-        { buttonParamsJson: JSON.stringify({
+      name: 'quick_reply',
+                buttonParamsJson: JSON.stringify({
                   display_text: '🌸 MENU',
                   id: `${_p}menu`
       ],
