@@ -24,7 +24,7 @@ const defaultMenu = {
 ╰━━━━━━━━━━━━━━━━━━━━╯
 
 👤 Usuario: *%name*
-⚔ Nivel: %level
+⚔  *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid ? '`ᴏғɪᴄɪᴀʟ 🅞`' : '`sᴜʙ - ʙᴏᴛ 🅢`')}
 🌟 Exp: %exp/%maxexp
 🌐 Modo: %mode
 👥 Registro: %totalreg
