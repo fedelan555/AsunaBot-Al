@@ -1,126 +1,47 @@
-import { WAMessageStubType, proto} from '@whiskeysockets/baileys'
+import { WAMessageStubType} from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
 export async function before(m, { conn, participants, groupMetadata}) {
-  if (!m.messageStubType ||!m.isGroup ||!m.messageStubParameters?.[0]) return
+  if (!m.messageStubType ||!m.isGroup) return true
 
-  const jid = m.messageStubParameters[0]
-  const user = `@${jid.split('@')[0]}`
-  const pp = await conn.profilePictureUrl(jid, 'image').catch(() =>
-    'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg'
-)
-  const img = await fetch(pp).then(r => r.buffer())
-  const chat = global.db.data.chats[m.chat] || {}
-  const total = m.messageStubType == 27? participants.length + 1: participants.length - 1
+  let insta = 'https://instagram.com/dev.criss_vx'
+  let groupSize = participants.length + (m.messageStubType == 27? 1: m.messageStubType == 28 || m.messageStubType == 32? -1: 0)
+  let who = m.messageStubParameters[0]
+  let taguser = `@${who.split('@')[0]}`
+  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg')
+  let img = await (await fetch(pp)).buffer()
+  let chat = global.db.data.chats[m.chat]
 
-  const contacto = {
-    key: {
-      participants: '0@s.whatsapp.net',
-      remoteJid: 'status@broadcast',
-      fromMe: false,
-      id: 'Tanjiro'
-},
-    message: {
-      contactMessage: {
-        vcard: `BEGIN:VCARD
-VERSION:3.0
-N:;Tanjiro;;;
-FN:Tanjiro
-TEL;waid=${jid.split('@')[0]}:${jid.split('@')[0]}
-END:VCARD`
-}
-},
-    participant: '0@s.whatsapp.net'
+  const groupName = groupMetadata.subject
+  const groupDesc = groupMetadata.desc || 'sin descripción'
+
+  if (chat.welcome && m.messageStubType == 27) {
+    const txt = `🌸 ¡Bienvenido ${await conn.getName(who)}!\nAhora somos ${groupSize} cazadores en el dojo.`
+    const label = `☀️ Tanjiro Bot - Espíritu Solar`
+    const body = chat.sWelcome
+? chat.sWelcome.replace(/@user/g, taguser).replace(/@group/g, groupName).replace(/@desc/g, groupDesc)
+: `⚔ 𝑬𝒍 𝑨𝒍𝒊𝒆𝒏 𝒉𝒂 𝒍𝒍𝒆𝒈𝒂𝒅𝒐.\n\n🍃 Bienvenid@ al dojo *${groupName}*, ${taguser}.\nRespira con honor. Usa *#menu* para ver tus técnicas.`
+
+    await conn.sendLuffy(m.chat, txt, label, body, img, img, insta, fkontak)
 }
 
-  if (!chat.welcome) return
+  if (chat.welcome && m.messageStubType == 28) {
+    const txt = `🌪 ${await conn.getName(who)} ha sido expulsado.\nAhora somos ${groupSize} cazadores en el dojo.`
+    const label = `🌑 Tanjiro Bot - Juicio Solar`
+    const body = chat.sKick
+? chat.sKick.replace(/@user/g, taguser).replace(/@group/g, groupName).replace(/@desc/g, groupDesc)
+: `⚔ *El cazador ha perdido su hoja.*\n\n${taguser} fue eliminado de *${groupName}* por romper la armonía.\nRespira. Aprende. Regresa si la voluntad lo permite.`
 
-  const soporteBtn = {
-    viewOnceMessage: {
-      message: {
-        messageContextInfo: {
-          deviceListMetadata: {},
-          deviceListMetadataVersion: 2
-},
-        interactiveMessage: proto.Message.InteractiveMessage.create({
-          body: proto.Message.InteractiveMessage.Body.create({
-            text: '🎯 ¿Deseas acceder al grupo de soporte de Tanjiro-Bot?'
-}),
-          footer: proto.Message.InteractiveMessage.Footer.create({
-            text: '🌊 Tanjiro Bot • Espíritu del Sol'
-}),
-          header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: false
-}),
-          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-            buttons: [
-              {
-                name: 'cta_url',
-                buttonParamsJson: JSON.stringify({
-                  display_text: '🎯 GP de Soporte',
-                  url: 'https://chat.whatsapp.com/tu-enlace-grupo',
-                  merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
-})
-}
-            ]
-})
-})
-}
-}
+    await conn.sendLuffy(m.chat, txt, label, body, img, img, insta, fkontak)
 }
 
-  // ➕ Bienvenida
-  if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
-    const bienvenida = `
-🌸 *¡Bienvenido al campo de batalla, ${user}!* 🌸
+  if (chat.welcome && m.messageStubType == 32) {
+    const txt = `🍂 ${await conn.getName(who)} ha dejado el dojo.\nAhora somos ${groupSize} cazadores.`
+    const label = `🍃 Tanjiro Bot - Partida Silenciosa`
+    const body = chat.sBye
+? chat.sBye.replace(/@user/g, taguser).replace(/@group/g, groupName).replace(/@desc/g, groupDesc)
+: `🌕 *Un cazador partió bajo la lluvia solar.*\n\nGracias por formar parte de *${groupName}*, ${taguser}.\nQue el sol ilumine tu camino más allá.`
 
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros ahora:* ${total}
-🔥 *Respiración del Código: Primer Movimiento*
-
-💌 Usa *#help* para desbloquear las técnicas de este dojo.
-⚔️ Que tu llama nunca se apague, como la voluntad de Tanjiro.
-`.trim()
-
-    await conn.sendMini(
-      m.chat,
-      '🌀 UN NUEVO CAZADOR HA LLEGADO',
-      '🌊 Tanjiro-Bot • Espíritu del Sol',
-      bienvenida,
-      img,
-      img,
-      null,
-      contacto
-)
-
-    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
-}
-
-  // ➖ Despedida
-  if ([WAMessageStubType.GROUP_PARTICIPANT_REMOVE, WAMessageStubType.GROUP_PARTICIPANT_LEAVE].includes(m.messageStubType)) {
-    const despedida = `
-🍁 *${user} ha colgado su espada y se ha retirado del grupo* 🍁
-
-🏯 *Grupo:* ${groupMetadata.subject}
-👥 *Miembros restantes:* ${total}
-🌒 *Último aliento registrado...*
-
-🙏 Que tu viaje continúe con honor y propósito, como el de un pilar caído.
-`.trim()
-
-    await conn.sendMini(
-      m.chat,
-      '🌑 UN ESPADACHÍN HA PARTIDO',
-      '🌊 Tanjiro-Bot • Guardián del Amanecer',
-      despedida,
-      img,
-      img,
-      null,
-      contacto
-)
-
-    const msg = generateWAMessageFromContent(m.chat, soporteBtn, {})
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
+    await conn.sendLuffy(m.chat, txt, label, body, img, img, insta, fkontak)
 }
 }
