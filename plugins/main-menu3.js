@@ -82,9 +82,9 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
 }
 
-handler.command = ['mod', 'servicios']
+handler.command = ['menu3', 'help3']
 handler.tags = ['main']
-handler.help = ['mod', 'servicios']
+handler.help = ['menu3', 'help3']
 handler.register = true
 
 export default handler
