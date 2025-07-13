@@ -22,17 +22,17 @@ let handler = async (m, { conn}) => {
 𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *=͟͟͞Tanjiro_Bot≼᳞ׄ*
 
 ᴀǫᴜɪ ᴛɪᴇɴᴇs ʟᴀ ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs
-╭┈ 🌙
-│ ✐ Tanjiro Bot 
-│ ✐ ꒷ꕤ🌤️ദ ᴄᴏᴍᴀɴᴅᴏs ★
-│   https://starvoid-club.vercel.app/commands
-│ ✐ ꒷ꕤ🌤️ദ ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ★
+╭┈──●
+│ ✐ ꒷🌸ദ Tiempo activo: ${muptime}
+│
+│ ✐ ꒷🌸ദ GRUPO OFC 
+│   XD
+│ ✐ ꒷🌸ദ CANAL OFC 
 │   https://whatsapp.com/channel/0029Vb1AFK6HbFV9kaB3b13W
-╰─────────────────
+╰─────────────────●
 
 ✐; 🪐→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ
 ᴜᴛɪʟɪᴢᴀ *#sᴇʀʙᴏᴛ* o *#sᴇʀʙᴏᴛ --ᴄᴏᴅᴇ*
-=͟͟͞🄲ꭈׁׅo͓̽ᨰׁׅʙo͓̽tׁׅ ≼᳞ׄ | Tiempo activo: ${muptime}
 
 🌕 “Respira profundo. Lucha con honor.”
 `.trim()
