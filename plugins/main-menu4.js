@@ -10,12 +10,6 @@ const textTanjiro = (text) => {
   return text.toLowerCase().split('').map(c => charset[c] || c).join('')
 }
 
-let tags = {
-  main: textTanjiro('sistema del cazador'),
-  group: textTanjiro('control de dojo'),
-  serbot: textTanjiro('respiraciones clones')
-}
-
 const defaultMenu = {
   before: `
 𝐇𝐨𝐥𝐚 %name! 𝐒𝐨𝐲 =͟͟͞🄲ꭈׁׅo͓̽ᨰׁׅʙo͓̽tׁׅ ≼᳞ׄ
@@ -32,12 +26,7 @@ const defaultMenu = {
 ✐; 🪐→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ ᴜᴛɪʟɪᴢᴀ *#sᴇʀʙᴏᴛ* o *#sᴇʀʙᴏᴛ --ᴄᴏᴅᴇ*
 =͟͟͞🄲ꭈׁׅo͓̽ᨰׁׅʙo͓̽tׁׅ ≼᳞ׄ | Tiempo activo: %muptime
 
-🌕 “Respira profundo. Lucha con honor.”%readmore`.trim(),
-
-  header: '\n☀️╭ MOD: *%category*',
-  body: '🌙 %cmd',
-  footer: '╰────────────',
-  after: '\n🌸 Usa los botones para más técnicas.'
+🌕 “Respira profundo. Lucha con honor.”%readmore`.trim()
 }
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
@@ -52,34 +41,16 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 
     let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
       help: Array.isArray(p.help)? p.help: [p.help],
-      tags: Array.isArray(p.tags)? p.tags: [p.tags],
-      prefix: 'customPrefix' in p,
-      limit: p.limit,
-      premium: p.premium,
-      enabled:!p.disabled
+      prefix: 'customPrefix' in p
 }))
 
-    for (let plugin of help) {
-      if (plugin.tags) {
-        for (let t of plugin.tags) {
-          if (!(t in tags) && t) tags[t] = textTanjiro(t)
-}
-}
-}
+    const { before} = defaultMenu
 
-    const { before, header, body, footer, after} = defaultMenu
+    let commandsList = help.map(menu =>
+      menu.help.map(cmd => `𖦹 ${menu.prefix? cmd: _p + cmd}`).join('\n')
+).join('\n')
 
-    let _text = [
-      before,
-...Object.keys(tags).map(tag => {
-        const cmds = help
-.filter(menu => menu.tags.includes(tag))
-.map(menu => menu.help.map(cmd => body.replace(/%cmd/g, menu.prefix? cmd: _p + cmd)).join('\n'))
-.join('\n')
-        return `${header.replace(/%category/g, tags[tag])}\n${cmds}\n${footer}`
-}),
-      after
-    ].join('\n')
+    let fullText = `${before}\n\n🌸 Comandos disponibles:\n${commandsList}`
 
     let replace = {
       '%': '%',
@@ -93,13 +64,17 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       readmore: String.fromCharCode(8206).repeat(4001)
 }
 
-    let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
+    let text = fullText.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
       image: { url: 'https://files.catbox.moe/wav09n.jpg'},
       caption: text,
       buttons: [
-        { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1}
+        {
+          buttonId: `${_p}reg Soygay.999`,
+          buttonText: { displayText: '🌸 AUTO VERIFICAR'},
+          type: 1
+}
       ],
       viewOnce: true
 }, { quoted: m})
