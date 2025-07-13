@@ -31,8 +31,7 @@ let handler = async (m, { conn}) => {
 │   https://whatsapp.com/channel/0029Vb1AFK6HbFV9kaB3b13W
 ╰─────────────────●
 
-✐; 🪐→ ᴘᴀʀᴀ ᴄʀᴇᴀʀ ᴜɴ sᴜʙ-ʙᴏᴛ ᴄᴏɴ ᴛᴜ ɴᴜᴍᴇʀᴏ
-ᴜᴛɪʟɪᴢᴀ *#sᴇʀʙᴏᴛ* o *#sᴇʀʙᴏᴛ --ᴄᴏᴅᴇ*
+✐; ꒷🌸ദ PARA SER PARTE DEL BOT USA *#CODE* O *#QR*
 
 🌕 “Respira profundo. Lucha con honor.”
 `.trim()
