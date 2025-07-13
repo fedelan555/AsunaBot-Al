@@ -19,11 +19,11 @@ let handler = async (m, { conn}) => {
     let muptime = clockString(_uptime)
 
     let intro = `
-𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 =͟͟͞🄲ꭈׁׅo͓̽ᨰׁׅʙo͓̽tׁׅ ≼᳞ׄ
+𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *=͟͟͞Tanjiro_Bot≼᳞ׄ*
 
 ᴀǫᴜɪ ᴛɪᴇɴᴇs ʟᴀ ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs
-╭┈ ↷
-│ ✐ S𝗍ᥲrV᥆іძ-ᥴᥣᥙᑲ🪐᭄
+╭┈ 🌙
+│ ✐ Tanjiro Bot 
 │ ✐ ꒷ꕤ🌤️ദ ᴄᴏᴍᴀɴᴅᴏs ★
 │   https://starvoid-club.vercel.app/commands
 │ ✐ ꒷ꕤ🌤️ദ ᴄᴀɴᴀʟ ᴏғɪᴄɪᴀʟ ★
@@ -42,8 +42,8 @@ let handler = async (m, { conn}) => {
       caption: intro,
       buttons: [
         {
-          buttonId: '/info',
-          buttonText: { displayText: '🌸 INFO DE TANJIRO'},
+          buttonId: '/menucompleto',
+          buttonText: { displayText: '🌸 MENU COMPLETO'},
           type: 1
 }
       ],
