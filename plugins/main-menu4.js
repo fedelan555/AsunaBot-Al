@@ -44,13 +44,6 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       prefix: 'customPrefix' in p
 }))
 
-    const { before} = defaultMenu
-
-    let commandsList = help.map(menu =>
-      menu.help.map(cmd => `𖦹 ${menu.prefix? cmd: _p + cmd}`).join('\n')
-).join('\n')
-
-    let fullText = `${before}\n\n🌸 Comandos disponibles:\n${commandsList}`
 
     let replace = {
       '%': '%',
