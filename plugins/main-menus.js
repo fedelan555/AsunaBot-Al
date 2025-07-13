@@ -5,7 +5,7 @@ let handler = async (m, { conn, args}) => {
   let _uptime = process.uptime() * 1000;
   let uptime = clockString(_uptime);
 
-  let imgUrl = 'https://qu.ax/FLeXV.jpg'; // Imagen estilo Tanjiro BOT 🇯🇵
+  let imgUrl = 'https://files.catbox.moe/ceynnu.jpg'; // Imagen estilo Tanjiro BOT 🇯🇵
 
   let txt = `
 𝐇𝐨𝐥𝐚 *${name}*!
@@ -56,9 +56,9 @@ let handler = async (m, { conn, args}) => {
 }, { quoted: m});
 }
 
-handler.help = ['tanjiromenu'];
+handler.help = ['menus'];
 handler.tags = ['main'];
-handler.command = ['tanjiromenu', 'tanjmenu', 'menutanji'];
+handler.command = ['menus', 'tanjmenu', 'menutanji'];
 
 export default handler;
 
