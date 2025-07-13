@@ -21,12 +21,12 @@ let handler = async (m, { conn}) => {
     let intro = `
 𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *꒷Tanjiro_Botദ*
 
-ᴀǫᴜɪ ᴛɪᴇɴᴇs ʟᴀ ʟɪsᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏs
+*AQUÍ TIENES LA LISTA DE COMANDOS*
 ╭┈──●
 │ ✐ ꒷🌸ദ Tiempo activo: ${muptime}
 │
-│ ✐ ꒷🌸ദ GRUPO OFC 
-│   XD
+│ ✐ ꒷🌸ദ CREADOR OFC
+│   https://wa.me/5491156178758
 │ ✐ ꒷🌸ദ GALAXYFORGE UNIT
 │   https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 ╰─────────────────●
