@@ -1,7 +1,14 @@
 const handler = async (m, { conn}) => {
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // puedes cambiar esta imagen por otra que prefieras
+    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // Puedes cambiar esta imagen si deseas otro estilo
     caption: global.ComprarBot,
+    buttons: [
+      {
+        buttonId: '#menucompleto',
+        buttonText: { displayText: '🌸 MENU COMPLETO'},
+        type: 1
+}
+    ],
     viewOnce: true
 }, { quoted: m});
 };
@@ -25,6 +32,7 @@ global.ComprarBot = `
 │
 ╰─────────────────────────────╯
 
-🌸 *Tanjiro Bot* es forjado con honor, estética y funciones interactivas. Si deseas adquirir tu bot personalizado, escribe al creador oficial:
+🌸 *Tanjiro Bot* es forjado con honor, estética y funciones interactivas.
+Si deseas adquirir tu bot personalizado, escribe al creador oficial:
 🎩 *Powered by Fedexyz*
 `;
