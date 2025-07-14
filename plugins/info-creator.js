@@ -1,6 +1,6 @@
 const handler = async (m, { conn}) => {
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // imagen del perfil del creador
+    image: { url: 'https://files.catbox.moe/yzl2d9.jpg'}, // imagen del perfil del creador
     caption: global.CreadorTanjiro,
     buttons: [
       {
@@ -25,7 +25,7 @@ global.CreadorTanjiro = `
 │ 🎩 *Nombre:* Fedexyz
 │ 📨 *Correo:* fedelanyt20@gmail.com
 │ 💫 *GitHub:* https://github.com/fedelan555
-│ 🎥 *TikTok:* @frases_isagi
+│ 🎥 *TikTok:* https://www.tiktok.com/@frases_isagi
 │ 📞 *WhatsApp:* https://wa.me/5491156178758
 │ 🌀 *Canal Oficial:* https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 │
