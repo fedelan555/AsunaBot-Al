@@ -1,6 +1,6 @@
 *🌸 Tanjiro Bot - Respiración Digital*
 
-![Creador: Fedexyz](https://files.catbox.moe/23ebz8.jpg)
+![Creador: Fedexyz](https://files.catbox.moe/yzl2d9.jpg)
 
 > 🗡️ _“Respira profundo. Lucha con honor.”_
 
@@ -29,13 +29,11 @@
 
 ---
 
-*📦 INSTALACIÓN RÁPIDA*
+# 👤 Creador del proyecto
 
-```bash
-git clone https://github.com/fedelan555/tanjiro-bot
-cd tanjiro-bot
-npm install
-```
+<a href="https://github.com/fedelan555">
+  <img src="https://github.com/fedelan555.png" width="250" height="250" alt="Fedelan"/>
+</a>
 
 Configura tus claves API para:
 - `YouTube`
