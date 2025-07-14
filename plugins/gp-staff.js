@@ -1,20 +1,34 @@
-let handler = async (m, { conn, participants, groupMetadata, args }) => {
-const pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || './src/avatar_contact.png'
-const groupAdmins = participants.filter(p => p.admin)
-const listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.id.split('@')[0]}`).join('\n▢ ')
-const owner = groupMetadata.owner || groupAdmins.find(p => p.admin === 'superadmin')?.id || m.chat.split`-`[0] + '@s.whatsapp.net'
+let handler = async (m, { conn, participants, groupMetadata}) => {
+  const imagenTanjiro = 'https://files.catbox.moe/sbzc3p.jpg'; // imagen decorativa estilo Tanjiro
+  const groupAdmins = participants.filter(p => p.admin);
+  const listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.id.split('@')[0]}`).join('\n▢ ');
+  const owner = groupMetadata.owner || groupAdmins.find(p => p.admin === 'superadmin')?.id || m.chat.split`-`[0] + '@s.whatsapp.net';
 
-let text = `
+  let text = `
 ≡ *STAFF DEL GRUPO* _${groupMetadata.subject}_
 
 ┌─⊷ *ADMINS*
 ▢ ${listAdmin}
-└───────────
-`.trim()
-conn.sendFile(m.chat, pp, 'staff.png', text, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
+└─────────────
+`.trim();
+
+  await conn.sendMessage(m.chat, {
+    image: { url: imagenTanjiro},
+    caption: text,
+    mentions: [...groupAdmins.map(v => v.id), owner],
+    buttons: [
+      {
+        buttonId: '#menucompleto',
+        buttonText: { displayText: '🌸 MENU COMPLETO'},
+        type: 1
 }
-handler.help = ['staff']
-handler.tags = ['group']
-handler.command = ['staff', 'admins', 'listadmin'] 
-handler.group = true
-export default handler
+    ],
+    viewOnce: true
+}, { quoted: m});
+};
+
+handler.help = ['staff'];
+handler.tags = ['group'];
+handler.command = ['staff', 'admins', 'listadmin'];
+handler.group = true;
+export default handler;
