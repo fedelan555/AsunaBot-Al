@@ -7,13 +7,8 @@ const handler = async (m, { conn}) => {
         buttonId: '#menucompleto',
         buttonText: { displayText: '🌸 MENU COMPLETO'},
         type: 1
-},
-      {
-        name: 'cta_url',
-        buttonParamsJson: JSON.stringify({
-          display_text: '🎩 Contactar al Creador',
-          url: 'https://wa.me/5491156178758',
-          merchant_url: 'https://wa.me/5491156178758'
+}
+    
 })
 }
     ],
