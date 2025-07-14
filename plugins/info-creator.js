@@ -11,7 +11,9 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     numero: '5491156178758',
     email: 'fedelanyt20@gmail.com',
     pais: 'Argentina',
-    github: 'https://github.com/fedelan555'
+    github: 'https://github.com/fedelan555',
+    imagen: 'https://files.catbox.moe/23ebz8.jpg', // Imagen del perfil del creador
+    tiktok: '@frases_isagi'
 }
 
   const vcard = `BEGIN:VCARD
@@ -21,6 +23,8 @@ item1.TEL;waid=${creador.numero}:${creador.numero}
 item1.X-ABLabel:WhatsApp
 item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
+item3.URL:${creador.github}
+item3.X-ABLabel:GitHub
 item4.ADR:;;${creador.pais};;;;
 item4.X-ABLabel:Ubicación
 END:VCARD`
@@ -37,12 +41,16 @@ END:VCARD`
 Este es el contacto oficial de *${creador.nombre}*, creador del bot.
 
 📬 Email: ${creador.email}
-🌐 tiktok: @frases_isagi
+🎵 TikTok: ${creador.tiktok}
+🌐 GitHub: ${creador.github}
 🌍 País: ${creador.pais}
 📞 Número: wa.me/${creador.numero}
 `.trim()
 
-  await conn.sendMessage(m.chat, { text: mensaje}, { quoted: m})
+  await conn.sendMessage(m.chat, {
+    image: { url: creador.imagen},
+    caption: mensaje
+}, { quoted: m})
 
   // Botón interactivo tipo quick_reply
   const menuButton = generateWAMessageFromContent(m.chat, {
