@@ -34,6 +34,8 @@ END:VCARD`
 }
 }, { quoted: m})
 
+  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}',
+
   await conn.sendMessage(m.chat, { text: mensaje})
 
   // Botón interactivo tipo quick_reply
