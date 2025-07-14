@@ -1,6 +1,6 @@
 const handler = async (m, { conn}) => {
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // imagen decorativa de Tanjiro Bot
+    image: { url: 'https://files.catbox.moe/sbzc3p.jpg'}, // imagen decorativa de Tanjiro Bot
     caption: global.GruposCFC,
     buttons: [
       {
@@ -14,19 +14,19 @@ const handler = async (m, { conn}) => {
 }, { quoted: m})
 }
 
-handler.command = /^(gruposcfc|gruposofc|grupobot)$/i
+handler.command = /^(grupos|links|grupobot)$/i
 export default handler
 
 global.GruposCFC = `
 🗡️ *TANJIRO BOT — GRUPOS & COMUNIDAD*
 
-╭─❖ Cuentas Oficiales ─╮
+╭─❖ *Cuentas Oficiales* ─╮
 │
 │ 🌀 *Canal GalaxyForge*
 │   ➤ https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 │
-│ 🌟 *Grupo Oficial*
-│   ➤ https://chat.whatsapp.com/NADA_TODAVIA_XD
+│ 🌟 *Comunidad Oficial*
+│   ➤ https://chat.whatsapp.com/NADA_XD
 │
 │ 🧩 *GitHub del creador*
 │   ➤ https://github.com/fedelan555
