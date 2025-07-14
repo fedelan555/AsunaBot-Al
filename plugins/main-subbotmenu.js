@@ -3,13 +3,6 @@ const { generateWAMessageFromContent, prepareWAMessageMedia, proto} = pkg;
 import fetch from 'node-fetch';
 import { xpRange} from '../lib/levelling.js';
 
-// 🛡️ Lista de JIDs autorizados como subbots
-const subbots = [
-  '5491156178758@s.whatsapp.net',
-  '1234567890@s.whatsapp.net',
-  '987654321@s.whatsapp.net'
-];
-
 // 🏷️ JID del bot oficial
 const botOficial = '5491137612743@s.whatsapp.net';
 
