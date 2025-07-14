@@ -1,24 +1,7 @@
-import pkg from '@whiskeysockets/baileys';
-const { prepareWAMessageMedia} = pkg;
-import fetch from 'node-fetch';
-import { xpRange} from '../lib/levelling.js';
-
-// Subbots autorizados (bots que pueden ejecutar este menú)
-const botsSubbots = [
-  '5491156178758@s.whatsapp.net',
-  '1234567890@s.whatsapp.net',
-  '987654321@s.whatsapp.net'
-]
-
-// Usuarios autorizados (quienes pueden ver el menú)
-const usuariosSubbot = [
-  '5491156178758@s.whatsapp.net',
-  '1234567890@s.whatsapp.net',
-  '987654321@s.whatsapp.net'
-]
-
-// Bot Oficial (NO debe ejecutar este menú)
-const botOficial = '5491137612743@s.whatsapp.net'
+import pkg from '@whiskeysockets/baileys'
+const { prepareWAMessageMedia} = pkg
+import fetch from 'node-fetch'
+import { xpRange} from '../lib/levelling.js'
 
 const tags = {
   group: 'DOJO',
@@ -30,33 +13,10 @@ const tags = {
 }
 
 let handler = async (m, { conn}) => {
-  // 🛑 Bloquear ejecución si este bot es el oficial
-  if (conn.user?.jid === botOficial) {
-    return conn.sendMessage(m.chat, {
-      text: `❎ Este comando está desactivado en el *Bot Oficial*.\n\n🌐 Usa un bot aliado para acceder a este menú.\n🔗 https://wa.me/5491137612743`,
-      footer: '🎴 Tanjiro Bot — Sistema Solar'
-}, { quoted: m})
-}
-
-  // 🛑 Verificar si el bot es un subbot válido
-  if (!botsSubbots.includes(conn.user?.jid)) {
-    return conn.sendMessage(m.chat, {
-      text: `⚠️ Este bot no tiene permiso para ejecutar el menú de Subbots.\nSolicita acceso a: https://wa.me/5491156178758`,
-      footer: '🧩 Sistema Tanjiro'
-}, { quoted: m})
-}
-
-  // 🛑 Verificar si el usuario que lo invoca es subbot autorizado
-  if (!usuariosSubbot.includes(m.sender)) {
-    return conn.sendMessage(m.chat, {
-      text: `🚫 Este menú es exclusivo para *usuarios subbots*.`,
-      footer: '🎴 Tanjiro Subbot System'
-}, { quoted: m})
-}
-
   try {
     const userId = m.sender
     const user = global.db.data.users[userId] || {}
+    const name = await conn.getName(userId)
     const mode = global.opts.self? 'Privado 🔒': 'Público 🌐'
     const totalCommands = Object.keys(global.plugins).length
     const totalreg = Object.keys(global.db.data.users).length
@@ -71,10 +31,12 @@ let handler = async (m, { conn}) => {
       premium: p.premium
 }))
 
+    const tipoBot = conn.user?.jid === '5491137612743@s.whatsapp.net'? 'Bot Oficial 🅞': 'Subbot Aliado 🅢'
+
     let menuText = `
-╭━━━ ☀️ ᴍᴇɴᴜ ꜱᴜʙʙᴏᴛ ꜱᴏʟᴀʀ ☀️ ━╮
+╭━━━ ☀️ ᴍᴇɴᴜ ꜱᴏʟᴀʀ ꜱʏꜱᴛᴇᴍ ☀️ ━╮
 ┃ Usuario: *@${userId.split('@')[0]}*
-┃ Rango: *Subbot Aliado 🅢*
+┃ Tipo: *${tipoBot}*
 ┃ Modo: ${mode}
 ┃ Exp: ${exp}/${xp}
 ┃ Registrados: ${totalreg}
@@ -111,7 +73,7 @@ let handler = async (m, { conn}) => {
 
 } catch (e) {
     console.error('[✗] Error en subbotmenu:', e)
-    await conn.reply(m.chat, '❎ Ocurrió un error al cargar el menú de Subbots.', m)
+    conn.reply(m.chat, '❎ Ocurrió un error al cargar el menú solar.', m)
 }
 }
 
@@ -121,7 +83,6 @@ handler.command = ['subbotmenu', 'aliadomenu', 'menualiado']
 handler.register = false
 export default handler
 
-// Decoración
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
 
