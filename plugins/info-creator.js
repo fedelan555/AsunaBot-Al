@@ -14,7 +14,7 @@ const handler = async (m, { conn}) => {
 }, { quoted: m})
 }
 
-handler.command = /^(creador|autor|fedexyz)$/i
+handler.command = /^(creador|autor|owner)$/i
 export default handler
 
 global.CreadorTanjiro = `
