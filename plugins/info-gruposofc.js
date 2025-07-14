@@ -7,15 +7,8 @@ const handler = async (m, { conn}) => {
         buttonId: '#menucompleto',
         buttonText: { displayText: '🌸 MENU COMPLETO'},
         type: 1
-},
-      {
-        name: 'cta_url',
-        buttonParamsJson: JSON.stringify({
-          display_text: '🪷 Unirse al Canal',
-          url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-          merchant_url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
-})
 }
+    
     ],
     viewOnce: true
 }, { quoted: m})
