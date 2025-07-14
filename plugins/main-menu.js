@@ -54,8 +54,7 @@ let handler = async (m, { conn}) => {
         externalAdReply: {
           title: 'Tanjiro BOT 🌊',
           body: 'Conoce la bondad y la fuerza',
-          thumbnailUrl: imgUrl,
-          sourceUrl: 'https://starvoid-club.vercel.app/commands',
+          sourceUrl: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
           mediaType: 1,
           renderLargerThumbnail: true
 }
