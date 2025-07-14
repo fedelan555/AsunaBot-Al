@@ -1,9 +1,6 @@
-import fetch from 'node-fetch'
 import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
-  await m.react('👤')
-
   const username = await conn.getName(m.sender)
 
   const creador = {
@@ -27,19 +24,9 @@ item4.ADR:;;${creador.pais};;;;
 item4.X-ABLabel:Ubicación
 END:VCARD`
 
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      displayName: '📇 Creador del Bot',
-      contacts: [{ displayName: creador.nombre, vcard}]
-}
-}, { quoted: m})
+  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`
 
-  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`
-
-  await conn.sendMessage(m.chat, { text: mensaje})
-
-  // Botón interactivo tipo quick_reply
-  const menuButton = generateWAMessageFromContent(m.chat, {
+  const menuBoton = generateWAMessageFromContent(m.chat, {
     viewOnceMessage: {
       message: {
         messageContextInfo: {
@@ -72,7 +59,12 @@ END:VCARD`
 }
 }, {})
 
-  await conn.relayMessage(m.chat, menuButton.message, { messageId: menuButton.key.id})
+  return {
+    nombre: creador.nombre,
+    vcard,
+    mensaje,
+    menuBoton
+}
 }
 
 handler.help = ['creador']
