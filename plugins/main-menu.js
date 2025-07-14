@@ -41,7 +41,7 @@ let handler = async (m, { conn}) => {
       caption: intro,
       buttons: [
         {
-          buttonId: '/menucompleto',
+          buttonId: '#menucompleto',
           buttonText: { displayText: '🌸 MENU COMPLETO'},
           type: 1
 }
