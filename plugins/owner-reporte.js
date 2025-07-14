@@ -1,5 +1,5 @@
 const handler = async (m, { conn, text, usedPrefix, command}) => {
-  const imagenTanjiro = 'https://files.catbox.moe/23ebz8.jpg';
+  const imagenTanjiro = 'https://files.catbox.moe/sbzc3p.jpg';
   const numberCreador = '5491156178758@s.whatsapp.net';
   const username = await conn.getName(m.sender);
 
