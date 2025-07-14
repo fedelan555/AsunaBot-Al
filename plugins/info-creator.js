@@ -34,7 +34,7 @@ END:VCARD`
 }
 }, { quoted: m})
 
-  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}',
+  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`
 
   await conn.sendMessage(m.chat, { text: mensaje})
 
