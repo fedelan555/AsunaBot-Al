@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     email: 'fedelanyt20@gmail.com',
     pais: 'Argentina',
     github: 'https://github.com/fedelan555',
-    imagen: 'https://files.catbox.moe/23ebz8.jpg', // Imagen del perfil del creador
+    imagen: 'https://files.catbox.moe/sbzc3p.jpg', // Imagen del perfil del creador
     tiktok: '@frases_isagi'
 }
 
