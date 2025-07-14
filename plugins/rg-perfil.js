@@ -34,7 +34,7 @@ let handler = async (m, { conn}) => {
   const partnerName = partner? await conn.getName(partner): 'Nadie';
 
   const username = await conn.getName(who);
-  const perfilpic = await conn.profilePictureUrl(who, 'image').catch(() => 'https://i.ibb.co/d0sfxs0T/file.jpg');
+  const perfilpic = await conn.profilePictureUrl(who, 'image').catch(() => 'https://files.catbox.moe/sbzc3p.jpg');
 
   const perfilTanjiro = `
 🌸 *Perfil del Cazador* 🌸
