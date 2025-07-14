@@ -31,15 +31,14 @@ let handler = async (m, { conn, text, usedPrefix }) => {
   try {
     await conn.sendMessage(m.chat, {
       text: `
-╭─🌸「 *TANJIRO BOT* 」🌸
-   🌙 *DESCARGANDO SU VIDEO*
-╰──🌸
+╭━━━🌐📡━━━╮  
+   🔍 **Procesando con ☆sᥲsᥙkᥱ ᑲ᥆𝗍 mძ 🌀☆** 🔍  
+╰━━━🌐📡━━━╯  
 
 ✨ *Estamos descargando tu video...*  
 📥 *Por favor espera unos instantes mientras procesamos tu solicitud.*  
 
 ⏳ *Esto puede tardar unos segundos.*  
-> 🌙 Tanjiro Bot 
       `,
     });
 
@@ -59,9 +58,8 @@ let handler = async (m, { conn, text, usedPrefix }) => {
 
     // Formato del mensaje de información
     const videoInfo = `
-╭─🌸「TANJIRO BOT  」🌸
 📥 **Video Encontrado**  
-╰──────🌸
+━━━━━━━━━━━━━━━━━━━  
 🎵 **Título:** ${title}  
 ⏱️ **Duración:** ${duration.timestamp || "No disponible"}  
 📦 **Tamaño:** ${fileSizeInMB.toFixed(2)} MB  
@@ -69,7 +67,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
 
 📌 **Descripción:**  
 ${description || "No hay descripción disponible"}  
-  ╰──────🌸
+━━━━━━━━━━━━━━━━━━━  
     `;
 
     await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: videoInfo });
