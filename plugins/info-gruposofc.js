@@ -20,19 +20,19 @@ export default handler
 global.GruposCFC = `
 🗡️ *TANJIRO BOT — GRUPOS & COMUNIDAD*
 
-╭─❖ Comunidad Oficial ─╮
+╭─❖ Cuentas Oficiales ─╮
 │
-│ 🌀 *Canal Tanjiro Oficial*
+│ 🌀 *Canal GalaxyForge*
 │   ➤ https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 │
-│ 🌟 *Grupo GalaxyForge*
-│   ➤ https://chat.whatsapp.com/LINK_DE_TU_GRUPO
+│ 🌟 *Grupo Oficial*
+│   ➤ https://chat.whatsapp.com/NADA_TODAVIA_XD
 │
 │ 🧩 *GitHub del creador*
 │   ➤ https://github.com/fedelan555
 │
 │ 🎶 *TikTok*
-│   ➤ @frases_isagi
+│   ➤ https://www.tiktok.com/@frases_isagi
 │
 │ 📮 *Email*
 │   ➤ fedelanyt20@gmail.com
