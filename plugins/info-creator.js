@@ -34,9 +34,17 @@ END:VCARD`
 }
 }, { quoted: m})
 
-  const mensaje = `✨ *Hola ${username}*\nEste es el contacto oficial de *${creador.nombre}*, creador del bot.\n📬 Email: ${creador.email}\n🌐 GitHub: ${creador.github}`
+  const mensaje = `
+✨ *Hola ${username}*
+Este es el contacto oficial de *${creador.nombre}*, creador del bot.
 
-  await conn.sendMessage(m.chat, { text: mensaje})
+📬 Email: ${creador.email}
+🌐 GitHub: ${creador.github}
+🌍 País: ${creador.pais}
+📞 Número: wa.me/${creador.numero}
+`.trim()
+
+  await conn.sendMessage(m.chat, { text: mensaje}, { quoted: m})
 
   // Botón interactivo tipo quick_reply
   const menuButton = generateWAMessageFromContent(m.chat, {
