@@ -230,7 +230,7 @@ console.log(chalk.bold.cyanBright(`\n❒⸺⸺⸺⸺【• SUB-BOT •】⸺⸺�
 sock.isInit = true
 global.conns.push(sock)
 
-m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de la familia black-clover Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
+m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de la familia Tanjiro_Bot Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
 
 }}
 setInterval(async () => {
