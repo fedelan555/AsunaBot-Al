@@ -1,3 +1,7 @@
+const newsletterJid = '120363418071540900@newsletter'
+const newsletterName = '꒰ঌ⛧⏤͟͞⟡ 𝐄llen 𝐉ᴏᴇ\'s 𝐒ervice ⛧໒꒱'
+const packname = '˚🅔🅛🅛🅔🅝-🅙🅞🅔-🅑🅞🅣 ꕤ'
+
 import { xpRange} from '../lib/levelling.js'
 
 const textTanjiro = (text) => {
@@ -23,8 +27,11 @@ const defaultMenu = {
 ┃ ᴍᴇɴᴜ ʀᴇsᴘɪʀᴀᴄɪᴏɴ ᴅᴇʟ sᴏʟ
 ╰━━━━━━━━━━━━━━━━━━╯
 
+📩 Newsletter: ${newsletterName}
+🎀 Pack: ${packname}
+
 👤 Usuario: *%name*
-⚔  *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid ? '`ᴏғɪᴄɪᴀʟ 🅞`' : '`sᴜʙ - ʙᴏᴛ 🅢`')}
+⚔ *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid? '`ᴏғɪᴄɪᴀʟ 🅞`': '`sᴜʙ - ʙᴏᴛ 🅢`')}
 🌟 Exp: %exp/%maxexp
 🌐 Modo: %mode
 👥 Registro: %totalreg
@@ -38,7 +45,7 @@ const defaultMenu = {
   after: '\n🌸 Usa los botones para más técnicas.'
 }
 
-let handler = async (m, { conn, usedPrefix: _p}) => {
+const handler = async (m, { conn, usedPrefix: _p}) => {
   try {
     let { exp = 0, level = 0} = global.db.data.users[m.sender]
     let { min, xp} = xpRange(level, global.multiplier)
@@ -58,10 +65,8 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 }))
 
     for (let plugin of help) {
-      if (plugin.tags) {
-        for (let t of plugin.tags) {
-          if (!(t in tags) && t) tags[t] = textTanjiro(t)
-}
+      for (let t of plugin.tags) {
+        if (!(t in tags) && t) tags[t] = textTanjiro(t)
 }
 }
 
@@ -98,6 +103,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       caption: text,
       buttons: [
         { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
+        { buttonId: `${_p}news ${newsletterJid}`, buttonText: { displayText: '📰 Ver Newsletter'}, type: 1}
       ],
       viewOnce: true
 }, { quoted: m})
@@ -110,7 +116,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 
 handler.help = ['menucompleto']
 handler.tags = ['main']
-handler.command = ['menucompleto', 'menucompleto']
+handler.command = ['menucompleto']
 handler.register = false
 
 export default handler
@@ -120,4 +126,5 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-                                                                         }
+}
+```
