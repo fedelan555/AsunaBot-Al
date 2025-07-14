@@ -10,6 +10,9 @@ const subbots = [
   '987654321@s.whatsapp.net'
 ];
 
+// 🏷️ JID del bot oficial
+const botOficial = '5491137612743@s.whatsapp.net';
+
 const tags = {
   group: 'DOJO',
   info: 'SUBBOT INFO',
@@ -20,10 +23,19 @@ const tags = {
 };
 
 let handler = async (m, { conn}) => {
+  // ❎ Si el bot actual es el oficial, no responde a este menú
+  if (conn.user?.jid === botOficial) {
+    return conn.sendMessage(m.chat, {
+      text: `❎ Este comando está desactivado en el *Bot Oficial*.\n\n🧩 Si deseas ver el menú para Subbots, utiliza alguno de los bots aliados.\n🔗 Bot oficial: https://wa.me/5491137612743`,
+      footer: '🎴 Tanjiro Bot — Sistema Solar',
+}, { quoted: m});
+}
+
+  // ✅ Solo responde si el usuario que lo invoca es un subbot
   if (!subbots.includes(m.sender)) {
     return conn.sendMessage(m.chat, {
       text: '🚫 Este menú es exclusivo para *subbots aliados*. Solicita autorización al creador.',
-      footer: '🎩 Contacto: wa.me/5491156178758'
+      footer: '🎩 Contacto: https://wa.me/5491156178758'
 }, { quoted: m});
 }
 
@@ -48,7 +60,7 @@ let handler = async (m, { conn}) => {
 }));
 
     let menuText = `
-╭━━● ☀️ ᴍᴇɴᴜ ꜱᴜʙʙᴏᴛ ꜱᴏʟᴀʀ ☀️ ━●
+╭━━━ ☀️ ᴍᴇɴᴜ ꜱᴜʙʙᴏᴛ ꜱᴏʟᴀʀ ☀️ ━●
 ┃ Usuario: *@${userId.split('@')[0]}*
 ┃ Rango: *Subbot aliado 🅢*
 ┃ Modo: ${mode}
@@ -56,7 +68,7 @@ let handler = async (m, { conn}) => {
 ┃ Registrados: ${totalreg}
 ┃ Uptime: ${uptime}
 ┃ Comandos activos: ${totalCommands}
-╰━━━━━━━━━━━━━━━━━━━━━
+╰━━━━━━━━━━━━━━━━━━━━━━●
 🌸 *MENÚ POR CATEGORÍA:* ${readMore}`;
 
     for (let tag in tags) {
