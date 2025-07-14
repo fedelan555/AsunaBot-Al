@@ -7,7 +7,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
   const username = await conn.getName(m.sender)
 
   const creador = {
-    nombre: 'FedeLanyt',
+    nombre: 'Fedexyz',
     numero: '5491156178758',
     email: 'fedelanyt20@gmail.com',
     pais: 'Argentina',
@@ -21,8 +21,6 @@ item1.TEL;waid=${creador.numero}:${creador.numero}
 item1.X-ABLabel:WhatsApp
 item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
-item3.URL:${creador.github}
-item3.X-ABLabel:GitHub
 item4.ADR:;;${creador.pais};;;;
 item4.X-ABLabel:Ubicación
 END:VCARD`
@@ -39,7 +37,7 @@ END:VCARD`
 Este es el contacto oficial de *${creador.nombre}*, creador del bot.
 
 📬 Email: ${creador.email}
-🌐 GitHub: ${creador.github}
+🌐 tiktok: @frases_isagi
 🌍 País: ${creador.pais}
 📞 Número: wa.me/${creador.numero}
 `.trim()
