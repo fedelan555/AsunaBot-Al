@@ -1,5 +1,9 @@
 const handler = async (m, { conn}) => {
-  m.reply(global.ComprarBot);
+  await conn.sendMessage(m.chat, {
+    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // puedes cambiar esta imagen por otra que prefieras
+    caption: global.ComprarBot,
+    viewOnce: true
+}, { quoted: m});
 };
 
 handler.command = /^(comprarbot|comprar|tanjiropro)$/i;
