@@ -41,7 +41,7 @@ const defaultMenu = {
 const subbots = [
   '5491156178758@s.whatsapp.net',
   '123456789@s.whatsapp.net'
-]; // Puedes agregar más IDs de subbots aquí
+];
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
   if (!subbots.includes(m.sender)) {
@@ -52,13 +52,14 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 }
 
   try {
-    let { exp = 0, level = 0} = global.db.data.users[m.sender];
-    let { min, xp} = xpRange(level, global.multiplier);
+    let { exp = 0, level = 0} = global.db.data.users[m.sender] || {};
+    const multiplier = global.multiplier || 1;
+    let { min, xp} = xpRange(level, multiplier);
     let name = await conn.getName(m.sender);
     let _uptime = process.uptime() * 1000;
     let muptime = clockString(_uptime);
     let totalreg = Object.keys(global.db.data.users).length;
-    let mode = global.opts["self"]? "Privado 🔒": "Público 🌐";
+    let mode = global.opts?.self? "Privado 🔒": "Público 🌐";
 
     let help = Object.values(global.plugins).filter(p =>!p.disabled).map(p => ({
       help: Array.isArray(p.help)? p.help: [p.help],
@@ -117,8 +118,8 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 }, { quoted: m});
 
 } catch (e) {
-    console.error(e);
-    conn.reply(m.chat, '❎ Error al cargar el menú de subbots.', m);
+    console.error('[✗] Error al cargar el menú de subbots:', e);
+    await conn.reply(m.chat, '❎ Ocurrió un error al renderizar el menú de subbots.', m);
 }
 };
 
@@ -127,6 +128,7 @@ handler.tags = ['main', 'subbotmenu'];
 handler.command = ['subbotmenu', 'aliadomenu', 'menualiado'];
 handler.register = false;
 export default handler;
+
 function clockString(ms) {
   let h = isNaN(ms)? '--': Math.floor(ms / 3600000);
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60;
