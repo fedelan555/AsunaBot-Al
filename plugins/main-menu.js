@@ -19,19 +19,18 @@ let handler = async (m, { conn}) => {
     let muptime = clockString(_uptime)
 
     let intro = `
-𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *꒷Tanjiro_Botദ*
+𝐇𝐨𝐥𝐚 ${name}! s𝐨𝐲 *꒷Tanjiro_Botദ*
 
-*AQUÍ TIENES LA LISTA DE COMANDOS*
 ╭┈──●
-│ ✐ ꒷🌸ദ Tiempo activo: ${muptime}
+│ ✐ ୨🌸୧˚ Tiempo activo: ${muptime}
 │
-│ ✐ ꒷🌸ദ CREADOR OFC
+│ ✐ ୨🌸୧˚ CREADOR OFC
 │   https://wa.me/5491156178758
-│ ✐ ꒷🌸ദ GALAXYFORGE UNIT
+│ ✐ ୨🌸୧˚ GALAXYFORGE UNIT
 │   https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 ╰─────────────────●
 
-꒷🌸ദ PARA SER PARTE DEL BOT USA *#CODE* O *#QR*
+୨🌸୧˚ PARA SER PARTE DEL BOT USA *#CODE* O *#QR*
 
 🌕 “Respira profundo. Lucha con honor.”
 `.trim()
