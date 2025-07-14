@@ -44,10 +44,19 @@ let handler = async (m, { conn}) => {
           buttonId: '/menucompleto',
           buttonText: { displayText: '🌸 MENU COMPLETO'},
           type: 1
+}),
+        {
+          name: 'cta_url',
+          buttonParamsJson: JSON.stringify({
+            display_text: '🎯 GP de Soporte',
+            url: 'https://chat.whatsapp.com/tu-enlace-grupo',
+            merchant_url: 'https://chat.whatsapp.com/tu-enlace-grupo'
+})
 }
       ],
       viewOnce: true
 }, { quoted: m})
+
 
 } catch (e) {
     console.error(e)
