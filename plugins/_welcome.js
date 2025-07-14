@@ -24,7 +24,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
 
   const guildName = encodeURIComponent(groupMetadata.subject)
   const apiBase = 'https://api.siputzx.my.id/api/canvas'
-  const background = encodeURIComponent('https://files.catbox.moe/ses91n.jpg')
+  const background = encodeURIComponent('https://files.catbox.moe/23ebz8.jpg')
   const welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
   const goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
 
@@ -57,7 +57,6 @@ export async function before(m, { conn, participants, groupMetadata}) {
 👥 Somos ahora ${memberCount} cazadores en este grupo.
 
 📘 Usa *#help* para aprender tus técnicas.
-☀️ Tanjiro te honra desde el pilar solar.
 `.trim()
 
   const despedida = `
