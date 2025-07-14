@@ -120,7 +120,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
 };
 
 handler.help = ['subbotmenu'];
-handler.tags = ['main'];
+handler.tags = ['main', 'subbotmenu'];
 handler.command = ['subbotmenu', 'aliadomenu', 'menualiado'];
 handler.register = false;
 export default handler;
