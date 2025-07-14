@@ -18,7 +18,7 @@ handler.command = /^(grupos|links|grupobot)$/i
 export default handler
 
 global.GruposCFC = `
-🗡️ *TANJIRO BOT — GRUPOS & COMUNIDAD*
+🗡️ *TANJIRO BOT — CUENTAS OFICIALES*
 
 ╭─❖ *Cuentas Oficiales* ─╮
 │
