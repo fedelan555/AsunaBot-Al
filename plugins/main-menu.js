@@ -12,12 +12,14 @@ const textTanjiro = (text) => {
 
 let handler = async (m, { conn}) => {
   try {
-    let { exp = 0, level = 0} = global.db.data.users[m.sender]
+    let userId = m.sender
+    let { exp = 0, level = 0} = global.db.data.users[userId]
     let { min, xp} = xpRange(level, global.multiplier)
-    let name = await conn.getName(m.sender)
+    let name = await conn.getName(userId)
     let _uptime = process.uptime() * 1000
     let muptime = clockString(_uptime)
 
+    let imgUrl = 'https://files.catbox.moe/wav09n.jpg'
     let intro = `
 𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *꒷Tanjiro_Botദ*
 
@@ -37,7 +39,7 @@ let handler = async (m, { conn}) => {
 `.trim()
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/wav09n.jpg'},
+      image: { url: imgUrl},
       caption: intro,
       buttons: [
         {
@@ -46,7 +48,18 @@ let handler = async (m, { conn}) => {
           type: 1
 }
       ],
-      viewOnce: true
+      viewOnce: true,
+      contextInfo: {
+        mentionedJid: [m.sender, userId],
+        externalAdReply: {
+          title: 'Tanjiro BOT 🌊',
+          body: 'Conoce la bondad y la fuerza',
+          thumbnailUrl: imgUrl,
+          sourceUrl: 'https://starvoid-club.vercel.app/commands',
+          mediaType: 1,
+          renderLargerThumbnail: true
+}
+}
 }, { quoted: m})
 
 } catch (e) {
