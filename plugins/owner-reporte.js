@@ -11,13 +11,13 @@ const handler = async (m, { conn, text, usedPrefix, command}) => {
   const username = await conn.getName(m.sender);
 
   const reporte = `
-🚨 *REPORTE DE USUARIO*
-─────────────────────
+╭──「 🚨 *REPORTE DE USUARIO* 」──
+
 👤 Usuario: ${username}
 📱 Número: wa.me/${m.sender.split('@')[0]}
 📝 Reporte:
 ${text}
-─────────────────────
+╰─────────────────────
 🔔 *Tanjiro Bot - Sistema de reportes*
 `;
 
