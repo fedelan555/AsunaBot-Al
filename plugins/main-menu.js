@@ -12,14 +12,12 @@ const textTanjiro = (text) => {
 
 let handler = async (m, { conn}) => {
   try {
-    let userId = m.sender
-    let { exp = 0, level = 0} = global.db.data.users[userId]
+    let { exp = 0, level = 0} = global.db.data.users[m.sender]
     let { min, xp} = xpRange(level, global.multiplier)
-    let name = await conn.getName(userId)
+    let name = await conn.getName(m.sender)
     let _uptime = process.uptime() * 1000
     let muptime = clockString(_uptime)
 
-    let imgUrl = 'https://files.catbox.moe/wav09n.jpg'
     let intro = `
 𝐇𝐨𝐥𝐚 ${name}! 𝐒𝐨𝐲 *꒷Tanjiro_Botദ*
 
@@ -39,7 +37,7 @@ let handler = async (m, { conn}) => {
 `.trim()
 
     await conn.sendMessage(m.chat, {
-      image: { url: imgUrl},
+      image: { url: 'https://files.catbox.moe/wav09n.jpg'},
       caption: intro,
       buttons: [
         {
@@ -48,17 +46,7 @@ let handler = async (m, { conn}) => {
           type: 1
 }
       ],
-      contextInfo: {
-      mentionedJid: [m.sender, userId],
-      externalAdReply: {
-        title: 'Tanjiro BOT 🌊',
-        body: 'Conoce la bondad y la fuerza',
-        thumbnailUrl: imgUrl,
-        sourceUrl: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-        mediaType: 1,
-        renderLargerThumbnail: true
-}
-}
+      viewOnce: true
 }, { quoted: m})
 
 } catch (e) {
@@ -79,4 +67,4 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-}
+    }
