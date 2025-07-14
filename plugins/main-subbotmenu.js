@@ -38,7 +38,10 @@ const defaultMenu = {
   after: '\n🌸 Usa los comandos con convicción.'
 };
 
-const subbots = ['5491156178758@s.whatsapp.net', '123456789@s.whatsapp.net']; // Añade más subbots si lo deseas
+const subbots = [
+  '5491156178758@s.whatsapp.net',
+  '123456789@s.whatsapp.net'
+]; // Puedes agregar más IDs de subbots aquí
 
 let handler = async (m, { conn, usedPrefix: _p}) => {
   if (!subbots.includes(m.sender)) {
@@ -124,8 +127,9 @@ handler.tags = ['main', 'subbotmenu'];
 handler.command = ['subbotmenu', 'aliadomenu', 'menualiado'];
 handler.register = false;
 export default handler;
-
 function clockString(ms) {
   let h = isNaN(ms)? '--': Math.floor(ms / 3600000);
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60;
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60;
+  return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
+}
