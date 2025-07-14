@@ -1,11 +1,11 @@
 const handler = async (m, { conn}) => {
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/23ebz8.jpg'}, // Puedes cambiar esta imagen si deseas otro estilo
+    image: { url: 'https://files.catbox.moe/sbzc3p.jpg'}, // Puedes cambiar esta imagen si deseas otro estilo
     caption: global.ComprarBot,
     buttons: [
       {
-        buttonId: '#menucompleto',
-        buttonText: { displayText: '🌸 MENU COMPLETO'},
+        buttonId: '#menu',
+        buttonText: { displayText: '🌸 MENU'},
         type: 1
 }
     ],
