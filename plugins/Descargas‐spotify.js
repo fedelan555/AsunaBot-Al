@@ -54,7 +54,7 @@ const handler = async (m, { conn, text }) => {
     }
 
     const cap = `
-\`\`\`🌸─⌈ ◜SPOTIFY Dl◞ ⌋─🌸
+\`\`\`🌸─⌈ ◜TANJIRO BOT◞ ⌋─🌸
 
 🌙 Título      : » ${track.name}
 🌙 Artista     : » ${track.artists.map((a) => a.name).join(", ")}
@@ -68,7 +68,7 @@ const handler = async (m, { conn, text }) => {
 # 🌸 Enviando su audio espere un momento...
 \`\`\`
 
-тнe вeѕт wнaтѕapp вy ι'м ғz
+> ⚔ Tanjiro Bot 
 `;
 await m.reply(cap);
 
