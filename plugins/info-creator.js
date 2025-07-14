@@ -9,8 +9,6 @@ const handler = async (m, { conn}) => {
         type: 1
 }
     
-})
-}
     ],
     viewOnce: true
 }, { quoted: m})
