@@ -1,15 +1,26 @@
-const handler = async (m, {conn}) => {
+const handler = async (m, { conn}) => {
   m.reply(global.ComprarBot);
 };
-handler.command ='comprarbot',/^(ComprarBot|Comprar|comprar|ComprarBot)$/i;
+
+handler.command = /^(comprarbot|comprar|tanjiropro)$/i;
 export default handler;
 
 global.ComprarBot = `
-〔 *ASUBA BOT - Al* 〕
+🗡️ *TANJIRO BOT — COMPRAS OFICIALES*
 
-*BOT PARA GRUPO* :
-> wa.me/5491156178758
+╭── ❖ Servicios Disponibles ❖ ──╮
+│
+│ 💎 *BOT PARA GRUPO*
+│   —> wa.me/5491156178758
+│
+│ 🎴 *BOT PERSONALIZADO*
+│   —> wa.me/5491156178758
+│
+│ 🔗 *Canal Oficial*
+│   —> https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
+│
+╰─────────────────────────────╯
 
-*BOT PERZONALIZADO* :
-> wa.me/5491156178758
+🌸 *Tanjiro Bot* es forjado con honor, estética y funciones interactivas. Si deseas adquirir tu bot personalizado, escribe al creador oficial:
+🎩 *Powered by Fedexyz*
 `;
