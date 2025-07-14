@@ -1,5 +1,5 @@
 const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, command, usedPrefix}) => {
-  const imagenTanjiro = 'https://files.catbox.moe/23ebz8.jpg'; // puedes cambiar la imagen por otra temática
+  const imagenTanjiro = 'https://files.catbox.moe/sbzc3p.jpg'; // puedes cambiar la imagen por otra temática
 
   if (usedPrefix == 'a' || usedPrefix == 'A') return;
 
@@ -16,7 +16,7 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
 │ 👥 *Miembros:* ${participants.length}
 │ 🗡️ *Tanjiro Bot* invoca con elegancia...
 │
-╰─────────────────────────────╯
+╰──────────────────────────╯
 ☁️ *Tags:*
 `;
 
