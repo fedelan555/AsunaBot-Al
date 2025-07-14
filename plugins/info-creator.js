@@ -1,18 +1,20 @@
+import fetch from 'node-fetch'
 import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
 
-let handler = async (m, { conn}) => {
-  const nombreUsuario = await conn.getName(m.sender)
+let handler = async (m, { conn, usedPrefix: _p}) => {
+  await m.react('👤')
+
+  const username = await conn.getName(m.sender)
 
   const creador = {
     nombre: 'FedeLanyt',
     numero: '5491156178758',
     email: 'fedelanyt20@gmail.com',
-    github: 'https://github.com/fedelan555',
-    país: 'Argentina 🇦🇷'
+    pais: 'Argentina',
+    github: 'https://github.com/fedelan555'
 }
 
-  const vcard = `
-BEGIN:VCARD
+  const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:${creador.nombre}
 item1.TEL;waid=${creador.numero}:${creador.numero}
@@ -21,31 +23,33 @@ item2.EMAIL;type=INTERNET:${creador.email}
 item2.X-ABLabel:Email
 item3.URL:${creador.github}
 item3.X-ABLabel:GitHub
-item4.ADR:;;${creador.país};;;;
+item4.ADR:;;${creador.pais};;;;
 item4.X-ABLabel:Ubicación
-END:VCARD`.trim()
+END:VCARD`
 
-  const mensaje = `
-👋 *Hola ${nombreUsuario}*
-Este es el contacto oficial del creador del bot:
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      displayName: '📇 Creador del Bot',
+      contacts: [{ displayName: creador.nombre, vcard}]
+}
+}, { quoted: m})
 
-👤 Nombre: ${creador.nombre}
-📬 Email: ${creador.email}
-🌐 GitHub: ${creador.github}
-🌍 País: ${creador.país}
+  await conn.sendMessage(m.chat, { text: mensaje})
 
-Gracias por confiar en Tanjiro BOT ⚔️🌸
-`.trim()
-
-  const botonTanjiro = generateWAMessageFromContent(m.chat, {
+  // Botón interactivo tipo quick_reply
+  const menuButton = generateWAMessageFromContent(m.chat, {
     viewOnceMessage: {
       message: {
+        messageContextInfo: {
+          deviceListMetadata: {},
+          deviceListMetadataVersion: 2
+},
         interactiveMessage: proto.Message.InteractiveMessage.create({
           body: proto.Message.InteractiveMessage.Body.create({
-            text: '¿Quieres abrir el menú principal?'
+            text: '🌸 ¿Deseas abrir el Menú principal?'
 }),
           footer: proto.Message.InteractiveMessage.Footer.create({
-            text: 'Tanjiro BOT • Espíritu Noble'
+            text: '🌊 Tanjiro Bot • Espíritu Solar'
 }),
           header: proto.Message.InteractiveMessage.Header.create({
             hasMediaAttachment: false
@@ -56,7 +60,7 @@ Gracias por confiar en Tanjiro BOT ⚔️🌸
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
                   display_text: '🌸 MENU',
-                  id: 'menu' // Sin prefijo
+                  id: `${_p}menu`
 })
 }
             ]
@@ -66,23 +70,11 @@ Gracias por confiar en Tanjiro BOT ⚔️🌸
 }
 }, {})
 
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      displayName: '📇 Creador del Bot',
-      contacts: [{ displayName: creador.nombre, vcard}]
-}
-}, { quoted: m})
-
-  await conn.sendMessage(m.chat, { text: mensaje}, { quoted: m})
-  await conn.relayMessage(m.chat, botonTanjiro.message, { messageId: botonTanjiro.key.id})
+  await conn.relayMessage(m.chat, menuButton.message, { messageId: menuButton.key.id})
 }
 
 handler.help = ['creador']
 handler.tags = ['main']
-handler.command = ['creador', 'owner', 'creator', 'dueño']
-handler.customPrefix = /^creador$|^owner$|^creator$|^dueño$/i
-handler.register = false
-handler.owner = false
-handler.limit = false
+handler.command = /^(owner|creator|creador|dueño)$/i
 
 export default handler
