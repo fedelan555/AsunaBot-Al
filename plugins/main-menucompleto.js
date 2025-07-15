@@ -31,7 +31,7 @@ const defaultMenu = {
 %readmore`.trimStart(),
 
   header: '%category\n',
-  body: 'ര ׄ %emoji ׅ %cmd %iscorazones %isPremium',
+  body: 'ര🌸 ׄ %cmd %iscorazones %isPremium',
   footer: '\n',
   after: ''
 }
