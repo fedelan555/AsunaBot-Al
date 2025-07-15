@@ -1,6 +1,3 @@
-<h1 align="center">⚔ 𝑻𝒂𝒏𝒋𝒊𝒓𝒐_𝑩𝒐𝒕 🌸</h1>
-<p align="center">
-  
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FF0000&lines=Bienvenido+al+Repositorio;Tanjiro+-+Bot;Gracias+por+preferirnos;Creado+por+fede;💥+BOOM!!!;🔥)](https://git.io/typing-svg)
 
 <p align="center">
