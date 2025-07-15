@@ -24,20 +24,6 @@ let handler = async (m, { conn}) => {
     [conn.user.jid.split('@')[0], '🌀 Tanjiro_Bot Oficial', packname, dev, correo, '🌕 Sistema Solar', channel, bioBot.status || 'Sin Biografía']
   ], m);
 
-  // Imagen + presentación decorativa
-  await conn.sendMessage(m.chat, {
-    image: { url: icono},
-    caption: `
-╭━━━ 🌸 CREADOR DE TANJIRO BOT ━╮
-┃ 🧑‍💻 Desarrollador: Fedexyz
-┃ 📧 Gmail: ${correo}
-┃ 📍 Región: Venezuela
-┃ 🔗 Proyecto: ${md}
-┃ 📡 Canal: ${channel}
-╰━━━━━━━━━━━━━━━━━━━━━━━━━━╯
-Tanjiro Bot — Respiración Digital Solar 🗡️`.trim()
-}, { quoted: m});
-
   // Producto promocional estilo WhatsApp Business
   await conn.sendMessage(jid, {
     product: {
