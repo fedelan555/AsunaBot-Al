@@ -4,12 +4,40 @@ import fetch from 'node-fetch';
 import { xpRange} from '../lib/levelling.js';
 
 const tags = {
-  group: '⛩️ DOJO DE BATALLA',
-  info: '📜 REGISTRO DEL PILAR',
-  media: '📥 DESCARGAS FLAMEANTES',
-  serbot: '🌀 RESPIRACIONES CLON',
-  sticker: '🎴 TÉCNICAS PEGADAS',
-  tools: '🛠️ HOJA DE ENTRENAMIENTO'
+  anime: '✨ Arte Demoníaco / ANIME',
+  juegos: '🎮 Entrenamiento en Lucha / JUEGOS',
+  main: '📜 Registro del Cazador / INFO',
+  ia: '🌀 Técnica de Lectura / IA',
+  search: '🔍 Rastreo de Oni / SEARCH',
+  game: '🕹️ Campo de Batalla / GAME',
+  serbot: '🧣 Resp. del Aliento / SUB BOTS',
+  rpg: '⚔️ Misiones Demon Slayers / RPG',
+  sticker: '🎴 Talismanes / STICKERS',
+  group: '⛩️ Dojo Hashira / GROUPS',
+  nable: '🔓 Brecha del Aura / ON / OFF',
+  premium: '💎 Pilar Legendario / PREMIUM',
+  downloader: '📥 Descarga Infernal / DOWNLOAD',
+  tools: '🛠️ Armas Nichirin / TOOLS',
+  fun: '🌸 Entrenamiento Mental / FUN',
+  nsfw: '🚫 Zona Prohibida / NSFW',
+  cmd: '📦 Registro Nezuko / DATABASE',
+  owner: '👑 Maestro Urokodaki / OWNER',
+  audio: '🔊 Resonancia Sonora / AUDIOS',
+  advanced: '🌌 Aliento Supremo / ADVANCED',
+  weather: '⛅ Clima Espiritual / WEATHER',
+  news: '📰 Noticias Hashira / NEWS',
+  finance: '💰 Economía del Dojo / FINANCE',
+  education: '📚 Escuela Kasugai / EDUCATION',
+  health: '🩺 Bienestar Shinobu / HEALTH',
+  entertainment: '🎭 Teatro del Mundo / ENTERTAINMENT',
+  sports: '🏃 Arte Corporal / SPORTS',
+  travel: '🧭 Ruta del Cazador / TRAVEL',
+  food: '🍱 Ración de Misiones / FOOD',
+  shopping: '🧺 Tienda del Cuervo / SHOPPING',
+  productivity: '📈 Disciplina Nichirin / PRODUCTIVITY',
+  social: '💬 Red Kasugai / SOCIAL',
+  security: '🛡️ Técnica de Protección / SECURITY',
+  custom: '🧩 Técnica Personalizada / CUSTOM'
 };
 
 let handler = async (m, { conn}) => {
