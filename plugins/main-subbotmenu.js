@@ -4,12 +4,12 @@ import fetch from 'node-fetch';
 import { xpRange} from '../lib/levelling.js';
 
 const tags = {
-  group: '⛩️ CONTROL DE DOJO',
-  info: '📜 INFO DEL CREADOR',
-  media: '📥 DESCARGAS',
+  group: '⛩️ DOJO DE BATALLA',
+  info: '📜 REGISTRO DEL PILAR',
+  media: '📥 DESCARGAS FLAMEANTES',
   serbot: '🌀 RESPIRACIONES CLON',
   sticker: '🎴 TÉCNICAS PEGADAS',
-  tools: '🛠️ HERRAMIENTAS'
+  tools: '🛠️ HOJA DE ENTRENAMIENTO'
 };
 
 let handler = async (m, { conn}) => {
@@ -34,34 +34,35 @@ let handler = async (m, { conn}) => {
 }));
 
     const tipoBot = conn.user?.jid === '5491137612743@s.whatsapp.net'
-? 'Bot Oficial 🌕'
-: 'Subbot Aliado 🌸';
+? '🌕 Pilar Supremo'
+: '🌸 Cazador Aliado';
 
     let menuText = `
-🌸︵‿︵‿︵‿︵‿︵‿︵‿︵🌸
-╭───● ☀️ Tanjiro Bot ☀️ ───●
-👥  *@${userId.split('@')[0]}*
-⏱ Tipo: *${tipoBot}*
-⚙ Modo: ${mode}
-✨ Nivel: ${level} • Exp: ${exp}/${xp}
-📚 Registro global: ${totalreg}
-⏱ Uptime: ${uptime}
-🌙 Comandos activos: ${totalCommands}
+🌸═════════════════════
+☀️ *TanjiroBot | Subbot Aliento de Agua* ☀️
+╭─── 🧣 Usuario: @${userId.split('@')[0]}
+├ ⚔️ Tipo: *${tipoBot}*
+├ 🔒 Modo: ${mode}
+├ ✨ Nivel: ${level} | Exp: ${exp}/${xp}
+├ 📚 Registro: ${totalreg}
+├ ⏱️ Tiempo activo: ${uptime}
+├ 📜 Comandos activos: ${totalCommands}
+╰─────────────────────
 
-“Respira profundo. Lucha con nobleza.”
-🌸 *MENÚ POR SECCIÓN:* ${readMore}`.trim();
+🗡️ “Respira… enfoca el alma. Protege, aunque duela.”${readMore}
+`.trim();
 
     for (let tag in tags) {
       const comandos = help.filter(menu => menu.tags.includes(tag));
       if (!comandos.length) continue;
 
-      menuText += `\n╭─🗡️ *${tags[tag]}* ${getRandomEmoji()}\n`;
+      menuText += `\n⛩️ *${tags[tag]}* ${getRandomEmoji()}\n`;
       menuText += comandos.map(menu =>
         menu.help.map(cmd =>
-          `🌙 ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
+          `🎴 ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
 ).join('\n')
 ).join('\n');
-      menuText += `╰──────────────────●`;
+      menuText += `\n═════════════════════`;
 }
 
     const imageTanjiro = 'https://files.catbox.moe/sbzc3p.jpg';
@@ -78,14 +79,14 @@ let handler = async (m, { conn}) => {
 }, { quoted: m});
 
 } catch (e) {
-    console.error('[✗] Error en subbotmenu:', e);
-    conn.reply(m.chat, '❎ El aliento se ha desvanecido... Error al cargar el menú.', m);
+    console.error('[✗] Error en TanjiroBot Submenu:', e);
+    conn.reply(m.chat, '💨 El aliento se desvaneció... no fue posible invocar el menú.', m);
 }
 };
 
 handler.help = ['menusub', 'subbotmenu'];
 handler.tags = ['main'];
-handler.command = ['subbotmenu', 'menusub', 'menualiado'];
+handler.command = ['subbotmenu', 'menusub', 'menutanjiro'];
 handler.register = false;
 export default handler;
 
