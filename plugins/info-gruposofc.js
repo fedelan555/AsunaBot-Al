@@ -20,7 +20,6 @@ https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 💮 Respira profundo. Comparte con convicción.`.trim();
 
   await conn.sendMessage(m.chat, {
-    image: { url: icono},
     caption: texto,
     buttons: [
       {
