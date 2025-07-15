@@ -5,13 +5,16 @@ let handler = async (m, { conn}) => {
   const jid = m.chat;
 
   const text = `
-🌸 Hola *${nombre}* (${numero})
-Soy *Fedexyz*, el creador del sistema *Tanjiro_Bot* 🗡️
-
-🤖 Este bot ofrece funciones avanzadas, seguridad, soporte y respiración solar digital para grupos y subbots.
-
-🔗 Contacto directo: https://wa.me/5491156178758
-💮 Gracias por apoyar GalaxyForge Community 協会
+🌸︵‿︵‿︵‿︵‿︵
+╭━━━ 🧩 CREADOR — TANJIRO BOT ━╮
+┃ 👤 Usuario: *${nombre}*
+┃ 📱 Número: https://wa.me/${numero}
+┃ 🧑‍💻 Desarrollador: *Fedexyz*
+┃ 📩 Gmail: *fedexyzbot@gmail.com*
+┃ 💮 Comunidad: GalaxyForge Community 協会
+┃ 🤖 Sistema de subbots estilo respiración solar
+┃ 🔗 WhatsApp: https://wa.me/5491156178758
+╰━━━━━━━━━━━━━━━━━━━━━━━╯
 `.trim();
 
   // Imagen + presentación
@@ -26,14 +29,14 @@ Soy *Fedexyz*, el creador del sistema *Tanjiro_Bot* 🗡️
     product: {
       productImage: { url: icono},
       title: "🌸 Tanjiro_Bot by Fedexyz",
-      description: "🤖 Alquila o compra Tanjiro_Bot para tus grupos. Incluye funciones avanzadas, sistema estable y soporte técnico personalizado.",
+      description: "🤖 Alquila o compra Tanjiro_Bot para tus grupos. Incluye funciones avanzadas, sistema estable, correo directo y soporte técnico personalizado.",
       currencyCode: "USD",
       priceAmount1000: 5000,
       retailerId: "TanjiroBot",
-      productId: "24502048122733040",
+      productId: "24407065218931451",
       productImageCount: 1
 },
-    businessOwnerJid: "5491156278758@s.whatsapp.net"
+    businessOwnerJid: "5491156178758@s.whatsapp.net"
 }, { messageType: 'product'});
 };
 
