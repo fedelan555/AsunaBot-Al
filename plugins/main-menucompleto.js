@@ -20,10 +20,19 @@ const defaultMenu = {
   after: ''
 }
 
-let tags = {
-  main: textTanjiro('sistema del cazador'),
-  group: textTanjiro('control de dojo'),
-  serbot: textTanjiro('respiraciones clones')
+const tags = {
+  main: '☁️𐅹 *𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅*',
+  info: '🍮𐅹 *𝖨𝗇𝖿𝗈 del 𝖡𝗈𝗍*',
+  group: '🍵𐅹 *𝖦𝗋𝗎𝗉𝗈𝗌 y 𝖠𝖽𝗆𝗂𝗇*',
+  serbot: '🧣𐅹 *𝖲𝗎𝖻𝗕𝗈𝗍𝖲 disponibles*',
+  tools: '🛠️𐅹 *𝖳𝗈𝗈𝗅𝗌 útiles*',
+  sticker: '🫓𐅹 *𝖲𝗍𝗂𝖼𝗄𝖾𝗋𝗌 mágicos*',
+  search: '🔍𐅹 *𝖡𝗎𝖲𝗊𝗎𝖾𝖽𝖺𝖲*',
+  rpg: '🗡️𐅹 *𝖱𝖯𝖦 técnicas*',
+  anime: '🍙𐅹 *𝖠𝗇𝗂𝗆𝖾 𝖬𝗈𝖽𝗎𝗅𝗈*',
+  fun: '🍫𐅹 *𝖣𝗂𝗏𝗂𝖾𝗋𝗍𝖾𝖙𝖾*',
+  nsfw: '🪼𐅹 *𝖬𝖺𝗍𝖾𝗋𝗂𝖺𝗅 restringido*',
+  owner: '👑𐅹 *𝖢𝗋𝗂𝗌𝖾𝗌 y soporte*'
 }
 let handler = async (m, { conn, usedPrefix: _p}) => {
   try {
