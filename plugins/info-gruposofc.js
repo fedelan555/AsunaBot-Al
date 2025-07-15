@@ -1,47 +1,43 @@
-const handler = async (m, { conn}) => {
+let handler = async (m, { conn}) => {
+  const nombre = await conn.getName(m.sender);
+  const numero = m.sender.split('@')[0];
+  const icono = 'https://files.catbox.moe/sbzc3p.jpg';
+
+  const texto = `
+🌸 Hola *${nombre}*, bienvenido a la comunidad Tanjiro Bot 🌕
+
+📡 *Canal Oficial:*
+https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
+
+👥 *Grupos Oficiales:*
+- Tanjiro Clan Dojo: https://chat.whatsapp.com/FUoKxlGZ6fOLjH2GhMrA4E
+- Subbots Community: https://chat.whatsapp.com/GfBTA3pYHxn8cPoVdCSLkn
+
+🧑‍💻 *Creador Oficial:*
+- Fedexyz: https://wa.me/5491156178758
+- Gmail: fedexyzbot@gmail.com
+- Proyecto: https://github.com/Fedexyz/TanjiroBot
+
+💮 Respira profundo. Comparte con convicción.`.trim();
+
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/sbzc3p.jpg'}, // imagen decorativa de Tanjiro Bot
-    caption: global.GruposCFC,
+    image: { url: icono},
+    caption: texto,
     buttons: [
       {
-        buttonId: '#menucompleto',
-        buttonText: { displayText: '🌸 MENU COMPLETO'},
-        type: 1
+        name: 'cta_url',
+        buttonParamsJson: JSON.stringify({
+          display_text: '🎵 Ver TikTok Oficial',
+          url: 'https://www.tiktok.com/@fedexyzbot',
+          merchant_url: 'https://www.tiktok.com/@fedexyzbot'
+})
 }
-    
     ],
     viewOnce: true
-}, { quoted: m})
-}
+}, { quoted: m});
+};
 
-handler.command = /^(grupos|links|grupobot)$/i
-export default handler
-
-global.GruposCFC = `
-🗡️ *TANJIRO BOT — CUENTAS OFICIALES*
-
-╭─❖ *Cuentas Oficiales* ─╮
-│
-│ 🌀 *Canal GalaxyForge*
-│   ➤ https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
-│
-│ 🌟 *Comunidad Oficial*
-│   ➤ https://chat.whatsapp.com/NADA_XD
-│
-│ 🧩 *GitHub del creador*
-│   ➤ https://github.com/fedelan555
-│
-│ 🎶 *TikTok*
-│   ➤ https://www.tiktok.com/@frases_isagi
-│
-│ 📮 *Email*
-│   ➤ fedelanyt20@gmail.com
-│
-│ 🎴 *Contacto directo*
-│   ➤ wa.me/5491156178758
-╰────────────────────────╯
-
-🌸 *Tanjiro Bot* respira honor, estética y energía.
-Unirse es como desbloquear una nueva forma de luchar.
-🎩 *Powered by Fedexyz*
-`
+handler.command = ['grupos', 'l8nkw', 'grupofc'];
+handler.tags = ['info'];
+handler.help = ['grupos'];
+export default handler;
