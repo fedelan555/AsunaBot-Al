@@ -1,29 +1,22 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
-  // 🌸 Datos empresariales y espirituales
   let contacto = '+5491156178758';
-  let nombreEmpresarial = 'TanjiroBot 🌸 Aliento de Confianza';
+  let nombreEmpresarial = 'fedexyz Tanjiro_Bot';
   let mensaje = `
-🧣 *Contacto Empresarial: ${nombreEmpresarial}*
+📇 *Contacto Empresarial: ${nombreEmpresarial}*
 
-🕯️ Con respeto y nobleza, este es el canal oficial para contactar al equipo de desarrollo, soporte técnico, o gestionar la integración del *TanjiroBot* en tu grupo.
+Hola 👋, este es el número oficial para consultas, soporte técnico, colaboraciones o integración de nuestro bot a tu grupo.
 
-💬 Puedes enviar un mensaje directo a:
+💬 Puedes escribir directamente a:
 📞 *${contacto}*
-🌐 Enlace: https://wa.me/${contacto.replace('+', '')}
+🌐 Enlace directo: https://wa.me/${contacto.replace('+', '')}
 
-⛩️ Por favor, indica claramente el motivo de tu solicitud:
-- 🗡️ Tipo de grupo
-- 📍 País o región
-- 🎴 Razón de integración (Soporte / Colaboración / Partner)
-
-🌸 _TanjiroBot promueve la armonía, el respeto y el buen uso de la tecnología._
+🎩 Solo mánda mensaje si es algo importante...
 `;
 
   try {
-    // 🖼️ Imagen representativa de Tanjiro estilo Business
-    const res = await fetch("https://files.catbox.moe/44qt5t.jpg"); // Cambia si deseas otro banner
+    const res = await fetch("https://files.catbox.moe/lpragp.jpg");
     const buffer = await res.buffer();
 
     await conn.sendMessage(m.chat, {
@@ -33,18 +26,17 @@ let handler = async (m, { conn}) => {
         mentionedJid: [m.sender],
         forwardingScore: 999,
         isForwarded: true,
-        businessMessageForwardedFrom: 'TanjiroBot Enterprise 🌸'
+        businessMessageForwardedFrom: 'WhatsApp Business Oficial'
 }
 }, { quoted: m});
-
 } catch (e) {
-    console.error('[❌] Error al enviar contacto TanjiroBot:', e);
-    m.reply('🚫 El aliento se ha desvanecido... no fue posible mostrar el contacto en este momento.');
+    console.error('[❌] Error al enviar contacto empresarial:', e);
+    m.reply('🚫 No se pudo mostrar la información de contacto en este momento.');
 }
 };
 
-handler.help = ['owner', 'creador', 'tanjirobusiness'];
+handler.help = ['owner', 'creador', 'business'];
 handler.tags = ['main'];
-handler.command = ['owner', 'creator', 'creador', 'business', 'tanjiroempresa'];
+handler.command = ['owner', 'creator', 'creador', 'business', 'empresa'];
 
 export default handler;
