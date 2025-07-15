@@ -4,25 +4,42 @@ import fetch from 'node-fetch';
 import { xpRange} from '../lib/levelling.js';
 
 const tags = {
-    '☁️𐅹 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅': ['menu', 'help', 'estado'],
-    '👑𐅹 𝖢𝗋𝖾𝖺𝖽𝗈𝗋': ['owner', 'creator', 'report'],
-    '🧣𐅹 𝖲𝗎𝖻𝗕𝗈𝗍𝗌': ['jadibot', 'listjadibot'],
-    '⛩️𐅹 𝖦𝗋𝗎𝗉𝗈𝗌': ['welcome', 'group', 'promote'],
-    '🍙𐅹 𝖠𝗇𝗂𝗆𝖾': ['anime', 'waifu', 'manga'],
-    '🗡️𐅹 𝖱𝖯𝖦': ['mine', 'adventure'],
-    '🌀𐅹 𝖨𝖠': ['chatgpt', 'brainai'],
-    '🔍𐅹 𝖲𝖾𝖺𝗋𝖼𝗁': ['google', 'ytsearch'],
-    '📦𐅹 𝖣𝖠𝖳𝖠𝖡𝖠𝖲𝖤': ['blockcmd', 'unblockcmd'],
-    '📥𐅹 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽': ['play', 'tiktok'],
-    '🎭𐅹 𝖥𝗎𝗇': ['meme', 'ship'],
-    '🚫𐅹 𝖭𝗌𝖿𝗐': ['nsfw', 'hentai'],
-    '💎𐅹 𝖯𝗋𝖾𝗆𝗂𝗎𝗆': ['premiumlist', 'premiumadd'],
-    '🛠️𐅹 𝖳𝗈𝗈𝗅𝗌': ['calc', 'shortlink'],
-    '🔊𐅹 𝖠𝗎𝖽𝗂𝗈𝗌': ['audios', 'bass'],
-    '🌌𐅹 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝗌': ['ban', 'join'],
-    '🛡️𐅹 𝖲𝖾𝗀𝗎𝗋𝗂𝖽𝖺𝗱': ['antifake', 'antispam'],
-    '🧩𐅹 𝖢𝗎𝗌𝗍𝗈𝗆': ['setname', 'setbanner']
+  anime: '✨ Arte Demoníaco / ANIME',
+  juegos: '🎮 Entrenamiento en Lucha / JUEGOS',
+  main: '📜 Registro del Cazador / INFO',
+  ia: '🌀 Técnica de Lectura / IA',
+  search: '🔍 Rastreo de Oni / SEARCH',
+  game: '🕹️ Campo de Batalla / GAME',
+  serbot: '🧣 Resp. del Aliento / SUB BOTS',
+  rpg: '⚔️ Misiones Demon Slayers / RPG',
+  sticker: '🎴 Talismanes / STICKERS',
+  group: '⛩️ Dojo Hashira / GROUPS',
+  nable: '🔓 Brecha del Aura / ON / OFF',
+  premium: '💎 Pilar Legendario / PREMIUM',
+  downloader: '📥 Descarga Infernal / DOWNLOAD',
+  tools: '🛠️ Armas Nichirin / TOOLS',
+  fun: '🌸 Entrenamiento Mental / FUN',
+  nsfw: '🚫 Zona Prohibida / NSFW',
+  cmd: '📦 Registro Nezuko / DATABASE',
+  owner: '👑 Maestro Urokodaki / OWNER',
+  audio: '🔊 Resonancia Sonora / AUDIOS',
+  advanced: '🌌 Aliento Supremo / ADVANCED',
+  weather: '⛅ Clima Espiritual / WEATHER',
+  news: '📰 Noticias Hashira / NEWS',
+  finance: '💰 Economía del Dojo / FINANCE',
+  education: '📚 Escuela Kasugai / EDUCATION',
+  health: '🩺 Bienestar Shinobu / HEALTH',
+  entertainment: '🎭 Teatro del Mundo / ENTERTAINMENT',
+  sports: '🏃 Arte Corporal / SPORTS',
+  travel: '🧭 Ruta del Cazador / TRAVEL',
+  food: '🍱 Ración de Misiones / FOOD',
+  shopping: '🧺 Tienda del Cuervo / SHOPPING',
+  productivity: '📈 Disciplina Nichirin / PRODUCTIVITY',
+  social: '💬 Red Kasugai / SOCIAL',
+  security: '🛡️ Técnica de Protección / SECURITY',
+  custom: '🧩 Técnica Personalizada / CUSTOM'
 };
+
 let handler = async (m, { conn}) => {
   try {
     const userId = m.sender;
@@ -49,8 +66,10 @@ let handler = async (m, { conn}) => {
 : '🌸 Cazador Aliado';
 
     let menuText = `
+🪼𐅹
+≡≡≡
 🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
-会 𝖬𝖾𝗇𝗎 TanjiroBot 会
+会 𝖬𝖾𝗇𝗎 𝖣𝖾𝖼𝗈𝗋𝖺𝖽𝗈 TanjiroBot 会
 
 ╭─ 🎋 𝖴𝗌𝗎𝖺𝗋𝗂𝗈: @${userId.split('@')[0]}
 ├ ⚔️ 𝖳𝗂𝗉𝗈: ${tipoBot}
@@ -61,7 +80,7 @@ let handler = async (m, { conn}) => {
 ├ 📜 𝖢𝗈𝗆𝖺𝗇𝖽𝗈𝗌: ${totalCommands}
 ╰──────────────────────────
 
-🗡️ “𝖱𝖾𝗌𝗉𝗂𝗋𝖺 𝗉𝗋𝗈𝖿𝗎𝗇𝖽𝗈. 𝖫𝗎𝖈𝗁𝖺 𝖼𝗈𝗇 𝗁𝗈𝗇𝗈𝗋.” ${readMore}
+🗡️ “Respira… enfoca el alma. Protege, aunque duela.”${readMore}
 `.trim();
 
     for (let tag in tags) {
@@ -115,4 +134,4 @@ function clockString(ms) {
 function getRandomEmoji() {
   const emojis = ['🌸', '🗡️', '💮', '🌀', '🌞'];
   return emojis[Math.floor(Math.random() * emojis.length)];
-                                              }
+        }
