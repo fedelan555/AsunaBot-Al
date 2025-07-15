@@ -22,11 +22,12 @@ const defaultMenu = {
 ☕ ᪲  *𝖠𝗅 𝗆𝖾𝗇𝗎 𝖽𝖾 𝖳𝖺𝗇𝗃𝗂𝗋𝗈 𝖡𝗈𝗍* ✿𝆬
 ス  *𝖼𝗋𝖾𝖺𝖽𝗈 𝗉𝗈𝗋 ꒰ ꜰᴇᴅᴇ.xʏᴢ ꒱* 🍮
 
-🍡 *𝖠𝖼𝗍𝗂𝗏𝖺 ➫*  %muptime
-🍙 *𝖯𝖺𝗂𝗌 ➫* `%userNationality
-🍫 *𝖯𝗋𝖾𝖿𝗂𝗃𝗈 ➫*  < %_p>
-🍩 *𝖴𝗌𝗎𝖺𝗋𝗂𝗈𝗌 ➫* %totalreg
-🍜 *𝖢𝗈𝗆𝖺𝗇𝖽𝗈𝗌 ➫* %totalf
+👤 Usuario: *%name*
+⚔  *ʙᴏᴛ*: ${(conn.user.jid == global.conn.user.jid ? '`ᴏғɪᴄɪᴀʟ 🅞`' : '`sᴜʙ - ʙᴏᴛ 🅢`')}
+🌟 Exp: %exp/%maxexp
+🌐 Modo: %mode
+👥 Registro: %totalreg
+⏳ Tiempo activo: %muptime
 %readmore`.trimStart(),
 
   header: '%category\n',
