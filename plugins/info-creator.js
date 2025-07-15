@@ -6,7 +6,7 @@ let handler = async (m, { conn}) => {
   let mensaje = `
 📇 *Contacto Empresarial: ${nombreEmpresarial}*
 
-Hola 👋, este es el número oficial para consultas, soporte técnico, colaboraciones o integración de nuestro bot a tu grupo.
+Hola 👋, este es el número oficial, Si deseas unír el bot a tu grupo manda mensaje al creador.
 
 💬 Puedes escribir directamente a:
 📞 *${contacto}*
