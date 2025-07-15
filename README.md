@@ -2,7 +2,12 @@
 <p align="center">
   
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=FF0000&lines=Bienvenido+al+Repositorio;Tanjiro+-+Bot;Gracias+por+preferirnos;Creado+por+fede;💥+BOOM!!!;🔥)](https://git.io/typing-svg)
-![Tanjiro](https://files.catbox.moe/yzl2d9.jpg)
+
+<p align="center">
+  <img src="https://files.catbox.moe/yzl2d9.jpg" alt="Tanjiro_Bot Banner" width="100%"/>
+</p>
+
+<h1 align="center">🌙 Tanjiro_Bot - WhatsApp Multi-Device</h1>
 
   
 ![line](https://github.com/AnderMendoza/AnderMendoza/raw/main/assets/line-neon.gif)
