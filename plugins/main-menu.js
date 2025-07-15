@@ -31,7 +31,7 @@ let handler = async (m, { conn}) => {
 │ ✐ ୨🌸୧˚ *CANAL OFICIAL*
 │   https://bit.ly/GalaxyForge_Canal
 ╰─────────────────●
-> Si no funciona el menú en los subbots usa *#menusub*
+> Si el menu principal del bot no funciona en los subbots usa *#Menusub*
 
 
 ୨🌸୧˚ PARA SER PARTE DEL BOT USA *#CODE* O *#QR*
