@@ -24,11 +24,11 @@ let handler = async (m, { conn}) => {
 ╭┈──☆
 ├ メ˚ Tiempo activo: ${muptime}
 │
-├ メ˚ *Creador Oficial*
+├ メ˚ Creador Oficial
 │   https://wa.me/5491156178758
-├ メ˚ *Comunidad Oficial*
+├ メ˚ Comunidad Oficial
 │   https://bit.ly/GalaxyForge_Unit
-├ メ˚ *Canal Oficial*
+├ メ˚ Canal Oficial
 │   https://bit.ly/GalaxyForge_Canal
 ╰─────────────────☆
 > Si el menu principal del bot no funciona en los subbots usa *#Menusub*
