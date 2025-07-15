@@ -24,22 +24,6 @@ let handler = async (m, { conn}) => {
     [conn.user.jid.split('@')[0], '🌀 Tanjiro_Bot Oficial', packname, dev, correo, '🌕 Sistema Solar', channel, bioBot.status || 'Sin Biografía']
   ], m);
 
-  // Producto promocional estilo WhatsApp Business
-  await conn.sendMessage(jid, {
-    product: {
-      productImage: { url: icono},
-      title: "🌸 Tanjiro_Bot - by Fedexyz",
-      description: "🤖 Alquila o compra Tanjiro_Bot para tus grupos. Incluye funciones avanzadas, sistema estable y soporte técnico personalizado.",
-      currencyCode: "pesos",
-      priceAmount1000: 4000,
-      retailerId: "Tanjiro_Bot",
-      productId: "24407065218931451",
-      productImageCount: 1
-},
-    businessOwnerJid: "5491156178758@s.whatsapp.net"
-}, { messageType: 'product'});
-};
-
 handler.help = ['creador', 'developer', 'owner'];
 handler.tags = ['info'];
 handler.command = ['creador', 'creator', 'fedexyz', 'dueño'];
