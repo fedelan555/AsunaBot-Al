@@ -21,20 +21,20 @@ let handler = async (m, { conn}) => {
     let intro = `
 𝐇𝐨𝐥𝐚 ${name}! s𝐨𝐲 *꒷Tanjiro_Botദ*
 
-╭┈──●
-├ ୨🌸୧˚ Tiempo activo: ${muptime}
+╭┈──☆
+├ メ˚ Tiempo activo: ${muptime}
 │
-├ ୨🌸୧˚ *CREADOR OFC*
+├ メ˚ *CREADOR OFC*
 │   https://wa.me/5491156178758
-├ ୨🌸୧˚ *COMUNIDAD OFICIAL*
+├ メ˚ *COMUNIDAD OFICIAL*
 │   https://bit.ly/GalaxyForge_Unit
-├ ୨🌸୧˚ *CANAL OFICIAL*
+├ メ˚ *CANAL OFICIAL*
 │   https://bit.ly/GalaxyForge_Canal
-╰─────────────────●
+╰─────────────────☆
 > Si el menu principal del bot no funciona en los subbots usa *#Menusub*
 
 
-🌸 Si deseas ser parte del bot usa *#code* o *#Qr*
+乂 Si deseas ser parte del bot usa *#code* o *#Qr*
 🌕 “Respira profundo. Lucha con honor.”
 `.trim()
 
