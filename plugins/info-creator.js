@@ -23,7 +23,7 @@ let handler = async (m, { conn}) => {
 
   try {
     // 🖼️ Imagen representativa de Tanjiro estilo Business
-    const res = await fetch("https://files.catbox.moe/lpragp.jpg"); // Cambia si deseas otro banner
+    const res = await fetch("https://files.catbox.moe/44qt5t.jpg"); // Cambia si deseas otro banner
     const buffer = await res.buffer();
 
     await conn.sendMessage(m.chat, {
