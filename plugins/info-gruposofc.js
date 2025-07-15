@@ -21,19 +21,6 @@ https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 
   await conn.sendMessage(m.chat, {
     caption: texto,
-    buttons: [
-      {
-        name: 'cta_url',
-        buttonParamsJson: JSON.stringify({
-          display_text: '🎵 Ver TikTok Oficial',
-          url: 'https://www.tiktok.com/@fedexyzbot',
-          merchant_url: 'https://www.tiktok.com/@fedexyzbot'
-})
-}
-    ],
-    viewOnce: true
-}, { quoted: m});
-};
 
 handler.command = ['grupos', 'l8nkw', 'grupofc'];
 handler.tags = ['info'];
