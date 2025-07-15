@@ -16,7 +16,7 @@ Hola 👋, este es el número oficial para consultas, soporte técnico, colabora
 `;
 
   try {
-    const res = await fetch("https://files.catbox.moe/l1ahc0.jpg");
+    const res = await fetch("https://files.catbox.moe/lpragp.jpg");
     const buffer = await res.buffer();
 
     await conn.sendMessage(m.chat, {
