@@ -33,9 +33,9 @@ const handler = async (m) => {
   m.reply(`🎙️ *Asuna (${modoReal.toUpperCase()})*: ${frase}`);
 };
 
-handler.command = ['asuna', 'asunahabla', 'asuna-habla'];
+handler.command = ['Tanjiro', 'Tanjirohabla', 'Tanjiro-habla'];
 handler.tags = ['fun'];
-handler.help = ['asuba', 'asuna-habla'];
+handler.help = ['Tanjiro', 'Tanjiro-habla'];
 handler.register = true;
 
 export default handler;
