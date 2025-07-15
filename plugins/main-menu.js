@@ -24,11 +24,15 @@ let handler = async (m, { conn}) => {
 ╭┈──●
 │ ✐ ୨🌸୧˚ Tiempo activo: ${muptime}
 │
-│ ✐ ୨🌸୧˚ CREADOR OFC
+│ ✐ ୨🌸୧˚ *CREADOR OFC*
 │   https://wa.me/5491156178758
-│ ✐ ୨🌸୧˚ GALAXYFORGE UNIT
+│✐୨🌸୧˚ *COMUNIDAD OFICIAL*
+│   https://chat.whatsapp.com/LeyehAjo6vf35PRL6YrqYv
+│ ✐ ୨🌸୧˚ *GALAXYFORGE UNIT*
 │   https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
 ╰─────────────────●
+> Si no funciona el menú en los subbots usa *#menusub*
+
 
 ୨🌸୧˚ PARA SER PARTE DEL BOT USA *#CODE* O *#QR*
 
