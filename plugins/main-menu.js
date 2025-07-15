@@ -28,8 +28,8 @@ let handler = async (m, { conn}) => {
 │   https://wa.me/5491156178758
 │  ✐୨🌸୧˚ *COMUNIDAD OFICIAL*
 │   https://bit.ly/GalaxyForge_Unit
-│ ✐ ୨🌸୧˚ *GALAXYFORGE UNIT*
-│   https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
+│ ✐ ୨🌸୧˚ *CANAL OFICIAL*
+│   https://bit.ly/GalaxyForge_Canal
 ╰─────────────────●
 > Si no funciona el menú en los subbots usa *#menusub*
 
