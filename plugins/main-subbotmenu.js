@@ -39,7 +39,7 @@ let handler = async (m, { conn}) => {
 
     let menuText = `
 🌸︵‿︵‿︵‿︵‿︵‿︵‿︵🌸
-╭━━━● ☀️ Tanjiro Bot ☀️ ━━●
+╭───● ☀️ Tanjiro Bot ☀️ ───●
 👥  *@${userId.split('@')[0]}*
 ⏱ Tipo: *${tipoBot}*
 ⚙ Modo: ${mode}
@@ -58,10 +58,10 @@ let handler = async (m, { conn}) => {
       menuText += `\n╭─🗡️ *${tags[tag]}* ${getRandomEmoji()}\n`;
       menuText += comandos.map(menu =>
         menu.help.map(cmd =>
-          `│ ✦ ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
+          `🌙 ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
 ).join('\n')
 ).join('\n');
-      menuText += `╰──────────────────────╯`;
+      menuText += `╰──────────────────●`;
 }
 
     const imageTanjiro = 'https://files.catbox.moe/sbzc3p.jpg';
@@ -83,9 +83,9 @@ let handler = async (m, { conn}) => {
 }
 };
 
-handler.help = ['subbotmenu'];
+handler.help = ['menusub', 'subbotmenu'];
 handler.tags = ['main'];
-handler.command = ['subbotmenu', 'aliadomenu', 'menualiado'];
+handler.command = ['subbotmenu', 'menusub', 'menualiado'];
 handler.register = false;
 export default handler;
 
