@@ -1,21 +1,71 @@
-let handler = async (m, { conn, usedPrefix}) => {
-  const userId = m.sender;
-  const user = global.db.data.users[userId] || {};
-  const name = await conn.getName(userId);
-  const uptime = clockString(process.uptime() * 1000);
-  const mode = global.opts.self? 'Privado 🔒': 'Público 🌐';
-  const totalreg = Object.keys(global.db.data.users).length;
-  const totalCommands = Object.keys(global.plugins).length;
-  const { exp = 0, level = 0} = user;
-  const { min, xp} = xpRange(level, global.multiplier || 1);
+import pkg from '@whiskeysockets/baileys';
+const { prepareWAMessageMedia} = pkg;
+import fetch from 'node-fetch';
+import { xpRange} from '../lib/levelling.js';
 
-  const tipoBot = conn.user?.jid === '5491137612743@s.whatsapp.net'
-? '🌕 𝖯𝗂𝗅𝖺𝗋 Supremo'
-: '🌸 𝖢𝖺𝗓𝖺𝖽𝗈𝗋 Aliado';
+const tags = {
+  anime: '✨ Arte Demoníaco / ANIME',
+  juegos: '🎮 Entrenamiento en Lucha / JUEGOS',
+  main: '📜 Registro del Cazador / INFO',
+  ia: '🌀 Técnica de Lectura / IA',
+  search: '🔍 Rastreo de Oni / SEARCH',
+  game: '🕹️ Campo de Batalla / GAME',
+  serbot: '🧣 Resp. del Aliento / SUB BOTS',
+  rpg: '⚔️ Misiones Demon Slayers / RPG',
+  sticker: '🎴 Talismanes / STICKERS',
+  group: '⛩️ Dojo Hashira / GROUPS',
+  nable: '🔓 Brecha del Aura / ON / OFF',
+  premium: '💎 Pilar Legendario / PREMIUM',
+  downloader: '📥 Descarga Infernal / DOWNLOAD',
+  tools: '🛠️ Armas Nichirin / TOOLS',
+  fun: '🌸 Entrenamiento Mental / FUN',
+  nsfw: '🚫 Zona Prohibida / NSFW',
+  cmd: '📦 Registro Nezuko / DATABASE',
+  owner: '👑 Maestro Urokodaki / OWNER',
+  audio: '🔊 Resonancia Sonora / AUDIOS',
+  advanced: '🌌 Aliento Supremo / ADVANCED',
+  weather: '⛅ Clima Espiritual / WEATHER',
+  news: '📰 Noticias Hashira / NEWS',
+  finance: '💰 Economía del Dojo / FINANCE',
+  education: '📚 Escuela Kasugai / EDUCATION',
+  health: '🩺 Bienestar Shinobu / HEALTH',
+  entertainment: '🎭 Teatro del Mundo / ENTERTAINMENT',
+  sports: '🏃 Arte Corporal / SPORTS',
+  travel: '🧭 Ruta del Cazador / TRAVEL',
+  food: '🍱 Ración de Misiones / FOOD',
+  shopping: '🧺 Tienda del Cuervo / SHOPPING',
+  productivity: '📈 Disciplina Nichirin / PRODUCTIVITY',
+  social: '💬 Red Kasugai / SOCIAL',
+  security: '🛡️ Técnica de Protección / SECURITY',
+  custom: '🧩 Técnica Personalizada / CUSTOM'
+};
 
-  const readMore = String.fromCharCode(8206).repeat(4001);
+let handler = async (m, { conn}) => {
+  try {
+    const userId = m.sender;
+    const user = global.db.data.users[userId] || {};
+    const name = await conn.getName(userId);
+    const mode = global.opts.self? 'Privado 🔒': 'Público 🌐';
+    const totalCommands = Object.keys(global.plugins).length;
+    const totalreg = Object.keys(global.db.data.users).length;
+    const uptime = clockString(process.uptime() * 1000);
+    const { exp = 0, level = 0} = user;
+    const { min, xp} = xpRange(level, global.multiplier || 1);
 
-  let menuText = `
+    const help = Object.values(global.plugins)
+.filter(p =>!p.disabled)
+.map(p => ({
+        help: Array.isArray(p.help)? p.help: (p.help? [p.help]: []),
+        tags: Array.isArray(p.tags)? p.tags: (p.tags? [p.tags]: []),
+        limit: p.limit,
+        premium: p.premium
+}));
+
+    const tipoBot = conn.user?.jid === '5491137612743@s.whatsapp.net'
+? '🌕 Pilar Supremo'
+: '🌸 Cazador Aliado';
+
+    let menuText = `
 🪼𐅹
 ≡≡≡
 🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
@@ -31,61 +81,57 @@ let handler = async (m, { conn, usedPrefix}) => {
 ╰──────────────────────────
 
 🗡️ “𝖱𝖾𝗌𝗉𝗂𝗋𝖺 𝗉𝗋𝗈𝖿𝗎𝗇𝖽𝗈. 𝖫𝗎𝖈𝗁𝖺 𝖼𝗈𝗇 𝗁𝗈𝗇𝗈𝗋.”${readMore}
-`;
+`.trim();
 
-  const sections = {
-    '☁️𐅹 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅': ['menu', 'help', 'estado'],
-    '👑𐅹 𝖢𝗋𝖾𝖺𝖽𝗈𝗋': ['owner', 'creator', 'report'],
-    '🧣𐅹 𝖲𝗎𝖻𝗕𝗈𝗍𝗌': ['jadibot', 'listjadibot'],
-    '⛩️𐅹 𝖦𝗋𝗎𝗉𝗈𝗌': ['welcome', 'group', 'promote'],
-    '🍙𐅹 𝖠𝗇𝗂𝗆𝖾': ['anime', 'waifu', 'manga'],
-    '🗡️𐅹 𝖱𝖯𝖦': ['mine', 'adventure'],
-    '🌀𐅹 𝖨𝖠': ['chatgpt', 'brainai'],
-    '🔍𐅹 𝖲𝖾𝖺𝗋𝖼𝗁': ['google', 'ytsearch'],
-    '📦𐅹 𝖣𝖠𝖳𝖠𝖡𝖠𝖲𝖤': ['blockcmd', 'unblockcmd'],
-    '📥𐅹 𝖣𝗈𝗐𝗇𝗅𝗈𝖺𝖽': ['play', 'tiktok'],
-    '🎭𐅹 𝖥𝗎𝗇': ['meme', 'ship'],
-    '🚫𐅹 𝖭𝗌𝖿𝗐': ['nsfw', 'hentai'],
-    '💎𐅹 𝖯𝗋𝖾𝗆𝗂𝗎𝗆': ['premiumlist', 'premiumadd'],
-    '🛠️𐅹 𝖳𝗈𝗈𝗅𝗌': ['calc', 'shortlink'],
-    '🔊𐅹 𝖠𝗎𝖽𝗂𝗈𝗌': ['audios', 'bass'],
-    '🌌𐅹 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝗌': ['ban', 'join'],
-    '🛡️𐅹 𝖲𝖾𝗀𝗎𝗋𝗂𝖽𝖺𝗱': ['antifake', 'antispam'],
-    '🧩𐅹 𝖢𝗎𝗌𝗍𝗈𝗆': ['setname', 'setbanner']
-};
+    for (let tag in tags) {
+      const comandos = help.filter(menu => menu.tags.includes(tag));
+      if (!comandos.length) continue;
 
-  for (let category in sections) {
-    menuText += `\n${category}\n`;
-    menuText += sections[category].map(cmd => `🎴 ${usedPrefix + cmd}`).join('\n');
-    menuText += `\n≡≡≡≡≡≡≡≡≡≡≡`;
+      menuText += `\n⛩️ *${tags[tag]}* ${getRandomEmoji()}\n`;
+      menuText += comandos.map(menu =>
+        menu.help.map(cmd =>
+          `🎴 ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
+).join('\n')
+).join('\n');
+      menuText += `\n═════════════════════`;
 }
 
-  const image = 'https://files.catbox.moe/sbzc3p.jpg';
-  const buffer = await (await fetch(image)).buffer();
+    const imageTanjiro = 'https://files.catbox.moe/sbzc3p.jpg';
+    const imageBuffer = await (await fetch(imageTanjiro)).buffer();
 
-  await conn.sendMessage(m.chat, {
-    image: buffer,
-    caption: menuText,
-    buttons: [
-      {
-        buttonId: `${usedPrefix}info`,
-        buttonText: { displayText: '🧣 VER INFO'},
-        type: 1
+    await conn.sendMessage(m.chat, {
+      image: imageBuffer,
+      caption: menuText,
+      contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true
 }
-    ],
-    viewOnce: true
 }, { quoted: m});
+
+} catch (e) {
+    console.error('[✗] Error en TanjiroBot Submenu:', e);
+    conn.reply(m.chat, '💨 El aliento se desvaneció... no fue posible invocar el menú.', m);
+}
 };
 
 handler.help = ['menusub', 'subbotmenu'];
 handler.tags = ['main'];
-handler.command = ['menusub', 'subbotmenu'];
+handler.command = ['subbotmenu', 'menusub', 'menutanjiro'];
 handler.register = false;
 export default handler;
 
+const more = String.fromCharCode(8206);
+const readMore = more.repeat(4001);
+
 function clockString(ms) {
-  const h = Math.floor(ms / 3600000);
-  const m = Math.floor(ms / 60000) % 60;
-  const s = Math.floor(ms / 1000) % 60;
+  let h = Math.floor(ms / 3600000);
+  let m = Math.floor(ms / 60000) % 60;
+  let s = Math.floor(ms / 1000) % 60;
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
 }
+
+function getRandomEmoji() {
+  const emojis = ['🌸', '🗡️', '💮', '🌀', '🌞'];
+  return emojis[Math.floor(Math.random() * emojis.length)];
+                                              }
