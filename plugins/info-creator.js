@@ -1,38 +1,43 @@
-const handler = async (m, { conn}) => {
+let handler = async (m, { conn}) => {
+  const nombre = await conn.getName(m.sender);
+  const numero = m.sender.split('@')[0];
+  const icono = 'https://files.catbox.moe/sbzc3p.jpg'; // imagen estilo Tanjiro
+  const jid = m.chat;
+
+  const text = `
+🌸 Hola *${nombre}* (${numero})
+Soy *Fedexyz*, el creador del sistema *Tanjiro_Bot* 🗡️
+
+🤖 Este bot ofrece funciones avanzadas, seguridad, soporte y respiración solar digital para grupos y subbots.
+
+🔗 Contacto directo: https://wa.me/5491156178758
+💮 Gracias por apoyar GalaxyForge Community 協会
+`.trim();
+
+  // Imagen + presentación
   await conn.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/yzl2d9.jpg'}, // imagen del perfil del creador
-    caption: global.CreadorTanjiro,
-    buttons: [
-      {
-        buttonId: '#menucompleto',
-        buttonText: { displayText: '🌸 MENU COMPLETO'},
-        type: 1
-}
-    
-    ],
+    image: { url: icono},
+    caption: text,
     viewOnce: true
-}, { quoted: m})
-}
+}, { quoted: m});
 
-handler.command = /^(creador|autor|owner)$/i
-export default handler
+  // Producto promocional
+  await conn.sendMessage(jid, {
+    product: {
+      productImage: { url: icono},
+      title: "🌸 Tanjiro_Bot by Fedexyz",
+      description: "🤖 Alquila o compra Tanjiro_Bot para tus grupos. Incluye funciones avanzadas, sistema estable y soporte técnico personalizado.",
+      currencyCode: "USD",
+      priceAmount1000: 5000,
+      retailerId: "TanjiroBot",
+      productId: "24502048122733040",
+      productImageCount: 1
+},
+    businessOwnerJid: "5491156278758@s.whatsapp.net"
+}, { messageType: 'product'});
+};
 
-global.CreadorTanjiro = `
-🗡️ *TANJIRO BOT — CREADOR OFICIAL*
-
-╭─❖ Información de Contacto ─╮
-│
-│ 🎩 *Nombre:* Fedexyz
-│ 📨 *Correo:* fedelanyt20@gmail.com
-│ 💫 *GitHub:* https://github.com/fedelan555
-│ 🎥 *TikTok:* https://www.tiktok.com/@frases_isagi
-│ 📞 *WhatsApp:* https://wa.me/5491156178758
-│ 🌀 *Canal Oficial:* https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N
-│
-╰──────────────────────────╯
-
-🌸 *Tanjiro Bot* fue forjado con creatividad, energía y un alma digital que vibra con nobleza.
-
-🔥 “Hasta el más débil puede encontrar fuerza si respira con convicción.”
-🎴 *Powered by Fedexyz*
-`
+handler.command = ['creador', 'developer', 'fedexyz'];
+handler.tags = ['info'];
+handler.help = ['creador'];
+export default handler;
