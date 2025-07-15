@@ -20,7 +20,7 @@ let handler = async (m, { conn}) => {
 
   // vCards extendidas
   await sendContactArray(conn, m.chat, [
-    [suittag, '🌸 Propietario — Fedexyz', botname, '❀ No hacer spam', correo, '🌍 Venezuela', md, bioCreator.status || 'Sin Biografía'],
+    [suittag, '🌸 Propietario — Fedexyz', botname, '🌸 No hacer spam', correo, '🌍 Argentina', md, bioCreator.status || 'Sin Biografía'],
     [conn.user.jid.split('@')[0], '🌀 Tanjiro_Bot Oficial', packname, dev, correo, '🌕 Sistema Solar', channel, bioBot.status || 'Sin Biografía']
   ], m);
 
@@ -30,8 +30,8 @@ let handler = async (m, { conn}) => {
       productImage: { url: icono},
       title: "🌸 Tanjiro_Bot - by Fedexyz",
       description: "🤖 Alquila o compra Tanjiro_Bot para tus grupos. Incluye funciones avanzadas, sistema estable y soporte técnico personalizado.",
-      currencyCode: "USD",
-      priceAmount1000: 5000,
+      currencyCode: "pesos",
+      priceAmount1000: 4000,
       retailerId: "Tanjiro_Bot",
       productId: "24407065218931451",
       productImageCount: 1
