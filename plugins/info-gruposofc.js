@@ -35,15 +35,8 @@ const handler = async (m, { conn}) => {
         buttonId: '#menucompleto',
         buttonText: { displayText: '🌸 MENU COMPLETO'},
         type: 1
-},
-      {
-        name: 'cta_url',
-        buttonParamsJson: JSON.stringify({
-          display_text: '🎶 TikTok Oficial',
-          url: 'https://www.tiktok.com/@frases_isagi',
-          merchant_url: 'https://www.tiktok.com/@frases_isagi'
-})
 }
+      
     ],
     viewOnce: true
 }, { quoted: m});
