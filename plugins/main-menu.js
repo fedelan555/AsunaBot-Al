@@ -2,10 +2,10 @@ import { xpRange} from '../lib/levelling.js'
 
 const textTanjiro = (text) => {
   const charset = {
-    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ',
-    h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ',
-    o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ', u: 'ᴜ',
-    v: 'ᴠ', w: 'ᴡ', x: 'ˣ', y: 'ʏ', z: 'ᴢ'
+    a: '𝖺', b: '𝖻', c: '𝖼', d: '𝖽', e: '𝖾', f: '𝖿', g: '𝗀',
+    h: '𝗁', i: '𝗂', j: '𝗃', k: '𝗄', l: '𝗅', m: '𝗆', n: '𝗇',
+    o: '𝗈', p: '𝗉', q: '𝗊', r: '𝗋', s: '𝗌', t: '𝗍', u: '𝗎',
+    v: '𝗏', w: '𝗐', x: '𝗑', y: '𝗒', z: '𝗓'
 }
   return text.toLowerCase().split('').map(c => charset[c] || c).join('')
 }
@@ -19,23 +19,27 @@ let handler = async (m, { conn}) => {
     let muptime = clockString(_uptime)
 
     let intro = `
-𝐇𝐨𝐥𝐚 ${name}! s𝐨𝐲 *꒷Tanjiro_Botദ*
+🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
+🪼𐅹 𝐌𝐞𝐧𝐮 𝐓𝐚𝐧𝐣𝐢𝐫𝐨𝐁𝐨𝐭 𐅹🪼
+≡≡≡ 会 ≡≡≡
 
-╭┈──☆
-├ メ˚ Tiempo activo: ${muptime}
+𝖧𝗈𝗅𝖺 ${name}, 𝖾𝗌𝗍𝖾 𝖾𝗌 𝗍𝗎 𝖻𝗈𝗍 𝖽𝖾 𝖺𝗎𝗋𝖺 𝖼𝗈𝗇𝖿𝗂𝖺𝖽𝖺:
+
+╭──────── 🩸
+│ 𝗧𝗂𝖾𝗆𝗉𝗈 𝖺𝖼𝗍𝗂𝗏𝗈: ${muptime}
 │
-├ メ˚ Creador Oficial
+│ 𝗖𝗋𝖾𝖺𝖽𝗈𝗋 𝗈𝖿𝗂𝖼𝗂𝖺𝗅:
 │   https://wa.me/5491156178758
-├ メ˚ Comunidad Oficial
+│ 𝖢𝗈𝗆𝗎𝗇𝗂𝖽𝖺𝖽 𝗈𝖿𝗂𝖼𝗂𝖺𝗅:
 │   https://bit.ly/GalaxyForge_Unit
-├ メ˚ Canal Oficial
+│ 𝖢𝖺𝗇𝖺𝗅 𝗈𝖿𝗂𝖼𝗂𝖺𝗅:
 │   https://bit.ly/GalaxyForge_Canal
-╰─────────────────☆
-> Si el menu principal del bot no funciona en los subbots usa *#Menusub*
+╰──────── 🩸
 
-
-乂 Si deseas ser parte del bot usa *#code* o *#Qr*
-🌕 “Respira profundo. Lucha con honor.”
+☁️ 𝗦𝗂 𝖾𝗅 𝗆𝖾𝗇𝗎 𝗇𝗈 𝖿𝗎𝗇𝖼𝗂𝗈𝗇𝖺 𝖾𝗇 𝗌𝗎𝖻𝖻𝗈𝗍𝗌, 𝗎𝗌𝖺 *#Menusub*
+🧣 𝗉𝖺𝗋𝖺 𝗏𝖾𝗋 𝖼𝗈𝗆𝖺𝗇𝖽𝗈𝗌, 𝗎𝗌𝖺 *#menucompleto*
+🌕 “𝖱𝖾𝗌𝗉𝗂𝗋𝖺 𝗉𝗋𝗈𝖿𝗎𝗇𝖽𝗈. 𝖫𝗎𝖼𝗁𝖺 𝖼𝗈𝗇 𝗁𝗈𝗇𝗈𝗋.”
+🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
 `.trim()
 
     await conn.sendMessage(m.chat, {
@@ -44,7 +48,7 @@ let handler = async (m, { conn}) => {
       buttons: [
         {
           buttonId: '#menucompleto',
-          buttonText: { displayText: '≡ MENU COMPLETO'},
+          buttonText: { displayText: '🌸 𝖬𝖤𝖭𝖴 𝖢𝖮𝖬𝖯𝖫𝖤𝖳𝖮'},
           type: 1
 }
       ],
@@ -53,7 +57,7 @@ let handler = async (m, { conn}) => {
 
 } catch (e) {
     console.error(e)
-    conn.reply(m.chat, '❎ Error al mostrar el menú de Tanjiro.', m)
+    conn.reply(m.chat, '❎ 𝖤𝗋𝗋𝗈𝗋 𝖺𝗅 𝗆𝗈𝗌𝗍𝗋𝖺𝗋 𝖾𝗅 𝗆𝖾𝗇𝗎.', m)
 }
 }
 
@@ -69,4 +73,4 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-      }
+}
