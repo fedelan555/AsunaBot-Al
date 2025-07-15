@@ -1,8 +1,7 @@
 let handler = async (m, { conn}) => {
   const nombre = await conn.getName(m.sender);
   const numero = m.sender.split('@')[0];
-  const icono = 'https://files.catbox.moe/sbzc3p.jpg';
-
+  
   const texto = `
 🌸 Hola *${nombre}*, bienvenido a la comunidad Tanjiro Bot 🌕
 
