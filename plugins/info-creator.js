@@ -1,22 +1,29 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn}) => {
+  // 🌸 Datos empresariales y espirituales
   let contacto = '+5491156178758';
-  let nombreEmpresarial = 'fedexyz Tanjiro_Bot';
+  let nombreEmpresarial = 'TanjiroBot 🌸 Aliento de Confianza';
   let mensaje = `
-📇 *Contacto Empresarial: ${nombreEmpresarial}*
+🧣 *Contacto Empresarial: ${nombreEmpresarial}*
 
-Hola 👋, este es el número oficial para consultas, soporte técnico, colaboraciones o integración de nuestro bot a tu grupo.
+🕯️ Con respeto y nobleza, este es el canal oficial para contactar al equipo de desarrollo, soporte técnico, o gestionar la integración del *TanjiroBot* en tu grupo.
 
-💬 Puedes escribir directamente a:
+💬 Puedes enviar un mensaje directo a:
 📞 *${contacto}*
-🌐 Enlace directo: https://wa.me/${contacto.replace('+', '')}
+🌐 Enlace: https://wa.me/${contacto.replace('+', '')}
 
-⚠️ Recuerda especificar el motivo de tu mensaje y tu número de grupo si deseas conexión empresarial.
+⛩️ Por favor, indica claramente el motivo de tu solicitud:
+- 🗡️ Tipo de grupo
+- 📍 País o región
+- 🎴 Razón de integración (Soporte / Colaboración / Partner)
+
+🌸 _TanjiroBot promueve la armonía, el respeto y el buen uso de la tecnología._
 `;
 
   try {
-    const res = await fetch("https://files.catbox.moe/lpragp.jpg");
+    // 🖼️ Imagen representativa de Tanjiro estilo Business
+    const res = await fetch("https://files.catbox.moe/lpragp.jpg"); // Cambia si deseas otro banner
     const buffer = await res.buffer();
 
     await conn.sendMessage(m.chat, {
@@ -26,17 +33,18 @@ Hola 👋, este es el número oficial para consultas, soporte técnico, colabora
         mentionedJid: [m.sender],
         forwardingScore: 999,
         isForwarded: true,
-        businessMessageForwardedFrom: 'WhatsApp Business Oficial'
+        businessMessageForwardedFrom: 'TanjiroBot Enterprise 🌸'
 }
 }, { quoted: m});
+
 } catch (e) {
-    console.error('[❌] Error al enviar contacto empresarial:', e);
-    m.reply('🚫 No se pudo mostrar la información de contacto en este momento.');
+    console.error('[❌] Error al enviar contacto TanjiroBot:', e);
+    m.reply('🚫 El aliento se ha desvanecido... no fue posible mostrar el contacto en este momento.');
 }
 };
 
-handler.help = ['owner', 'creador', 'business'];
+handler.help = ['owner', 'creador', 'tanjirobusiness'];
 handler.tags = ['main'];
-handler.command = ['owner', 'creator', 'creador', 'business', 'empresa'];
+handler.command = ['owner', 'creator', 'creador', 'business', 'tanjiroempresa'];
 
 export default handler;
