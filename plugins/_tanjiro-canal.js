@@ -85,8 +85,6 @@ const handler = async (m, { conn}) => {
           header: proto.Message.InteractiveMessage.Header.create({
             hasMediaAttachment: true,
             mediaAttachment: {
-              url: 'https://files.catbox.moe/sbzc3p.jpg',
-              mimetype: 'image/jpeg',
               caption: fuenteTanjiro('𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 - TanjiroBot Portal'),
               mediaType: 1
 }
