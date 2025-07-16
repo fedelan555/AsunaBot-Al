@@ -44,21 +44,21 @@ const handler = async (m, { conn}) => {
       name: 'cta_copy',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('📝 Copiar Alias'),
-        copy_code: 'Tanjiro-Bot-Oficial'
+        copy_code: 'fedelanyt20@gmail.com'
 })
 },
     {
       name: 'cta_call',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('📞 Soporte WhatsApp'),
-        phone_number: '+573162402768'
+        phone_number: '5491156178758'
 })
 },
     {
       name: 'cta_email',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('📧 Enviar Correo'),
-        email_address: 'tanjirobot@support.com'
+        email_address: 'fedelanyt20@gmail.com'
 })
 }
   ]
