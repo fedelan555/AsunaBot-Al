@@ -23,8 +23,8 @@ export async function before(m, { conn, participants, groupMetadata}) {
 }
 
   const guildName = encodeURIComponent(groupMetadata.subject)
-  const apiBase = 'https://api.siputzx.my.id/api/canvas'
   const background = encodeURIComponent('https://files.catbox.moe/23ebz8.jpg')
+  const apiBase = 'https://api.siputzx.my.id/api/canvas'
   const welcomeApiUrl = `${apiBase}/welcomev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
   const goodbyeApiUrl = `${apiBase}/goodbyev2?username=${username}&guildName=${guildName}&memberCount=${memberCount}&avatar=${encodeURIComponent(avatar)}&background=${background}`
 
@@ -42,31 +42,33 @@ export async function before(m, { conn, participants, groupMetadata}) {
   const chat = global.db.data.chats[m.chat] || {}
   if (typeof chat.welcome === 'undefined') chat.welcome = true
 
-  const dev = global.dev || 'Tanjiro Bot'
+  const dev = global.dev || 'TanjiroBot'
   const redes = global.redes || '🌊 Respira. Lucha. Protege.'
   const fkontak = global.fkontak || {}
 
-  const txtWelcome = '🌀 ✦ CAZADOR INGRESANDO AL DOJO ✦'
-  const txtGoodbye = '🌒 ✦ CAZADOR ABANDONA EL DOJO ✦'
+  const txtWelcome = '≡ 会 🧣𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖨𝖭𝖦𝖱𝖤𝖲𝖠 𝖠𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会'
+  const txtGoodbye = '≡ 会 🧣𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖠𝖡𝖠𝖭𝖣𝖮𝖭𝖠 𝖤𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会'
 
   const bienvenida = `
-🌸 *El amanecer ilumina tu llegada, ${mention}.* 🌸
+🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
+🌸 *𝖤𝗅 𝖺𝗆𝖺𝗇𝖾𝖼𝖾𝗋 𝗂𝗅𝗎𝗆𝗂𝗇𝖺 𝗍𝗎 𝗅𝗅𝖾𝗀𝖺𝖽𝖺, ${mention}* 🌸
 
-🏯 Bienvenid@ al dojo *${groupMetadata.subject}*
-🔥 Que tu respiración sea fuerte, tu voluntad inquebrantable.
-👥 Somos ahora ${memberCount} cazadores en este grupo.
+🏯 𝖡𝗂𝖾𝗇𝗏𝖾𝗇𝗂𝖽𝗈 𝖺𝗅 𝖽𝗈𝗃𝗈 *${groupMetadata.subject}*
+🔥 𝖰𝗎𝖾 𝗍𝗎 𝗋𝖾𝗌𝗉𝗂𝗋𝖺𝖼𝗂𝗈𝗇 𝗌𝖾𝖺 𝖿𝗎𝖾𝗋𝗍𝖾, 𝗍𝗎 𝗏𝗈𝗅𝗎𝗇𝗍𝖺𝖽 𝗂𝗇𝗊𝗎𝖾𝖻𝗋𝖺𝗇𝗍𝖺𝖻𝗅𝖾.
+👥 𝖲𝗈𝗆𝗈𝗌 𝗆𝗎𝖼𝗁𝗈𝗌: ${memberCount} 𝖢𝖺𝗓𝖺𝖽𝗈𝗋𝖾𝗌 𝖾𝗇 𝖾𝗌𝗍𝖾 𝖣𝗈𝗃𝗈.
 
-📘 Usa *#help* para aprender tus técnicas.
+📘 Usa *#help* 𝗉𝖺𝗋𝖺 𝖺𝗉𝗋𝖾𝗇𝖽𝖾𝗋 𝗍𝗎𝗌 𝗍𝖾𝖼𝗇𝗂𝖼𝖺𝗌.
 `.trim()
 
   const despedida = `
-🍁 *${mention} ha colgado su hoja Nichirin.*
+🧣︵˚˖𓆩⌇𓆪˖˚︵🌒︵˚˖𓆩⌇𓆪˖˚︵🧣
+🍁 *${mention} 𝗁𝖺 𝖼𝗈𝗅𝗀𝖺𝖽𝗈 𝗌𝗎 𝗁𝗈𝗃𝖺 𝖭𝗂𝖼𝗁𝗂𝗋𝗂𝗇.*
 
-🏯 Salida registrada en *${groupMetadata.subject}*
-👥 Quedan ${memberCount} miembros en el dojo.
+🏯 𝖲𝖺𝗅𝗂𝖽𝖺 𝖱𝖾𝗀𝗂𝗌𝗍𝗋𝖺𝖽𝖺 𝖾𝗇 *${groupMetadata.subject}*
+👥 𝖰𝗎𝖾𝖽𝖺𝗇 ${memberCount} 𝖢𝖺𝗓𝖺𝖽𝗈𝗋𝖾𝗌 𝗍𝗋𝖺𝗌 𝗌𝗎 𝗂𝗆𝗉𝖺𝗄𝗍𝗈.
 
-🙏 Que tu llama continúe más allá de estas puertas.
-⚔️ El sol te guía, cazador.
+🙏 𝖰𝗎𝖾 𝗍𝗎 𝗅𝗅𝖺𝗆𝖺 𝖼𝗈𝗇𝗍𝗂𝗇𝗎𝖾 𝗆𝖺𝗌 𝖺𝗅𝗅á 𝖽𝖾 𝖾𝗌𝗍𝖺𝗌 𝗉𝗎𝖾𝗋𝗍𝖺𝗌.
+⚔️ 𝖤𝗅 𝗌𝗈𝗅 𝗍𝖾 𝗀𝗎𝗂𝖺, 𝖼𝖺𝗓𝖺𝖽𝗈𝗋.
 `.trim()
 
   if (chat.welcome) {
@@ -89,8 +91,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
         await conn.sendMini?.(m.chat, txtGoodbye, dev, despedida, imgBuffer, imgBuffer, redes, fkontak)
 } catch {
         await conn.sendMessage(m.chat, {
-          image: imgBuffer,
-          caption: despedida,
+          image: imgBuffer,caption: despedida,
           mentions: [userJid]
 }, { quoted: m})
 }
