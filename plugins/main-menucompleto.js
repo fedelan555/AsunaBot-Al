@@ -92,12 +92,32 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-      image: { url: 'https://files.catbox.moe/wav09n.jpg'},
-      caption: text,
-      buttons: [
-        { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
-      ],
-      viewOnce: true
+  image: { url: 'https://files.catbox.moe/wav09n.jpg'},
+  caption: text,
+  buttons: [
+    {
+      name: 'cta_copy',
+      buttonParamsJson: JSON.stringify({
+        display_text: textTanjiro('📝 Copiar Alias'),
+        copy_code: 'Tanjiro-Bot-Oficial'
+})
+},
+    {
+      name: 'cta_call',
+      buttonParamsJson: JSON.stringify({
+        display_text: textTanjiro('📞 Soporte WhatsApp'),
+        phone_number: '+573162402768'
+})
+},
+    {
+      name: 'cta_email',
+      buttonParamsJson: JSON.stringify({
+        display_text: textTanjiro('📧 Enviar Correo'),
+        email_address: 'tanjirobot@support.com'
+})
+}
+  ],
+  viewOnce: true
 }, { quoted: m})
 
 } catch (e) {
