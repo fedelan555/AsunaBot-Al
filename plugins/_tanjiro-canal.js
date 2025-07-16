@@ -96,7 +96,7 @@ const handler = async (m, { conn}) => {
 
 handler.command = /^([.#/!])?canal$/i
 handler.register = true
-handler.help = ['canal']
+handler.help = ['canal', 'links2']
 handler.tags = ['info']
 
 export default handler
