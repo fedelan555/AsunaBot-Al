@@ -1,7 +1,19 @@
-import { generateWAMessageFromContent, proto } from '@whiskeysockets/baileys'
+import { generateWAMessageFromContent, proto} from '@whiskeysockets/baileys'
 
-const handler = async (m, { conn }) => {
-  const texto = `✨ Pulsa el botón para unirte al canal oficial`.trim()
+const fuenteTanjiro = (text) => {
+  const map = {
+    a:'𝖺', b:'𝖻', c:'𝖼', d:'𝖽', e:'𝖾', f:'𝖿', g:'𝗀',
+    h:'𝗁', i:'𝗂', j:'𝗃', k:'𝗄', l:'𝗅', m:'𝗆', n:'𝗇',
+    o:'𝗈', p:'𝗉', q:'𝗊', r:'𝗋', s:'𝗌', t:'𝗍', u:'𝗎',
+    v:'𝗏', w:'𝗐', x:'𝗑', y:'𝗒', z:'𝗓'
+}
+  return text.toLowerCase().split('').map(c => map[c] || c).join('')
+}
+
+const handler = async (m, { conn}) => {
+  m.react("🌸")
+
+  const texto = `🌐 ${fuenteTanjiro('Pulsa el botón para unirte al canal oficial')}`
 
   const messageContent = {
     viewOnceMessage: {
@@ -9,34 +21,38 @@ const handler = async (m, { conn }) => {
         messageContextInfo: {
           deviceListMetadata: {},
           deviceListMetadataVersion: 2
-        },
+},
         interactiveMessage: proto.Message.InteractiveMessage.create({
-          body: proto.Message.InteractiveMessage.Body.create({ text: texto }),
-          footer: proto.Message.InteractiveMessage.Footer.create({ text: '⚙ Tanjiro Bot 🌸' }),
-          header: proto.Message.InteractiveMessage.Header.create({ hasMediaAttachment: false }),
+          body: proto.Message.InteractiveMessage.Body.create({ text: texto}),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: `⚙ ${fuenteTanjiro('Tanjiro Bot')} 🌸`
+}),
+          header: proto.Message.InteractiveMessage.Header.create({
+            hasMediaAttachment: false
+}),
           nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
             buttons: [
               {
                 name: 'cta_url',
                 buttonParamsJson: JSON.stringify({
-                  display_text: '✐ Canal oficial',
+                  display_text: `${fuenteTanjiro('✐ Canal Oficial')}`,
                   url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
                   merchant_url: 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31'
-                })
-              }
+})
+}
             ]
-          })
-        })
-      }
-    }
-  }
+})
+})
+}
+}
+}
 
   const msg = generateWAMessageFromContent(m.chat, messageContent, {
     userJid: m.sender,
     quoted: m
-  })
+})
 
-  await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+  await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id})
 }
 
 handler.command = /^([.#/!])?canal$/i
