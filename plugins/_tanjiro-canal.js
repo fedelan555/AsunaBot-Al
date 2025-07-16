@@ -28,16 +28,37 @@ const handler = async (m, { conn}) => {
       name: 'cta_url',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('🌸 Comunidad'),
-        url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz',
-        merchant_url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz'
+        url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t',
+        merchant_url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t'
 })
 },
     {
       name: 'cta_url',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('🎴 TikTok Oficial'),
-        url: 'Https://tiktok.com/@frases_isagi',
-        merchant_url: 'Https://tiktok.com/@frases_isagi'
+        url: 'https://tiktok.com/@frases_isagi',
+        merchant_url: 'https://tiktok.com/@frases_isagi'
+})
+},
+    {
+      name: 'cta_copy',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('📝 Copiar Alias'),
+        copy_code: 'Tanjiro-Bot-Oficial'
+})
+},
+    {
+      name: 'cta_call',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('📞 Soporte WhatsApp'),
+        phone_number: '+573162402768'
+})
+},
+    {
+      name: 'cta_email',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('📧 Enviar Correo'),
+        email_address: 'tanjirobot@support.com'
 })
 }
   ]
