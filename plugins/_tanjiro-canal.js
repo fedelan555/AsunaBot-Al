@@ -28,8 +28,8 @@ const handler = async (m, { conn}) => {
       name: 'cta_url',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('🌸 Comunidad'),
-        url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t',
-        merchant_url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t'
+        url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz',
+        merchant_url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz'
 })
 },
     {
