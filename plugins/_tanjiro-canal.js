@@ -30,22 +30,7 @@ const handler = async (m, { conn}) => {
         display_text: fuenteTanjiro('💰 Donar'),
         url: 'https://buymeacoffee.com/fede.xyz',
         merchant_url: 'https://buymeacoffee.com/fede.xyz'
-})
-},
-    {
-      name: 'cta_url',
-      buttonParamsJson: JSON.stringify({
-        display_text: fuenteTanjiro('🧠 Verificar Usuario'),
-        url: 'https://verificacion.tanjirobot.com',
-        merchant_url: 'https://verificacion.tanjirobot.com'
-})
-},
-    {
-      name: 'cta_url',
-      buttonParamsJson: JSON.stringify({
-        display_text: fuenteTanjiro('📜 Ayuda'),
-        url: 'https://tanjirobot.gitbook.io/docs',
-        merchant_url: 'https://tanjirobot.gitbook.io/docs'
+gitbook.io/docs'
 })
 }
   ]
