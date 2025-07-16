@@ -6,7 +6,7 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
     return m.reply(
       `╭─🌸「 *TANJIRO BOT* 」🌸
 │ 🌙◦ 🎧 *Uso correcto del comando:*
-│ 🌙◦ ${usedPrefix + command} shakira soltera
+│ 🌙◦ ${usedPrefix + command} someday
 ╰─🌸`
 );
 }
