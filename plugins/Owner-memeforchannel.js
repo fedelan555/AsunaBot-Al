@@ -24,7 +24,6 @@ const handler = async (m, { conn}) => {
     const texto = `
 ╭─〔 ${fuenteTanjiro('📸 TanjiroBot - Meme de la Hora')} 〕─⬣
 │💬 ${fuenteTanjiro('Disfruta este momento de humor con estilo cazador.')}
-│🌐 ${fuenteTanjiro('Fuente:')} ${memeUrl}
 ╰──────────────────────⬣`.trim()
 
     await conn.sendMessage('120363402097425674@newsletter', {
