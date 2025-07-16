@@ -16,7 +16,7 @@ let handler = async (m, { conn, args, usedPrefix, command}) => {
 
       let img = await q.download?.()
       if (!img)
-        return conn.reply(m.chat, `🌙 *¡Por favor, envía primero una imagen, video o gif...*`, m, rcanal)
+        return conn.reply(m.chat, `🧣  *𝖯𝗈𝗋 𝖿𝖺𝗏𝗈𝗋, 𝖾𝗇𝗏𝗂́𝖺 𝗉𝗋𝗂𝗆𝖾𝗋𝗈 𝗎𝗇𝖺 𝗂𝗆𝖺𝗀𝖾𝗇, 𝗏𝗂𝖽𝖾𝗈 𝗈 𝖦𝗂𝖿...*`, m, rcanal)
 
       let out
       try {
