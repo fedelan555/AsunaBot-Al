@@ -31,15 +31,15 @@ console.log(`Error : ${e}`)
 global.creador = 'Wa.me/5491156178758'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.asistencia = 'Wa.me/584146277368'
-global.namechannel = '🌙 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭  ✧ ᥴһᥲᥒᥒᥱᥣ'
-global.namegrupo = ' 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭'
-global.namecomu = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭'
+global.namechannel = '乂 𝖦𝖺𝗅𝖺𝗑𝗒𝖥𝗈𝗋𝗀𝖾_𝖴𝗇𝗂𝗍 会'
+global.namegrupo = ' 乂 𝖦𝖺𝗅𝖺𝗑𝗒𝖥𝗈𝗋𝗀𝖾_𝖴𝗇𝗂𝗍 会'
+global.namecomu = '乂 𝖦𝖺𝗅𝖺𝗑𝗒𝖥𝗈𝗋𝗀𝖾_𝖴𝗇𝗂𝗍 会'
 global.listo = '🌸 *Aquí tienes tu pedido*'
 
 //Ids channel
-global.idchannel = '120363420017244077@newsletter'
-global.canalIdM = ["120363420017244077@newsletter", "120363420017244077@newsletter"]
-global.canalNombreM = ["✦ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ᥴһᥲᥒᥒᥱᥣ 🌙", "✦ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ᥴһᥲᥒᥒᥱᥣ 🌙 "]
+global.idchannel = '120363402097425674@newsletter'
+global.canalIdM = ["120363402097425674@newsletter", "120363402097425674@newsletter"]
+global.canalNombreM = ["乂 𝖦𝖺𝗅𝖺𝗑𝗒𝖥𝗈𝗋𝗀𝖾_𝖴𝗇𝗂𝗍 会", "乂 𝖦𝖺𝗅𝖺𝗑𝗒𝖥𝗈𝗋𝗀𝖾_𝖴𝗇𝗂𝗍 会"]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
@@ -64,8 +64,8 @@ global.emojis = [emoji, emoji2, emoji3, emoji4].getRandom()
 
 
 //Enlaces
-var canal = 'https://whatsapp.com/channel/0029Vai28FR7dmea9gytQm3w'  
-let canal2 = 'https://whatsapp.com/channel/0029Vai28FR7dmea9gytQm3w'
+var canal = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'  
+let canal2 = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N'
 var git = 'https://github.com/thecarlos19' 
 var youtube = '' 
 var github = 'https://github.com/thecarlos19/black-clover-MD' 
