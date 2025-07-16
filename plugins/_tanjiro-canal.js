@@ -28,16 +28,16 @@ const handler = async (m, { conn}) => {
       name: 'cta_url',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('🌸 Comunidad'),
-        url: 'https://chat.whatsapp.com/FuturoTanjiroBot',
-        merchant_url: 'https://chat.whatsapp.com/FuturoTanjiroBot'
+        url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t',
+        merchant_url: 'https://chat.whatsapp.com/GgPP07cL54iL6C1lrwX0fz?mode=r_t'
 })
 },
     {
       name: 'cta_url',
       buttonParamsJson: JSON.stringify({
         display_text: fuenteTanjiro('🎴 TikTok Oficial'),
-        url: 'https://www.tiktok.com/@tanjirobot',
-        merchant_url: 'https://www.tiktok.com/@tanjirobot'
+        url: 'Https://tiktok.com/@frases_isagi',
+        merchant_url: 'Https://tiktok.com/@frases_isagi'
 })
 }
   ]
