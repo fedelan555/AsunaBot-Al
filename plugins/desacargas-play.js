@@ -11,11 +11,11 @@ const fuenteTanjiro = (text) => {
 }
 
 let handler = async (m, { conn, args, command, usedPrefix}) => {
-  const text = args.join(" ")
-  if (!text) {
+  const texto = args.join(" ")
+  if (!texto) {
     return m.reply(
       `╭─🎴「 ${fuenteTanjiro('𝖳𝖺𝗇𝗃𝗂𝗋𝗈 𝖡𝗈𝗍')} 」🎴
-│ 🌙◦ ${fuenteTanjiro('Uso correcto del comando')}:
+│ 🌙◦ ${fuenteTanjiro('Uso correcto')}:
 │ 🌙◦ ${usedPrefix + command} tanjiro lofi
 ╰─🌸`
 )
@@ -24,13 +24,13 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
   await m.react('⌛')
 
   try {
-    const res = await fetch(`https://api.nekorinn.my.id/downloader/spotifyplay?q=${encodeURIComponent(text)}`)
+    const res = await fetch(`https://api.nekorinn.my.id/downloader/spotifyplay?q=${encodeURIComponent(texto)}`)
     const json = await res.json()
 
     if (!json.status ||!json.result?.downloadUrl) {
       return m.reply(
         `╭─🌸「 ${fuenteTanjiro('𝖳𝖺𝗇𝗃𝗂𝗋𝗈 𝖡𝗈𝗍')} 」🌸
-│ 🌙◦ ❌ ${fuenteTanjiro('No se encontró resultado para')}: ${text}
+│ ❌ ${fuenteTanjiro('No se encontró resultado para')}: ${texto}
 ╰─🌸`
 )
 }
@@ -68,9 +68,11 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
 }
 }
 
+// 🔰 Solución para evitar “✖ Instrucción no reconocida”
+handler.command = /^([.#/!])?play$/i
 handler.help = ['play <nombre>']
 handler.tags = ['descargas']
-handler.command = /^play$/i
 handler.register = true
+handler.rowner = false
 
 export default handler
