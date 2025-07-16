@@ -58,12 +58,12 @@ export async function before(m, { conn, participants, groupMetadata}) {
 `.trim();
 
   if (chat.welcome && m.messageStubType === 27) {
-    const img = await renderBanner('𝖂𝖊𝖑𝖈𝖔𝖒𝖊 🌌', `Acceso otorgado a ${memberCount} miembros.`, 'https://files.catbox.moe/23ebz8.jpg');
+    const img = await renderBanner('𝖂𝖊𝖑𝖈𝖔𝖒𝖊 🌌', `Acceso otorgado a ${memberCount} miembros.`, 'https://files.catbox.moe/lpragp.jpg');
     await conn.sendMini?.(m.chat, dojoName, null, msgWelcome, img, img, dojoLink, null);
 }
 
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    const img = await renderBanner('𝖇𝖞𝖊 𝗆𝗈𝖽𝖾 💤', `Expulsado. Quedan ${memberCount}.`, 'https://files.catbox.moe/3VqpnFohT3dNcNdPYn35m.jpeg');
+    const img = await renderBanner('𝖇𝖞𝖊 𝗆𝗈𝖽𝖾 💤', `Expulsado. Quedan ${memberCount}.`, 'https://files.catbox.moe/lpragp.jpg');
     await conn.sendMini?.(m.chat, dojoName, null, msgGoodbye, img, img, dojoLink, null);
 }
 }
