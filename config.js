@@ -39,9 +39,18 @@ global.blackJadibts = true
 
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
 
-global.packsticker = `♾ ━━━━━━━━\n├ ɓσƭ:\n├ ρяοριєταяιο:\n├ ƒєϲнα ∂є ϲяєαϲιόи:\n├ нοяα:\n♾━━━━━━━━`
-global.packname = `𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣`
-global.author = `♾━━━━━━━━\n𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣\n𝖿𝖾𝖽𝖾𝗑𝗒𝗓 会\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n♾━━━━━━━━\n\n\n\nѕτιϲκєя ϐγ:乂 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣`;
+global.packsticker = `
+┃ 🧣𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍
+┃ 🧣 𝖠𝗎𝗍𝗈𝗋: 👑 𝖿𝖾𝖽𝖾𝗑𝗒𝗓
+`;
+
+global.packname = `✠ 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣`;
+
+global.author = `
+⇝ 📆 ${moment.tz('America/Argentina/Buenos_Aires').format('DD/MM/YY')}
+⇝ ⏰ ${moment.tz('America/Argentina/Buenos_Aires').format('HH:mm:ss')}
+♾━━━━━━━━━━━━━━━♾`;
+
 global.wm = '𝖶𝗁𝖺𝗍𝗌𝖠𝗉𝗉  𝖬𝗎𝗅𝗍𝗂-𝖣𝖾𝗏𝗂𝖼𝖾';
 global.titulowm = '𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣';
 global.igfg = '𝖿𝖾𝖽𝖾𝗑𝗒𝗓'
