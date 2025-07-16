@@ -1,5 +1,5 @@
 const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner}) => {
-  const imagenTanjiro = 'https://files.catbox.moe/23ebz8.jpg'; // imagen temática Tanjiro
+  const imagenTanjiro = 'https://files.catbox.moe/sbzc3p.jpg'; // imagen temática Tanjiro
 
   const miniopcion = `⚔️ *OPCIONES PARA GRUPOS*
 
