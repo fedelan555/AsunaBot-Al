@@ -13,7 +13,42 @@ const fuenteTanjiro = (text) => {
 const handler = async (m, { conn}) => {
   m.react("🌸")
 
-  const texto = `🌐 ${fuenteTanjiro('Pulsa el botón para unirte al canal oficial')}`
+  const texto = `🌐 ${fuenteTanjiro('Pulsa uno de los botones para acceder a opciones exclusivas')}`
+
+  const botones = [
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('✐ Canal Oficial'),
+        url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
+        merchant_url: 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31'
+})
+},
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('💰 Donar'),
+        url: 'https://buymeacoffee.com/fede.xyz',
+        merchant_url: 'https://buymeacoffee.com/fede.xyz'
+})
+},
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('🧠 Verificar Usuario'),
+        url: 'https://verificacion.tanjirobot.com',
+        merchant_url: 'https://verificacion.tanjirobot.com'
+})
+},
+    {
+      name: 'cta_url',
+      buttonParamsJson: JSON.stringify({
+        display_text: fuenteTanjiro('📜 Ayuda'),
+        url: 'https://tanjirobot.gitbook.io/docs',
+        merchant_url: 'https://tanjirobot.gitbook.io/docs'
+})
+}
+  ]
 
   const messageContent = {
     viewOnceMessage: {
@@ -31,16 +66,7 @@ const handler = async (m, { conn}) => {
             hasMediaAttachment: false
 }),
           nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-            buttons: [
-              {
-                name: 'cta_url',
-                buttonParamsJson: JSON.stringify({
-                  display_text: `${fuenteTanjiro('✐ Canal Oficial')}`,
-                  url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
-                  merchant_url: 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31'
-})
-}
-            ]
+            buttons: botones
 })
 })
 }
