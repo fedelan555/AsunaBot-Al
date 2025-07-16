@@ -24,7 +24,6 @@ const handler = async (m, { conn}) => {
     const texto = `
 ╭─〔 ${fuenteTanjiro('🧣 TanjiroBot - Meme Oficial para la Comunidad')} 〕─⬣
 │💬 ${fuenteTanjiro('Humor en medio de la batalla, para los cazadores conectados.')}
-│📎 ${fuenteTanjiro('Fuente')}:
 ╰────────────────────────⬣`.trim()
 
     await conn.sendMessage('120363421472190172@g.us', {
@@ -39,7 +38,7 @@ const handler = async (m, { conn}) => {
 }
 }
 
-handler.command = ['enviarmemecomunidad']
+handler.command = ['enviarmeme2']
 handler.tags = ['owner']
 handler.rowner = true
 
