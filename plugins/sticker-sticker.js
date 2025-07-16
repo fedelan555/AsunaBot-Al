@@ -12,7 +12,7 @@ let handler = async (m, { conn, args, usedPrefix, command}) => {
 
     if (/webp|image|video/g.test(mime)) {
       if (/video/g.test(mime) && (q.msg || q).seconds> 8)
-        return m.reply(`🌙 *¡El video no puede durar más de 8 segundos!*`)
+        return m.reply(`🧣 *¡¡𝖾𝗅 𝗏𝗂𝖽𝖾𝗈 𝗇𝗈 𝗉𝗎𝖾𝖽𝖾 𝖽𝗎𝗋𝖺𝗋 𝗆𝖺́𝗌 𝖽𝖾 𝟪 𝗌𝖾𝗀𝗎𝗇𝖽𝗈𝗌!*`)
 
       let img = await q.download?.()
       if (!img)
@@ -59,7 +59,7 @@ let handler = async (m, { conn, args, usedPrefix, command}) => {
 }
 }, { quoted: m})
 } else {
-      return conn.reply(m.chat, '🌙 *¡Por favor, envía primero una imagen, video o gif...*', m, rcanal)
+      return conn.reply(m.chat, '🧣  *𝖯𝗈𝗋 𝖿𝖺𝗏𝗈𝗋, 𝖾𝗇𝗏𝗂́𝖺 𝗉𝗋𝗂𝗆𝖾𝗋𝗈 𝗎𝗇𝖺 𝗂𝗆𝖺𝗀𝖾𝗇, 𝗏𝗂𝖽𝖾𝗈 𝗈 𝖦𝗂𝖿...*', m, rcanal)
 }
 }
 }
