@@ -92,21 +92,10 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
     let text = _text.replace(/%(\w+)/g, (_, key) => replace[key] || '')
 
     await conn.sendMessage(m.chat, {
-  image: { url: 'https://files.catbox.moe/wav09n.jpg'},
-  caption: text,
-  buttons: [
-    {
-      name: 'cta_copy',
-      buttonParamsJson: JSON.stringify({
-        display_text: textTanjiro('📝 Copiar Alias'),
-        copy_code: 'Tanjiro-Bot-Oficial'
-})
-},
-    {
-      name: 'cta_call',
-      buttonParamsJson: JSON.stringify({
-        display_text: textTanjiro('📞 Soporte WhatsApp'),
-        phone_number: '+573162402768'
+      image: { url: 'https://files.catbox.moe/wav09n.jpg'},
+      caption: text,
+      buttons: [
+        { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
 })
 },
     {
@@ -115,9 +104,9 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
         display_text: textTanjiro('📧 Enviar Correo'),
         email_address: 'tanjirobot@support.com'
 })
-}
-  ],
-  viewOnce: true
+  }
+      ],
+      viewOnce: true
 }, { quoted: m})
 
 } catch (e) {
@@ -138,4 +127,4 @@ function clockString(ms) {
   let m = isNaN(ms)? '--': Math.floor(ms / 60000) % 60
   let s = isNaN(ms)? '--': Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':')
-}
+  }
