@@ -22,7 +22,6 @@ const handler = async (m, { conn}) => {
         display_text: fuenteTanjiro('✐ Canal Oficial'),
         url: 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N',
         merchant_url: 'https://whatsapp.com/channel/0029VbAfd7zDDmFXm5adcF31'
-})
 },
     {
       name: 'cta_url',
