@@ -18,7 +18,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
     try {
       return await conn.profilePictureUrl(who, 'image');
 } catch {
-      return 'https://i.ibb.co/cFzgdNw/file.jpg';
+      return 'https://files.catbox.moe/lpragp.jpg';
 }
 };
 
@@ -35,8 +35,8 @@ export async function before(m, { conn, participants, groupMetadata}) {
 .build();
 };
 
-  const dojoName = '𝖦ΞИΞ𝖤𝖲𝖨𝖲 | 𝖶𝗁𝖺𝗍𝗌𝖠𝗉𝗉 𝖠𝗂';
-  const dojoLink = 'https://chat.whatsapp.com/H5ueOzVRAzhBolt3lczDfG';
+  const dojoName = 'Tanjiro | 𝖶𝗁𝖺𝗍𝗌𝖠𝗉𝗉';
+  const dojoLink = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N';
 
   const welcomeTitle = '≡ 会 🧣 𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖨𝖭𝖦𝖱𝖤𝖲𝖠 𝖠𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会';
   const goodbyeTitle = '≡ 会 🧣 𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖠𝖡𝖠𝖭𝖣𝖮𝖭𝖠 𝖤𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会';
@@ -64,12 +64,12 @@ export async function before(m, { conn, participants, groupMetadata}) {
 `.trim();
 
   if (chat.welcome && m.messageStubType === 27) {
-    const img = await renderBanner('¡𝖡𝖨𝖤𝖭𝖵𝖤𝖭𝖨𝖣𝖮!', `𝖠𝗁𝗈𝗋𝖺 𝗌𝗈𝗆𝗈𝗌 ${memberCount} 𝗆𝗂𝖾𝗆𝖻𝗋𝗈𝗌.`, 'https://i.ibb.co/1fVJfvxk/file.jpg');
+    const img = await renderBanner('¡𝖡𝖨𝖤𝖭𝖵𝖤𝖭𝖨𝖣𝖮!', `𝖠𝗁𝗈𝗋𝖺 𝗌𝗈𝗆𝗈𝗌 ${memberCount} 𝗆𝗂𝖾𝗆𝖻𝗋𝗈𝗌.`, 'https://files.catbox.moe/lpragp.jpg');
     await conn.sendMini?.(m.chat, dojoName, null, welcomeMsg, img, img, dojoLink, null);
 }
 
   if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    const img = await renderBanner('¡𝖧𝖠𝖲𝖳𝖠 𝖫𝖴𝖤𝖦𝖮!', `𝖭𝗈𝗌 𝗏𝖾𝗆𝗈𝗌 𝗉𝗋𝗈𝗇𝗍𝗈. 𝖲𝗈𝗆𝗈𝗌 ${memberCount}`, 'https://i.ibb.co/Kcf0xdrQ/file.jpg');
+    const img = await renderBanner('¡𝖧𝖠𝖲𝖳𝖠 𝖫𝖴𝖤𝖦𝖮!', `𝖭𝗈𝗌 𝗏𝖾𝗆𝗈𝗌 𝗉𝗋𝗈𝗇𝗍𝗈. 𝖲𝗈𝗆𝗈𝗌 ${memberCount}`, 'https://files.catbox.moe/lpragp.jpg');
     await conn.sendMini?.(m.chat, dojoName, null, goodbyeMsg, img, img, dojoLink, null);
 }
 }
