@@ -28,7 +28,7 @@ async function handler(m, { conn: stars, usedPrefix}) {
 
   let botOficialInfo = `
 ≡ 会 ✦ 🩸 𝖡𝖮𝖳 𝖮𝖥𝖨𝖢𝖨𝖠𝖫 ✦ 会
-👑 𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅: wa.me/5491137612743
+👑 𝖡𝖮𝖳 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅: wa.me/5491137612743
 🧣 𝗎𝗌𝖺 este enlace para soporte y conexión directa.
 `
 
