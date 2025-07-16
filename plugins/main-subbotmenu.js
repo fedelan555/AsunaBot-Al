@@ -90,7 +90,7 @@ let handler = async (m, { conn}) => {
       menuText += `\n⛩️ *${tags[tag]}* ${getRandomEmoji()}\n`;
       menuText += comandos.map(menu =>
         menu.help.map(cmd =>
-          `🎴 ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
+          `ര🌸 ׄ  ${cmd}${menu.limit? ' ◜💮◞': ''}${menu.premium? ' ◜🌞◞': ''}`
 ).join('\n')
 ).join('\n');
       menuText += `\n═════════════════════`;
