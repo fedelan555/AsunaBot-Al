@@ -40,16 +40,16 @@ global.blackJadibts = true
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
 
 global.packsticker = `♾ ━━━━━━━━\n├ ɓσƭ:\n├ ρяοριєταяιο:\n├ ƒєϲнα ∂є ϲяєαϲιόи:\n├ нοяα:\n♾━━━━━━━━`
-global.packname = `𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ✨`
-global.author = `♾━━━━━━━━\n⇝͟͞𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ⋆\n⇝ ۵-̱̅𝐅𝐞𝐝𝐞𝐱𝐲𝐳-͞ˍ\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n♾━━━━━━━━\n\n\n\nѕτιϲκєя ϐγ: 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 ☘͟ `;
-global.wm = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙';
-global.titulowm = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭🌙';
-global.igfg = '𝐅𝐞𝐝𝐞𝐱𝐲𝐳 ☀️'
-global.botname = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌸'
-global.dev = '© 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝐁𝘆 𝐅𝐞𝐝𝐞𝐱𝐲𝐳🌙'
-global.textbot = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 : 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐝 𝐁𝘆 𝐅𝐞𝐝𝐞𝐱𝐲𝐳 🌙'
-global.gt = '🌸 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 🌙';
-global.namechannel = '𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 / 𝐅𝐞𝐝𝐞𝐱𝐲𝐳 🌙'
+global.packname = `𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣`
+global.author = `♾━━━━━━━━\n乂𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣\n乂 𝖿𝖾𝖽𝖾𝗑𝗒𝗓 会\n⇝ ${moment.tz('America/Los_Angeles').format('DD/MM/YY')}\n⇝ ${moment.tz('America/Los_Angeles').format('HH:mm:ss')} \n♾━━━━━━━━\n\n\n\nѕτιϲκєя ϐγ: 乂 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣`;
+global.wm = '𝖶𝗁𝖺𝗍𝗌𝖠𝗉𝗉  𝖬𝗎𝗅𝗍𝗂-𝖣𝖾𝗏𝗂𝖼𝖾';
+global.titulowm = '𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣';
+global.igfg = '𝖿𝖾𝖽𝖾𝗑𝗒𝗓'
+global.botname = '𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 𝖬𝗎𝗅𝗍𝗂-𝖣𝖾𝗏𝗂𝖼𝖾 🧣'
+global.dev = '© 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 𝖿𝖾𝖽𝖾𝗑𝗒𝗓 🧣'
+global.textbot = '𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 𝖣𝖾𝗏𝖾𝗅𝗈𝗉𝖾𝖽 𝖡𝗒 𝖿𝖾𝖽𝖾𝗑𝗒𝗓 🧣'
+global.gt = '𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 🧣';
+global.namechannel = '乂 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 会'
 
 //*─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─✞─ׄ─ׅ─ׄ─*
 
