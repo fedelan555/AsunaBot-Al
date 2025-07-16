@@ -13,7 +13,14 @@ const fuenteTanjiro = (text) => {
 const handler = async (m, { conn}) => {
   m.react("🌸")
 
-  const texto = `🌐 ${fuenteTanjiro('Pulsa uno de los botones para acceder a opciones exclusivas')}`
+  const texto = `
+🌐 ${fuenteTanjiro('Pulsa uno de los botones para acceder a opciones exclusivas')}
+
+📜 ${fuenteTanjiro('Sobre Tanjiro Bot')}
+
+🧣 ${fuenteTanjiro('Tanjiro Bot es un sistema temático inspirado en Demon Slayer, con comandos especiales de respiraciones, combate, rol, economía, protección grupal, y secciones visuales únicas.')}
+🎴 ${fuenteTanjiro('Creado por Fede.XYZ, este bot está optimizado para subbots, jugabilidad, canal oficial, comunidad e integración TikTok.')}
+📆 ${fuenteTanjiro('Desde su inicio en 2023, ha evolucionado como herramienta de gestión con estética japonesa.')}`.trim()
 
   const botones = [
     {
@@ -76,7 +83,13 @@ const handler = async (m, { conn}) => {
             text: `⚙ ${fuenteTanjiro('Tanjiro Bot')} 🌸`
 }),
           header: proto.Message.InteractiveMessage.Header.create({
-            hasMediaAttachment: false
+            hasMediaAttachment: true,
+            mediaAttachment: {
+              url: 'https://files.catbox.moe/sbzc3p.jpg',
+              mimetype: 'image/jpeg',
+              caption: fuenteTanjiro('𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 - TanjiroBot Portal'),
+              mediaType: 1
+}
 }),
           nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
             buttons: botones
