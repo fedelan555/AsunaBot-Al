@@ -95,7 +95,7 @@ let handler = async (m, { conn, usedPrefix: _p}) => {
       image: { url: 'https://files.catbox.moe/wav09n.jpg'},
       caption: text,
       buttons: [
-        { buttonId: `${_p}reg Soygay.999`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
+        { buttonId: `${_p}reg Soygay.50`, buttonText: { displayText: '🌸 AUTO VERIFICAR'}, type: 1},
       ],
       viewOnce: true
 }, { quoted: m})
