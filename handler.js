@@ -528,13 +528,13 @@ if (opts['autoread']) await this.readMessages([m.key])
 
 global.dfail = (type, m, conn) => {
 const msg = {
-  rowner: '🧣 *𝖠𝖼𝖼𝖾𝗌𝗈 𝖾𝗑𝖼𝗅𝗎𝗌𝗂𝗏𝗈 𝗌𝗈𝗅𝗈 𝗉𝖺𝗋𝖺 𝗆𝗂 𝖼𝗋𝖾𝖺𝖽𝗈𝗋..*\n\n> 🧣 𝖿𝖾𝖽𝖾𝗑𝗒𝗓.',
-  owner:  '🧣 *𝖤𝗌𝗍𝖺 𝖿𝗎𝗇𝖼𝗂𝗈́𝗇 𝗌𝗈𝗅𝗈 𝖾𝗌 𝗉𝖺𝗋𝖺 𝗆𝗂 𝖼𝗋𝖾𝖺𝖽𝗈𝗋.*',
-  premium: '🧣 *𝖲𝗈𝗅𝗈 𝗎𝗌𝗎𝖺𝗋𝗂𝗈𝗌 _𝖯𝗋𝖾𝗆𝗂𝗎𝗆_ 𝗉𝗎𝖾𝖽𝖾𝗇 𝖾𝗃𝖾𝖼𝗎𝗍𝖺𝗋.*',
-  private: '🧣 *𝖤𝗌𝗍𝖾 𝖼𝗈𝗆𝖺𝗇𝖽𝗈 𝗌𝗈𝗅𝗈 𝖿𝗎𝗇𝖼𝗂𝗈𝗇𝖺 𝖾𝗇 𝗉𝗋𝗂𝗏𝖺𝖽𝗈.*',
-  admin: '🧣 *𝖲𝗈𝗅𝗈 𝗅𝗈𝗌 𝖺𝖽𝗆𝗂𝗇𝗂𝗌𝗍𝗋𝖺𝖽𝗈𝗋𝖾𝗌 𝗉𝗎𝖾𝖽𝖾𝗇 𝗎𝗌𝖺𝗋 𝖾𝗌𝗍𝖺 𝖿𝗎𝗇𝖼𝗂𝗈́𝗇.*',
-  botAdmin: '🧣 *𝖭𝖾𝖼𝖾𝗌𝗂𝗍𝗈 𝗌𝖾𝗋 𝖺𝖽𝗆𝗂𝗇𝗂𝗌𝗍𝗋𝖺𝖽𝗈𝗋 𝗉𝖺𝗋𝖺 𝗎𝗌𝖺𝗋 𝖾𝗌𝗍𝖾 𝖼𝗈𝗆𝖺𝗇𝖽𝗈.*',
-  unreg: '🧣 *¡𝖠𝖼𝖼𝖾𝗌𝗈 𝖽𝖾𝗇𝖾𝗀𝖺𝖽𝗈! 𝖯𝗋𝗂𝗆𝖾𝗋𝗈 𝗋𝖾𝗀𝗂𝗌𝗍𝗋𝖺𝗍𝖾.*\n\n🧾 𝗎𝗌𝖺: */reg nombre.edad*\n🧣 Ejemplo: */reg tanjiro.13*',
-  restrict: '🧣 *𝖤𝗌𝗍𝖺 𝖿𝗎𝗇𝖼𝗂𝗈́𝗇 𝖾𝗌𝗍𝖺́ 𝖽𝖾𝗌𝖺𝖼𝗍𝗂𝗏𝖺𝖽𝖺 𝗉𝗈𝗋 𝗌𝖾𝗀𝗎𝗋𝗂𝖽𝖺𝖽.*'
+  rowner: '🌙 *acceso exclusivo solo para mi creador..*\n\n> 🌙 fede.',
+  owner:  '🌙 *está función solo es para mí desarrollar.*',
+  premium: '🌙 *solo usuarios _Premium_ pueden ejecutar.*',
+  private: '🌙 *este comando solo funciona en el privado.*',
+  admin: '🌙 *solo los administradores pueden usar esta función.*',
+  botAdmin: '🌙 *necesito ser administrador para usar este comando.*',
+  unreg: '🌙 *¡acceso denegado primero registrate.*\n\n🧾 𝚄𝚜𝚊: */reg nombre.edad*\n🌙 Ejemplo: */reg tanjiro.13*',
+  restrict: '🌙 *esta función está desactivado por seguridad.*'
 }[type];
 if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))}
