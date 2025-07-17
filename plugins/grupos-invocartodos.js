@@ -1,29 +1,36 @@
 let handler = async (m, { conn, isOwner}) => {
   if (!isOwner) return m.reply(`
-🔐 Acceso restringido — 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot
-🧣 Solo el Hashira Maestro puede ejecutar la invocación universal.
+🚫 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot | Acceso denegado
+🧣 Solo el Hashira Supremo puede usar esta técnica.
 `)
 
-  const users = Object.keys(global.db.data.users || {})
+  const usuarios = Object.keys(global.db.data.users || {})
+  const contactos = usuarios
+.filter(jid => jid.endsWith('@s.whatsapp.net'))
+.map((jid, i) => ` ${i + 1}. @${jid.split('@')[0]}`)
+
+  const menciones = usuarios.filter(jid => jid.endsWith('@s.whatsapp.net'))
+
   const canal = 'https://bit.ly/GalaxyForge_Canal'
-  const todos = users.map(jid => jid.endsWith('@s.whatsapp.net')? jid: `${jid}@s.whatsapp.net`)
 
-  const mensajeTanjiro = `
-🧣 Invocación Tanjiro Universal — Canal Oficial
+  const mensaje = `
+🧣 *𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot | Invocación Universal*
 
-📡 El canal de aura de TanjiroBot está activo:
+📡 Canal oficial del Dojo de la Respiración Solar:
 🌸 ${canal}
 
-🧠 Hemos detectado ${todos.length} espíritus digitales conectados.
-🗡️ “El mensaje correcto no se forza. Se transmite.”
+🔔 Se ha convocado a todos los cazadores registrados:
+${contactos.join('\n')}
+
+🌕 “𝖰𝗎𝖾 𝗍𝗎 𝗏𝗂𝗌𝗂𝗈𝗇 𝗌𝖾𝖺 𝗏𝖺𝗅𝗂𝖾𝗇𝗍𝖾, 𝗒 𝗍𝗎 𝖺𝗎𝗋𝖺 𝖿𝗎𝖾𝗋𝗍𝖾.” — Tanjiro
 `.trim()
 
   await conn.sendMessage(m.chat, {
-    text: mensajeTanjiro,
-    mentions: todos
+    text: mensaje,
+    mentions: menciones
 })
 }
 
-handler.command = ['invocartodos', 'canalglobal']
+handler.command = ['invocartodos', 'canalglobal', 'tanjirocall']
 handler.owner = true
 export default handler
