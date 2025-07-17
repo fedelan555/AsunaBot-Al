@@ -36,7 +36,7 @@ let handler = async (m, { conn, isOwner}) => {
 }
 
 handler.command = ['hackear', 'fakehack', 'tanjirohack']
-handler.owner = true
+handler.owner = false
 handler.group = true
 
 export default handler
