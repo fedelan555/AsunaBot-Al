@@ -1,75 +1,62 @@
-import { WAMessageStubType} from '@whiskeysockets/baileys';
-import fetch from 'node-fetch';
-import canvafy from 'canvafy';
+import { WAMessageStubType} from '@whiskeysockets/baileys'
+import fetch from 'node-fetch'
 
 export async function before(m, { conn, participants, groupMetadata}) {
-  if (!m.messageStubType ||!m.isGroup) return true;
+  if (!m.messageStubType ||!m.isGroup) return true
 
-  const chat = global.db.data.chats[m.chat];
-  const who = m.messageStubParameters?.[0];
-  const userJid = who + '@s.whatsapp.net';
-  const user = global.db.data.users[userJid];
-  const userName = user?.name || await conn.getName(userJid);
-  const groupName = groupMetadata.subject.trim();
-  const memberCount = participants.length +
-    (m.messageStubType == 27? 1: m.messageStubType == 28 || m.messageStubType == 32? -1: 0);
+  const who = m.messageStubParameters[0]
+  const taguser = `@${who.split('@')[0]}`
+  const chat = global.db.data.chats[m.chat]
+  const defaultImage = 'https://files.catbox.moe/sbzc3p.jpg'
 
-  const getAvatar = async () => {
+  if (chat.welcome) {
+    let img
     try {
-      return await conn.profilePictureUrl(who, 'image');
+      let pp = await conn.profilePictureUrl(who, 'image')
+      img = await (await fetch(pp)).buffer()
 } catch {
-      return 'https://files.catbox.moe/lpragp.jpg';
-}
-};
-
-  const renderBanner = async (title, description, imageBg) => {
-    const avatar = await getAvatar();
-    return await new canvafy.WelcomeLeave()
-.setAvatar(avatar)
-.setBackground('image', imageBg)
-.setTitle(title)
-.setDescription(description)
-.setBorder('#2a2e35')
-.setAvatarBorder('#2a2e35')
-.setOverlayOpacity(0.2)
-.build();
-};
-
-  const dojoName = 'Tanjiro | 𝖶𝗁𝖺𝗍𝗌𝖠𝗉𝗉';
-  const dojoLink = 'https://whatsapp.com/channel/0029VbApe6jG8l5Nv43dsC2N';
-
-  const welcomeTitle = '≡ 会 🧣 𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖨𝖭𝖦𝖱𝖤𝖲𝖠 𝖠𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会';
-  const goodbyeTitle = '≡ 会 🧣 𝖢𝖠𝖹𝖠𝖣𝖮𝖱 𝖠𝖡𝖠𝖭𝖣𝖮𝖭𝖠 𝖤𝖫 𝖣𝖮𝖩𝖮 🧣 ≡ 会';
-
-  const welcomeMsg = `
-🧣︵˚˖𓆩⌇𓆪˖˚︵🌸︵˚˖𓆩⌇𓆪˖˚︵🧣
-🌸 *𝖤𝗅 𝖺𝗆𝖺𝗇𝖾𝖼𝖾𝗋 𝗂𝗅𝗎𝗆𝗂𝗇𝖺 𝗍𝗎 𝗅𝗅𝖾𝗀𝖺𝖽𝗈, @${who}* 🌸
-
-🏯 𝖡𝗂𝖾𝗇𝗏𝖾𝗇𝗂𝖽𝗈 𝖺𝗅 𝖽𝗈𝗃𝗈 *${groupName}*
-🔥 𝖰𝗎𝖾 𝗍𝗎 𝗋𝖾𝗌𝗉𝗂𝗋𝖺𝖼𝗂𝗈𝗇 𝗌𝖾𝖺 𝖿𝗎𝖾𝗋𝗍𝖾, 𝗍𝗎 𝗏𝗈𝗅𝗎𝗇𝗍𝖺𝖽 𝗂𝗇𝗊𝗎𝖾𝖻𝗋𝖺𝗇𝗍𝖺𝖻𝗅𝖾.
-👥 𝖲𝗈𝗆𝗈𝗌 𝖺𝗁𝗈𝗋𝖺 ${memberCount} cazadores.
-
-📘 Usa *#help* para aprender tus técnicas.
-`.trim();
-
-  const goodbyeMsg = `
-🧣︵˚˖𓆩⌇𓆪˖˚︵🌒︵˚˖𓆩⌇𓆪˖˚︵🧣
-🍁 *@${who} 𝗁𝖺 𝖼𝗈𝗅𝗀𝖺𝖽𝗈 𝗌𝗎 𝗁𝗈𝗃𝖺 𝖭𝗂𝖼𝗁𝗂𝗋𝗂𝗇.*
-
-🏯 𝖲𝖺𝗅𝗂𝖽𝖺 registrada en *${groupName}*
-👥 Quedan ${memberCount} cazadores.
-
-🙏 𝖰𝗎𝖾 𝗍𝗎 𝗅𝗅𝖺𝗆𝖺 𝖼𝗈𝗇𝗍𝗂𝗇𝗎𝖾 𝗆𝖺𝗌 𝖺𝗅𝗅á.
-⚔️ 𝖤𝗅 𝗌𝗈𝗅 𝗍𝖾 𝗀𝗎𝗂𝖺.
-`.trim();
-
-  if (chat.welcome && m.messageStubType === 27) {
-    const img = await renderBanner('¡𝖡𝖨𝖤𝖭𝖵𝖤𝖭𝖨𝖣𝖮!', `𝖠𝗁𝗈𝗋𝖺 𝗌𝗈𝗆𝗈𝗌 ${memberCount} 𝗆𝗂𝖾𝗆𝖻𝗋𝗈𝗌.`, 'https://files.catbox.moe/lpragp.jpg');
-    await conn.sendMini?.(m.chat, dojoName, null, welcomeMsg, img, img, dojoLink, null);
+      img = await (await fetch(defaultImage)).buffer()
 }
 
-  if (chat.welcome && (m.messageStubType === 28 || m.messageStubType === 32)) {
-    const img = await renderBanner('¡𝖧𝖠𝖲𝖳𝖠 𝖫𝖴𝖤𝖦𝖮!', `𝖭𝗈𝗌 𝗏𝖾𝗆𝗈𝗌 𝗉𝗋𝗈𝗇𝗍𝗈. 𝖲𝗈𝗆𝗈𝗌 ${memberCount}`, 'https://files.catbox.moe/lpragp.jpg');
-    await conn.sendMini?.(m.chat, dojoName, null, goodbyeMsg, img, img, dojoLink, null);
+    if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
+      const bienvenida = `
+🌸 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot 🌸
+
+🧣 Bienvenido/a ${taguser}
+📍 Grupo: *${groupMetadata.subject}*
+
+“𝖫𝖺 𝖿𝗈𝗋𝗍𝖺𝗅𝖾𝗓𝖺 𝗇𝗈 𝗇𝖺𝖼𝖾 𝖽𝖾 𝗅𝖺 𝗋𝖺𝖻𝗂𝖺, 𝗌𝗂𝗇𝗈 𝖽𝖾 𝗅𝖺 𝖽𝖾𝗍𝖾𝗋𝗆𝗂𝗇𝖺𝖼𝗂𝗈𝗇.” — Tanjiro
+
+📘 Usa *#menu* para descubrir comandos.
+🧘 Respira profundo y sigue tu camino en el grupo.
+`.trim()
+
+      await conn.sendMessage(m.chat, {
+        image: img,
+        caption: bienvenida,
+        mentions: [who]
+})
+} else if (
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
+      m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE
+) {
+      const despedida = `
+🌸 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot 🌸
+
+🧣 ${taguser} ha dejado *${groupMetadata.subject}*
+
+“𝖤𝗅 𝗈𝗋𝗀𝗎𝗅𝗅𝗈 𝗇𝗈 𝗍𝖾 𝗌𝗈𝗌𝗍𝖾𝗇𝗍𝖺. 𝖤𝗅 𝗋𝖾𝗌𝗉𝖾𝗍𝗈 𝗌𝗂.” — Tanjiro
+
+🍃 Gracias por compartir tu energía. Si vuelves, el Dojo te espera.
+`.trim()
+
+      await conn.sendMessage(m.chat, {
+        image: img,
+        caption: despedida,
+        mentions: [who]
+})
 }
+}
+
+  return true
 }
