@@ -1,53 +1,48 @@
 import { createHash} from 'crypto'
-import { xpRange} from '../lib/levelling.js'
 
-const grupoNotificacion = '120363422310535661@g.us' // Grupo de notificación estilo Tanjiro
+const grupoNotificacion = '120363422310535661@g.us'
+
+function generarID(sender) {
+  return createHash('md5').update(sender).digest('hex')
+}
 
 let handler = async (m, { conn, text, usedPrefix, command}) => {
   let user = global.db.data.users[m.sender]
-  if (user.registered) return m.reply(`🌸 Ya estás registrado.\nUsa *${usedPrefix}unreg* para comenzar de nuevo.`)
+  if (user.registered) return m.reply(`🌸 Ya estás registrado.\nUsa *${usedPrefix}unreg* para reiniciar.`)
 
   let match = /\|?(.*)([.|] *?)([0-9]*)$/i
-  if (!match.test(text)) return m.reply(`🌸 Formato inválido.\n📌 Ejemplo: *${usedPrefix + command} Tanjiro.16*`)
+  let [_, name, __, age] = text.match(match) || []
 
-  let [_, name, __, age] = text.match(match)
-  if (!name ||!age) return m.reply('🌸 Debes ingresar nombre y edad válidos.')
+  if (!name ||!age) return m.reply(`🌸 Formato inválido.\nEjemplo: *${usedPrefix + command} Tanjiro.16*`)
   age = parseInt(age)
-  if (age < 5 || age> 1000) return m.reply('🌸 La edad ingresada no es válida.')
+  if (isNaN(age) || age < 5 || age> 100) return m.reply('🌸 Ingresa una edad válida (5-100 años).')
 
   user.name = name.trim()
   user.age = age
-  user.regTime = +new Date
+  user.regTime = Date.now()
   user.registered = true
-  user.money += 600
-  user.exp += 245
-  user.estrellas += 10
-  user.joincount += 5
+  user.exp += 300
 
-  let sn = createHash('md5').update(m.sender).digest('hex')
+  const sn = generarID(m.sender)
 
-  let regbot = `
-╭─ׅ─ׅ┈─๋︩︪──ׅ─ׅ┈─๋︩︪╮
-     🌸 *REGISTRADO/A EN TANJIRO-BOT* 🌸
-┃ 🗂️ *Nombre:* ${user.name}
-┃ 🎂 *Edad:* ${user.age} años
-┃ 📜 *ID de Cazador:* ${sn}
-╰───────────────────────────╯
+  const mensaje = `
+🌸 *Registro exitoso en TanjiroBot* 🌸
 
-✨ Usa *#perfil* para ver tu progreso
-📨 Puedes ver tu registro aquí:
-🔗 https://chat.whatsapp.com/KiaWNR6YqUp3KeXoeMP7qO
-🍃 *“Respira profundo. Lucha con honor.”*
-`
+🗂️ Nombre: ${user.name}
+🎂 Edad: ${user.age}
+🧣 ID de Cazador: ${sn}
 
-  await m.react('📩')
+Usa *#perfil* para ver tu progreso.
+`.trim()
+
+  await m.react('✅')
 
   await conn.sendMessage(m.chat, {
-    text: regbot,
+    text: mensaje,
     contextInfo: {
       externalAdReply: {
-        title: '🌸 Registro exitoso en Tanjiro-Bot',
-        body: '¡Bienvenido al Dojo del Sol!',
+        title: '🌸 TanjiroBot | Registro exitoso',
+        body: 'Bienvenido al Dojo del Sol',
         thumbnailUrl: 'https://files.catbox.moe/wav09n.jpg',
         sourceUrl: 'https://chat.whatsapp.com/KiaWNR6YqUp3KeXoeMP7qO',
         mediaType: 1,
@@ -56,32 +51,20 @@ let handler = async (m, { conn, text, usedPrefix, command}) => {
 }
 }, { quoted: m})
 
-  let notificacion = `
-🌀 *Registro detectado en Tanjiro-Bot*
+  const noti = `
+🌀 Registro nuevo en TanjiroBot
 
 👤 Usuario: ${m.pushName}
 🆔 Número: ${m.sender}
-🌸 Nombre: ${user.name}
+🧣 Nombre: ${user.name}
 🎂 Edad: ${user.age}
 🗂 ID: ${sn}
-📌 Registro visible en: https://chat.whatsapp.com/KiaWNR6YqUp3KeXoeMP7qO
 `
 
-  await conn.sendMessage(grupoNotificacion, {
-    text: notificacion,
-    contextInfo: {
-      externalAdReply: {
-        title: '🔖 Tanjiro-Bot | Registro de Cazador',
-        body: 'Registro automático del Dojo',
-        thumbnailUrl: 'https://files.catbox.moe/xr2m6u.jpg',
-        sourceUrl: 'https://chat.whatsapp.com/KiaWNR6YqUp3KeXoeMP7qO',
-        mediaType: 1
-}
-}
-}, { quoted: null})
+  await conn.sendMessage(grupoNotificacion, { text: noti})
 }
 
 handler.help = ['reg']
 handler.tags = ['rg']
-handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar']
+handler.command = ['register', 'reg', 'registrar']
 export default handler
