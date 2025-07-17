@@ -70,6 +70,6 @@ ${lastSenders.length? lastSenders.join('\n'): ' - Sin actividad reciente'}
 `.trim())
 }
 
-handler.command = ['spam', 'overwatch', 'vigilar']
+handler.command = ['overwatch2', 'vigilar2']
 handler.group = true
 export default handler
