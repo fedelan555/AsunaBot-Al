@@ -30,8 +30,9 @@ let crm3 = "SBpbmZvLWRvbmFyLmpz"
 let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
-let rtx = "✞𓆩 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 - 𝖲𝗎𝖻 𝖡𝗈𝗍 𓆪✞\n\n✞ 𝖢𝗈𝗇𝖾𝗑𝗂𝗈𝗇 𝖲𝗎𝖻‐𝖡𝗈𝗍 𝖬𝗈𝖽𝗈 𝖰𝖱\n\n✰ 𝖢𝗈𝗇 𝗈𝗍𝗋𝗈 𝖼𝖾𝗅𝗎𝗅𝖺𝗋 𝗈 𝖾𝗇 𝗅𝖺 𝖯𝖢 𝖾𝗌𝖼𝖺𝗇𝖾𝖺 𝖾𝗌𝗍𝖾 𝖰𝖱 𝗉𝖺𝗋𝖺 𝗌𝖾𝗋 𝗎𝗇 *𝖲𝗎𝖻‐𝖡𝗈𝗍* 𝖳𝖾𝗆𝗉𝗈𝗋𝖺𝗅.\n\n\`1\` » 𝖢𝗅𝗂𝖼𝗄 𝖾𝗇 𝗅𝗈𝗌 𝗍𝗋𝖾𝗌 𝗉𝗎𝗇𝗍𝗈𝗌 𝖾𝗇 𝗅𝖺 𝖾𝗌𝗊𝗎𝗂𝗇𝖺 𝗌𝗎𝗉𝖾𝗋𝗂𝗈𝗋\n\`2\` » 𝖳𝗈𝗊𝗎𝖾 𝖽𝗂𝗌𝗉𝗈𝗌𝗂𝗍𝗂𝗏𝗈𝗌 𝗏𝗂𝗇𝖼𝗎𝗅𝖺𝖽𝗈𝗌\n\`3\` » 𝖤𝗌𝖼𝖺𝗇𝖾𝖾 𝖾𝗌𝗍𝖾 𝖢𝗈𝗱𝗂𝗀𝗈 𝖰𝖱 𝗉𝖺𝗋𝖺 𝗂𝗇𝗂𝖼𝗂𝖺𝗋 𝗌𝗲𝗌𝗂𝗈𝗇\n\n✧ 𝖤𝗑𝗉𝗂𝗋𝖺 𝖾𝗇 45 𝗌𝖾𝗀𝗎𝗇𝖽𝗈𝗌!"
-let rtx2 = "✞𓆩 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 - 𝖲𝗎𝖻 𝖡𝗈𝗍 𓆪✞\n\n✞ 𝖢𝗈𝗇𝖾𝗑𝗂𝗈𝗇 𝖲𝗎𝖻‐𝖡𝗈𝗍 𝖬𝗈𝖽𝗈 𝖢𝗈𝖽𝗂𝗀𝗈\n\n✰ 𝖴𝗌𝖺 𝖾𝗌𝗍𝖾 𝖢𝗈𝖽𝗂𝗀𝗈 𝗉𝖺𝗋𝖺 𝗌𝖾𝗋 𝗎𝗇 *𝖲𝗎𝖻‐𝖡𝗈𝗍* 𝖳𝖾𝗆𝗉𝗈𝗋𝖺𝗅.\n\n\`1\` » 𝖢𝗅𝗂𝖼𝗄 𝖾𝗇 𝗅𝗈𝗌 𝗍𝗋𝖾𝗌 𝗉𝗎𝗇𝗍𝗈𝗌 𝖾𝗇 𝗅𝖺 𝖾𝗌𝗊𝗎𝗂𝗇𝖺\n\`2\` » 𝖳𝗈𝗊𝗎𝖾 𝖽𝗂𝗌𝗉𝗈𝗌𝗂𝗍𝗂𝗏𝗈𝗌 𝗏𝗂𝗇𝖼𝗎𝗅𝖺𝖽𝗈𝗌\n\`3\` » 𝖲𝖾𝗅𝖾𝖼𝖼𝗂𝗈𝗇𝖺 𝖵𝗂𝗇𝖼𝗎𝗅𝖺𝗋 𝖼𝗈𝗇 𝖾𝗅 𝗇𝗎𝗆𝖾𝗋𝗈\n\`4\` » 𝖤𝗌𝖼𝗋𝗂𝖻𝖾 𝖾𝗅 𝖢𝗈𝖽𝗂𝗀𝗈 𝗉𝖺𝗋𝖺 𝗂𝗇𝗂𝖼𝗂𝖺𝗋 𝗌𝗲𝗌𝗂𝗈𝗇\n\n✧ 𝖭𝗈 𝖾𝗌 𝗋𝖾𝖼𝗈𝗆𝖾𝗇𝖽𝖺𝖻𝗅𝖾 𝗎𝗌𝖺𝗋 𝗍𝗎 𝖼𝗎𝖾𝗇𝗍𝖺 𝗉𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅."
+let rtx = "*✞ঔৣ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 - 𝙨𝙪𝙗 𝙗𝙤𝙩 ঔৣ*\n\n✞ Cσɳҽxισɳ SυႦ-Bσƚ Mσԃҽ QR\n\n✰ Con otro celular o en la PC escanea este QR para convertirte en un *Sub-Bot* Temporal.\n\n\`1\` » Haga clic en los tres puntos en la esquina superior derecha\n\n\`2\` » Toque dispositivos vinculados\n\n\`3\` » Escanee este codigo QR para iniciar sesion con el bot\n\n✧ ¡Este código QR expira en 45 segundos!."
+let rtx2 = "*✞ঔৣ 𝐓𝐚𝐧𝐣𝐢𝐫𝐨_𝐁𝐨𝐭 - 𝙨𝙪𝙗 𝙗𝙤𝙩 ঔ*\n\n✞ Cσɳҽxισɳ SυႦ-Bσƚ Mσԃҽ Cσԃҽ\n\n✰ Usa este Código para convertirte en un *Sub-Bot* Temporal.\n\n\`1\` » Haga clic en los tres puntos en la esquina superior derecha\n\n\`2\` » Toque dispositivos vinculados\n\n\`3\` » Selecciona Vincular con el número de teléfono\n\n\`4\` » Escriba el Código para iniciar sesion con el bot\n\n✧ No es recomendable usar tu cuenta principal."
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -229,7 +230,7 @@ console.log(chalk.bold.cyanBright(`\n❒⸺⸺⸺⸺【• SUB-BOT •】⸺⸺�
 sock.isInit = true
 global.conns.push(sock)
 
-m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de la familia Tanjiro_Bot Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
+m?.chat ? await conn.sendMessage(m.chat, {text: args[0] ? `@${m.sender.split('@')[0]}, ya estás conectado, leyendo mensajes entrantes...` : `@${m.sender.split('@')[0]}, genial ya eres parte de la familia black-clover Sub-Bots.`, mentions: [m.sender]}, { quoted: m }) : ''
 
 }}
 setInterval(async () => {
