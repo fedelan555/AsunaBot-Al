@@ -1,24 +1,18 @@
 const codigosArabes = [
   '+212', '+971', '+20', '+966', '+964', '+963', '+973', '+968', '+974',
-  '+961', '+962', '+90', '+967', '+269', '+218', '+886', '+882'
+  '+961', '+962', '+90', '+967', '+269', '+218', '+886', '+882', '+998', '+960'
 ];
 
 const regexArabe = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
 const regexComando = /^[\/!#.]/;
 
-// Objeto global para advertencias
 global.advertenciasArabes = global.advertenciasArabes || {};
 
 export async function before(m, { conn, isOwner, isROwner}) {
   try {
     if (
-      m.isBaileys ||
-      m.isGroup ||
-!m.message ||
-!m.sender ||
-      typeof m.text!== 'string' ||
-      isOwner ||
-      isROwner
+      m.isBaileys || m.isGroup ||!m.message ||!m.sender ||
+      typeof m.text!== 'string' || isOwner || isROwner
 ) return false;
 
     const numero = m.sender;
@@ -34,32 +28,35 @@ export async function before(m, { conn, isOwner, isROwner}) {
 
       if (advertencias>= 3) {
         await m.reply(`
-☣〘𝖢𝗋𝖾𝖺𝖽𝗈𝗋 CyberShield™〙☣
-🟥 ⛔ *[BLOQUEO ACTIVADO]* ⛔ 🟥
+☣〘𝖼𝗋𝖾𝖺𝖽𝗈𝗋 CyberShield™〙☣
+🟥 ⛔ *[BLOQUEO DEFINITIVO]* ⛔ 🟥
 ══════════════════════
-🛡️ *Seguridad CyberCore™ activada*
+🛡️ *Modo Tanjiro activado* 🧣
 📛 Usuario: ${numero}
-💬 Motivo: *Texto árabe no permitido* (3/3)
+💬 Detalle: Texto prohibido (3/3)
 
-💢 *Ejecución del protocolo [AUTOBLOCK-ΣX3]...*
-🔒 Estado: *USUARIO BLOQUEADO*
-🔗 Acceso denegado permanentemente.
+⚔️ *“Protéger a los demás es nuestra misión.” — Tanjiro Kamado*
+💢 Protocolo AUTOBLOCK-ΣX3 ejecutado
+🔒 Usuario bloqueado por seguridad
+
+🔗 Acceso eliminado.
 ══════════════════════`);
         await conn.updateBlockStatus(m.chat, 'block');
-        console.log(`[⛔ BLOQUEADO PERMANENTE] ${numero}`);
+        console.log(`[⛔ BLOQUEO TOTAL] ${numero}`);
         delete global.advertenciasArabes[numero];
 } else {
         await m.reply(`
-☣〘𝖢𝗋𝖾𝖺𝖽𝗈𝗋 CyberShield™〙☣
-⚠️ ⚠️ *[ADVERTENCIA ${advertencias}/3]* ⚠️ ⚠️
+☣〘𝖼𝗋𝖾𝖺𝖽𝗈𝗋 CyberShield™〙☣
+⚠️ ADVERTENCIA ${advertencias}/3 ⚠️
 ══════════════════════
-🚫 *Sistema de defensa Sigma-Fire activado*
-💬 Has enviado texto no permitido con caracteres árabes.
+🧣 *Sistema en alerta estilo Tanjiro*
+💬 Texto árabe detectado ❌
 
-📎 Comandos aceptados únicamente:
-✦ */menu* ◈ */help* ◈ */code* ◈!info
+📎 Solo comandos permitidos:
+✦ */menu* ◈ */help* ◈ */code*
 
-☠ Próxima violación ⊘ *bloqueo automático asegurado*
+🧬 “La fuerza nace del respeto.” — Tanjiro
+⚡ Próxima violación activará *bloqueo automático*
 ══════════════════════`);
         console.log(`[⚠️ ADVERTENCIA ${advertencias}/3] ${numero}`);
 }
@@ -70,7 +67,7 @@ export async function before(m, { conn, isOwner, isROwner}) {
     return true;
 
 } catch (e) {
-    console.error('[❌ ERROR EN SISTEMA CYBERPUNK DE ADVERTENCIAS]', e);
+    console.error('[❌ ERROR EN SISTEMA CyberShield 𝖼𝗋𝖾𝖺𝖽𝗈𝗋]', e);
     return true;
 }
 }
