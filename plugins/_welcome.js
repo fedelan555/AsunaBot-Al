@@ -12,7 +12,7 @@ export async function before(m, { conn, participants, groupMetadata}) {
   if (chat.welcome) {
     let img
     try {
-      let pp = await conn.profilePictureUrl(who, 'image')
+      const pp = await conn.profilePictureUrl(who, 'image')
       img = await (await fetch(pp)).buffer()
 } catch {
       img = await (await fetch(defaultImage)).buffer()
@@ -20,15 +20,15 @@ export async function before(m, { conn, participants, groupMetadata}) {
 
     if (m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_ADD) {
       const bienvenida = `
-🌸 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot 🌸
+🧣 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 | 𝖶𝖾𝗅𝖼𝗈𝗆𝖾
 
-🧣 Bienvenido/a ${taguser}
-📍 Grupo: *${groupMetadata.subject}*
+🎋 Usuario: ${taguser}
+👥 Grupo: *${groupMetadata.subject}*
 
-“𝖫𝖺 𝖿𝗈𝗋𝗍𝖺𝗅𝖾𝗓𝖺 𝗇𝗈 𝗇𝖺𝖼𝖾 𝖽𝖾 𝗅𝖺 𝗋𝖺𝖻𝗂𝖺, 𝗌𝗂𝗇𝗈 𝖽𝖾 𝗅𝖺 𝖽𝖾𝗍𝖾𝗋𝗆𝗂𝗇𝖺𝖼𝗂𝗈𝗇.” — Tanjiro
+“𝖫𝖺 𝖿𝗎𝖾𝗋𝗓𝖺 𝗇𝗈 𝗇𝖺𝖼𝖾 𝖽𝖾 𝗅𝖺 𝗋𝖺𝖻𝗂𝖺, 𝗌𝗂𝗇𝗈 𝖽𝖾 𝗅𝖺 𝖽𝖾𝗍𝖾𝗋𝗆𝗂𝗇𝖺𝖼𝗂𝗈𝗇.” — Tanjiro
 
 📘 Usa *#menu* para descubrir comandos.
-🧘 Respira profundo y sigue tu camino en el grupo.
+🥋 Que el Dojo te fortalezca.
 `.trim()
 
       await conn.sendMessage(m.chat, {
@@ -36,18 +36,20 @@ export async function before(m, { conn, participants, groupMetadata}) {
         caption: bienvenida,
         mentions: [who]
 })
+
 } else if (
       m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_REMOVE ||
       m.messageStubType === WAMessageStubType.GROUP_PARTICIPANT_LEAVE
 ) {
       const despedida = `
-🌸 𝖯𝗋𝗂𝗇𝖼𝗂𝗉𝖺𝗅 TanjiroBot 🌸
+🧣 𝖳𝖺𝗇𝗃𝗂𝗋𝗈_𝖡𝗈𝗍 | 𝖦𝗈𝗈𝖽𝖻𝗒𝖾
 
-🧣 ${taguser} ha dejado *${groupMetadata.subject}*
+🍂 Usuario: ${taguser}
+👥 Grupo: *${groupMetadata.subject}*
 
-“𝖤𝗅 𝗈𝗋𝗀𝗎𝗅𝗅𝗈 𝗇𝗈 𝗍𝖾 𝗌𝗈𝗌𝗍𝖾𝗇𝗍𝖺. 𝖤𝗅 𝗋𝖾𝗌𝗉𝖾𝗍𝗈 𝗌𝗂.” — Tanjiro
+“𝖤𝗅 𝗋𝖾𝗌𝗉𝖾𝗍𝗈 𝗁𝖺𝖼𝖾 𝗊𝗎𝖾 𝗁𝗈𝗉𝗂𝗍𝖺𝗅 𝗌𝖾 𝗌𝗂𝗇𝗍𝖺 𝖼𝗈𝗆𝗈 𝗁𝗈𝗀𝖺𝗋.” — Tanjiro
 
-🍃 Gracias por compartir tu energía. Si vuelves, el Dojo te espera.
+🌸 Te recordaremos con cariño.
 `.trim()
 
       await conn.sendMessage(m.chat, {
